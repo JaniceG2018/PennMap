@@ -18,35 +18,41 @@ public class PennMapTest {
 	
 	@Test
 	public void testMakeQuadTree() {
-		List<List<Object>> list = new ArrayList<ArrayList<Object>>();
-		map.makeQuadTree(list);
+		List<Location> locations = new ArrayList<Location>();
+		locations.add(new Location());
+		locations.add(new Location());
+		locations.add(new Location());
+		QuadTree exp = new QuadTree();
+		assertEquals(exp, locations.makeQuadTree());
 	}
 	
 	@Test
 	public void testMakeGraph() {
-		List<List<Object>> list = new ArrayList<ArrayList<Object>>();
-		map.makeGraph(list);
+		List<String> locNames = new ArrayList<String>();
+		locNames.add("");
+		locNames.add("");
+		locNames.add("");
+		Graph exp = new Graph();
+		assertEquals(exp, locNames.makeGraph());
 	}
 	
 	@Test
 	public void testShortestPath() {
-		assertEquals("", map.shortestPath("a", "b"));
+		assertEquals("", map.findShortestPath("a", "b"));
 	}
 	
 	@Test
 	public void testFindAll() {
-		List<String> exp = new ArrayList<String>();
+		List<Location> exp = new ArrayList<Location>();
+		exp.add(new Location());
+		exp.add(new Location());
+		exp.add(new Location());
 		assertEquals(exp, map.findAll("", 1));
 	}
 	
 	@Test
 	public void testFindNearest() {
-		assertEquals("", map.findNearest());
-	}
-	
-	@Test
-	public void testSetDestCoord() {
-		Coordinate coord = new Coordinate(1, 1);
-		assertEquals(exp, map.setDestCoord(1, 1));
+		Location exp = new Location();
+		assertEquals(exp, map.findNearest(""));
 	}
 }

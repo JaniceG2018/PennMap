@@ -1,15 +1,16 @@
 /**
- * The Graph interface models a road network
+ * The IGraph interface is used to model a road network
  * @author calchen
  *
  */
 public interface IGraph {
 
 	/**
-	 * add() adds a Road to our graph
-	 * @param loc1 the name of the starting location for the road
-	 * @param loc2 the name of the destination for the road
-	 * @param rd the road
+	 * findShortestPath() returns the directions in text for the
+	 * shortest path from a starting location to a destination
+	 * @param loc1 the name of the starting location
+	 * @param loc2 the name of the destination
+	 * @return the directions in text from loc1 to loc2
 	 */
-	public boolean add(String loc1, String loc2, Road rd);
+	public String findShortestPath(String loc1, String loc2);
 }

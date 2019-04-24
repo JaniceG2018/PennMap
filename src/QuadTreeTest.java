@@ -10,31 +10,33 @@ public class QuadTreeTest {
 	
 	@Before
 	public void setUp() {
-		tree = new QuadTree(node);
-		
+		BaseNode root;
+		tree = new QuadTree(root);
 	}
 	
 	@Test
 	public void testInsert() {
-		BaseNode node = new BaseNode();
-		assertTrue(tree.insert(node));
+		BaseNode newNode;
+		assertTrue(tree.insert(newNode));
 	}
 	
 	@Test
 	public void testSearch() {
-		
-	}
-	
-	@Test
-	public void testSplit() {
-		InternalNode exp = new InternalNode();
-		asserEquals(exp, map.split());
+		List<Location> exp = new ArrayList<Location>();
+		exp.add(new Location());
+		exp.add(new Location());
+		exp.add(new Location());
+		Range range = new Range(new Coordinate(1, 1), new Coordinate(1, 1));
+		assertEquals(exp, tree.search("", range));
 	}
 	
 	@Test
 	public void testEnclosingQuad() {
+		List<Location> locations = new ArrayList<Location>();
+		locations.add(new Location());
+		locations.add(new Location());
+		locations.add(new Location());
 		Coordinate exp = new Coordinate(1, 1);
-		List<Coordinate> list = new ArrayList<Coordinate>();
-		assertEquals(exp, tree.enclosingQuad(list));
+		assertEquals(exp, tree.enclosingQuad(locations));
 	}
 }
