@@ -29,4 +29,5 @@ public interface IQuadTree {
 	 * @return
 	 */
 	public Coordinate enclosingQuad(List<Location> locs);
+	//someone finish this
 }

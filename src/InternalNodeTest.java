@@ -4,6 +4,6 @@ public class InternalNodeTest {
 
 	@Test
 	public void testSearch() {
-		
+		//search returns void???
 	}
 }

@@ -10,33 +10,40 @@ public class QuadTreeTest {
 	
 	@Before
 	public void setUp() {
-		BaseNode root;
+		BaseNode root = new LeafNode();
 		tree = new QuadTree(root);
 	}
 	
 	@Test
 	public void testInsert() {
-		BaseNode newNode;
-		assertTrue(tree.insert(newNode));
+		BaseNode newLeafNode = new LeafNode("name", "type", new Coordinate(1.0, 1.0),
+				new ArrayList<LeafNode>());
+		assertTrue(tree.insert(newLeafNode));
+		
+		BaseNode newInternalNode = new InternalNode(new LeafNode(), new LeafNode(),
+				new LeafNode(), new LeadNode());
+		assertTrue(tree.insert(newInternalNode));
 	}
 	
 	@Test
 	public void testSearch() {
+		Range range = new Range(new Coordinate(1.0, 1.0), new Coordinate(1.0, 1.0));
 		List<Location> exp = new ArrayList<Location>();
-		exp.add(new Location());
-		exp.add(new Location());
-		exp.add(new Location());
-		Range range = new Range(new Coordinate(1, 1), new Coordinate(1, 1));
-		assertEquals(exp, tree.search("", range));
+		exp.add(new Location("name", "type", new Coordinate(1.0, 1.0)));
+		exp.add(new Location("name", "type", new Coordinate(1.0, 1.0)));
+		exp.add(new Location("name", "type", new Coordinate(1.0, 1.0)));
+		exp.add(new Location("name", "type", new Coordinate(1.0, 1.0)));
+		assertEquals(exp, tree.search("type", range));
 	}
 	
 	@Test
 	public void testEnclosingQuad() {
 		List<Location> locations = new ArrayList<Location>();
-		locations.add(new Location());
-		locations.add(new Location());
-		locations.add(new Location());
-		Coordinate exp = new Coordinate(1, 1);
+		locations.add(new Location("name", "type", new Coordinate(1.0, 1.0)));
+		locations.add(new Location("name", "type", new Coordinate(1.0, 1.0)));
+		locations.add(new Location("name", "type", new Coordinate(1.0, 1.0)));
+		locations.add(new Location("name", "type", new Coordinate(1.0, 1.0)));
+		Coordinate exp = new Coordinate(1.0, 1.0);
 		assertEquals(exp, tree.enclosingQuad(locations));
 	}
 }
