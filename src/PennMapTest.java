@@ -63,10 +63,14 @@ public class PennMapTest {
 		locations.add(new Location("LaTao Hot Pot", "restaurant", new Coordinate(1.0, 1.0)));
 		
 		List<Road> roads = new ArrayList<Road>();
-		roads.add(new Road("start", "end", "name", 1.0));
-		roads.add(new Road("start", "end", "name", 1.0));
-		roads.add(new Road("start", "end", "name", 1.0));
-		roads.add(new Road("start", "end", "name", 1.0));
+		roads.add(new Road("start", "end", "38th Street", 1.0));
+		roads.add(new Road("start", "end", "37th Street", 1.0));
+		roads.add(new Road("start", "end", "36th Street", 1.0));
+		roads.add(new Road("start", "end", "34th Street", 1.0));
+		roads.add(new Road("start", "end", "Ludlow Street", 1.0));
+		roads.add(new Road("start", "end", "Chestnut Street", 1.0));
+		roads.add(new Road("start", "end", "Walnut Street", 1.0));
+		roads.add(new Road("start", "end", "Locust Walk", 1.0));
 		
 		Graph exp = new Graph(locations, roads);
 		
@@ -75,22 +79,20 @@ public class PennMapTest {
 	
 	@Test
 	public void testShortestPath() {
-		assertEquals("directions", pennMap.findShortestPath("loc1", "loc2"));
+		assertEquals("directions", pennMap.findShortestPath("Huntsman Hall", "Sheraton University City"));
 	}
 	
 	@Test
 	public void testFindAll() {
 		List<Location> exp = new ArrayList<Location>();
-		exp.add(new Location("name", "type", new Coordinate(1.0, 1.0)));
-		exp.add(new Location("name", "type", new Coordinate(1.0, 1.0)));
-		exp.add(new Location("name", "type", new Coordinate(1.0, 1.0)));
-		exp.add(new Location("name", "type", new Coordinate(1.0, 1.0)));
+		exp.add(new Location("Inn at Penn", "hotel", new Coordinate(1.0, 1.0)));
+		exp.add(new Location("Sheraton University City", "hotel", new Coordinate(1.0, 1.0)));
 		assertEquals(exp, pennMap.findAll("type", 1.0));
 	}
 	
 	@Test
 	public void testFindNearest() {
-		Location exp = new Location("name", "type", new Coordinate(1.0, 1.0));
-		assertEquals(exp, pennMap.findNearest("type"));
+		Location exp = new Location("Inn at Penn", "hotel", new Coordinate(1.0, 1.0));
+		assertEquals(exp, pennMap.findNearest("hotel"));
 	}
 }

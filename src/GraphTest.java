@@ -20,10 +20,14 @@ public class GraphTest {
 		locations.add(new Location("LaTao Hot Pot", "restaurant", new Coordinate(1.0, 1.0)));
 		
 		List<Road> roads = new ArrayList<Road>();
-		roads.add(new Road("start", "end", "name", 1.0));
-		roads.add(new Road("start", "end", "name", 1.0));
-		roads.add(new Road("start", "end", "name", 1.0));
-		roads.add(new Road("start", "end", "name", 1.0));
+		roads.add(new Road("start", "end", "38th Street", 1.0));
+		roads.add(new Road("start", "end", "37th Street", 1.0));
+		roads.add(new Road("start", "end", "36th Street", 1.0));
+		roads.add(new Road("start", "end", "34th Street", 1.0));
+		roads.add(new Road("start", "end", "Ludlow Street", 1.0));
+		roads.add(new Road("start", "end", "Chestnut Street", 1.0));
+		roads.add(new Road("start", "end", "Walnut Street", 1.0));
+		roads.add(new Road("start", "end", "Locust Walk", 1.0));
 		
 		Graph graph = new Graph(locations, roads);
 		assertEquals("directions", graph.findShortestPath("loc1", "loc2"));
