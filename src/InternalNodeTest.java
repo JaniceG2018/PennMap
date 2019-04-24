@@ -1,7 +1,7 @@
 import org.junit.Test;
 
 /**
- * InternalNodeTest tests the methods in the InternalNode class
+ * InternalNodeTest tests the method in the InternalNode class
  * @author calchen
  *
  */

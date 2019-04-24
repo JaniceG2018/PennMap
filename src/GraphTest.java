@@ -4,7 +4,7 @@ import java.util.List;
 import org.junit.Test;
 
 /**
- * GraphTest tests the methods in the Graph class
+ * GraphTest tests the method in the Graph class
  * @author calchen
  *
  */

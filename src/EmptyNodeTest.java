@@ -1,7 +1,7 @@
 import org.junit.Test;
 
 /**
- * 
+ * EmptyNodeTest tests the method in the EmptyNode class
  * @author calchen
  *
  */

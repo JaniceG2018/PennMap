@@ -54,7 +54,7 @@ public class QuadTreeTest {
 	}
 	
 	/**
-	 * test the enclosingQuad() method in the QuanTree class
+	 * test the enclosingQuad() method in the QuadTree class
 	 */
 	@Test
 	public void testEnclosingQuad() {

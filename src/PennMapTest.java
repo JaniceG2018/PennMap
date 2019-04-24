@@ -26,7 +26,7 @@ public class PennMapTest {
 	}
 	
 	/**
-	 * test the makeQuadTree() class in the PennMap class
+	 * test the makeQuadTree() method in the PennMap class
 	 */
 	@Test
 	public void testMakeQuadTree() {
