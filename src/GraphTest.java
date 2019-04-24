@@ -3,9 +3,17 @@ import java.util.List;
 
 import org.junit.Test;
 
+/**
+ * GraphTest tests the methods in the Graph class
+ * @author calchen
+ *
+ */
 public class GraphTest {
 
 	@Test
+	/**
+	 * test the findShortestPath() method in the Graph class
+	 */
 	public void testFindShortestPath() {
 		List<Location> locations = new ArrayList<Location>();
 		locations.add(new Location("Huntsman Hall", "school", new Coordinate(1.0, 1.0)));

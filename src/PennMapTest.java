@@ -4,16 +4,30 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
+/**
+ * PennMapTest tests the methods in the PennMap class
+ * @author calchen
+ *
+ */
 public class PennMapTest {
 
+	/**
+	 * 
+	 */
 	private PennMap pennMap;
 	
+	/**
+	 * 
+	 */
 	@Before
 	public void setUp() {
 		List<String> strs = new ArrayList<String>();
 		pennMap = new PennMap(strs, new Coordinate(1.0, 1.0));
 	}
 	
+	/**
+	 * test the makeQuadTree() class in the PennMap class
+	 */
 	@Test
 	public void testMakeQuadTree() {
 		List<Location> locations = new ArrayList<Location>();
@@ -34,6 +48,9 @@ public class PennMapTest {
 		assertEquals(exp, pennMap.makeQuadTree(locations));
 	}
 	
+	/**
+	 * test the makeGraph() method in the PennMap class
+	 */
 	@Test
 	public void testMakeGraph() {
 		//shouldn't this take more than a list of location names as we are building a
@@ -77,11 +94,17 @@ public class PennMapTest {
 		assertEquals(exp, pennMap.makeGraph(locNames));
 	}
 	
+	/**
+	 * test the shortestPath() method in the PennMap class
+	 */
 	@Test
 	public void testShortestPath() {
 		assertEquals("directions", pennMap.findShortestPath("Huntsman Hall", "Sheraton University City"));
 	}
 	
+	/**
+	 * test the findAll() method in the PennMap class
+	 */
 	@Test
 	public void testFindAll() {
 		List<Location> exp = new ArrayList<Location>();
@@ -90,6 +113,9 @@ public class PennMapTest {
 		assertEquals(exp, pennMap.findAll("type", 1.0));
 	}
 	
+	/**
+	 * test the findNearest() method in the PennMap class
+	 */
 	@Test
 	public void testFindNearest() {
 		Location exp = new Location("Inn at Penn", "hotel", new Coordinate(1.0, 1.0));
