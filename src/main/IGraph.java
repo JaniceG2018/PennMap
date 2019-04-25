@@ -1,3 +1,5 @@
+package main;
+
 /**
  * The IGraph interface is used to model a road network
  * @author calchen

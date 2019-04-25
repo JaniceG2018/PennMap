@@ -1,8 +1,16 @@
+package test;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
+
+import main.BaseNode;
+import main.Coordinate;
+import main.Graph;
+import main.Location;
+import main.PennMap;
+import main.Road;
 
 public class PennMapTest {
 
@@ -22,8 +30,7 @@ public class PennMapTest {
 		locations.add(new Location("name", "type", new Coordinate(1.0, 1.0)));
 		locations.add(new Location("name", "type", new Coordinate(1.0, 1.0)));
 		
-		BaseNode root = new InternalNode(new LeafNode(), new LeafNode(), new LeafNode(),
-				new LeafNode());
+		BaseNode root = new InternalNode(new LeafNode(), new LeafNode(), new LeafNode(), new LeafNode());
 		QuadTree exp = new QuadTree(root);
 		assertEquals(exp, pennMap.makeQuadTree(locations));
 	}

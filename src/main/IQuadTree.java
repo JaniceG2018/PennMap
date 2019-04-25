@@ -1,3 +1,5 @@
+package main;
+
 import java.util.List;
 
 /**
@@ -8,11 +10,12 @@ import java.util.List;
 public interface IQuadTree {
 
 	/**
-	 * insert() inserts a new BaseNode into the QuadTree
-	 * @param newNode the new BaseNode that we want to insert into our QuadTree
-	 * @return true if the new BaseNode has been successfully inserted and false otherwise
+	 * insert() inserts a new Location into the QuadTree
+	 * @param newNode the new Location that we want to insert into our QuadTree
+	 * @return true if the new Location has been successfully inserted and false otherwise
 	 */
-	public boolean insert(BaseNode newNode);
+	public boolean insert(Location loc);
+	//TODO: insert BaseNode or Location
 	
 	/**
 	 * search() returns a list of Locations of a specified type within a given Range from home
@@ -24,10 +27,11 @@ public interface IQuadTree {
 	public List<Location> search(String type, Range range);
 	
 	/**
-	 * 
+	 * enclosingQuad calculates the minimum range to include given locations
 	 * @param locs a list of Locations
-	 * @return
+	 * @return a minimum range to include all given locations
 	 */
-	public Coordinate enclosingQuad(List<Location> locs);
+	public Range enclosingQuad(List<Location> locs);
+	//TODO: confirm the return type: Coordinate or BaseNode or Range
 	//someone finish this
 }

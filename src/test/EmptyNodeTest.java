@@ -1,9 +1,12 @@
+package test;
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.tools.DocumentationTool.Location;
-
 import org.junit.Test;
+
+import main.Coordinate;
+import main.EmptyNode;
+import main.Location;
+import main.Range;
 
 public class EmptyNodeTest {
 
@@ -15,6 +18,6 @@ public class EmptyNodeTest {
 		List<Location> locs = new ArrayList<>();
 		locs.add(l1);
 		locs.add(l2);
-		assertNull(node.search("Street", new Range(0.0, 50.0), locs));
+		assertNull(node.search("Street", new Coordinate(0.0, 50.0), locs));
 	}
 }

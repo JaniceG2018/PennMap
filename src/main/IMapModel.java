@@ -1,3 +1,5 @@
+package main;
+
 import java.util.List;
 
 /**
@@ -19,7 +21,7 @@ public interface IMapModel {
 	/**
 	 * findAll() returns a list of Locations for the specified
 	 * type of locations within a given distance from home
-	 * @param type the type of locations, e.g. restaurants
+	 * @param type the type of locations, e.g. restaurant
 	 * @param dist the range of search from home
 	 * @return a list of Locations of the specified type within a given distance from home
 	 */
