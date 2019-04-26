@@ -1,13 +1,13 @@
 package main;
 
-import java.awt.font.NumericShaper.Range;
 import java.util.List;
 
 public abstract class BaseNode {
+	
 	private Range range;
 	
 	public BaseNode() {
-	
+		range = new Range(null, null);
 	}
 	
 	public BaseNode(Range range) {
