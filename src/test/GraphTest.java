@@ -1,8 +1,15 @@
 package test;
+import static org.junit.Assert.assertEquals;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Test;
+
+import main.Road;
+import main.Location;
+import main.Coordinate;
+import main.Graph;
 
 public class GraphTest {
 

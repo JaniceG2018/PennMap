@@ -1,4 +1,6 @@
 package test;
+import static org.junit.Assert.assertEquals;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -6,10 +8,13 @@ import org.junit.Before;
 import org.junit.Test;
 
 import main.BaseNode;
+import main.LeafNode;
+import main.InternalNode;
 import main.Coordinate;
 import main.Graph;
 import main.Location;
 import main.PennMap;
+import main.QuadTree;
 import main.Road;
 
 public class PennMapTest {
