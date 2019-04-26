@@ -23,7 +23,7 @@ public class QuadTreeTest {
 	
 	@Before
 	public void setUp() {
-		BaseNode root = new LeafNode();
+		BaseNode root = new LeafNode("name", "type", new Coordinate(1.0, 1.0), new ArrayList<LeafNode>());
 		tree = new QuadTree(root);
 	}
 	
@@ -32,7 +32,10 @@ public class QuadTreeTest {
 		BaseNode newLeafNode = new LeafNode("name", "type", new Coordinate(1.0, 1.0), new ArrayList<LeafNode>());
 		assertTrue(tree.insert(newLeafNode));
 		
-		BaseNode newInternalNode = new InternalNode(new LeafNode(), new LeafNode(), new LeafNode(), new LeafNode());
+		BaseNode newInternalNode = new InternalNode(new LeafNode("name", "type", new Coordinate(1.0, 1.0), new ArrayList<LeafNode>()),
+				new LeafNode("name", "type", new Coordinate(1.0, 1.0), new ArrayList<LeafNode>()),
+				new LeafNode("name", "type", new Coordinate(1.0, 1.0), new ArrayList<LeafNode>()),
+				new LeafNode("name", "type", new Coordinate(1.0, 1.0), new ArrayList<LeafNode>()));
 		assertTrue(tree.insert(newInternalNode));
 	}
 	

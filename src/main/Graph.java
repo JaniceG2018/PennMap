@@ -4,10 +4,23 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+/**
+ * 
+ * @author calchen
+ *
+ */
 public class Graph implements IGraph {
 	
+	/**
+	 * 
+	 */
 	private HashMap<String, List<Road>> graph;
 	
+	/**
+	 * 
+	 * @param locations
+	 * @param roads
+	 */
 	public Graph(List<Location> locations, List<Road> roads) {
 		//TODO: build graph
 		graph = new HashMap<String, List<Road>>();
@@ -16,6 +29,9 @@ public class Graph implements IGraph {
 		graph.put("name", list1);
 	}
 
+	/**
+	 * 
+	 */
 	@Override
 	public String findShortestPath(String loc1, String loc2) {
 		return null;
