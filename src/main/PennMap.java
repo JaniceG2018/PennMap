@@ -21,7 +21,11 @@ public class PennMap implements IMapMaker, IMapModel {
 
 	@Override
 	public IQuadTree makeQuadTree(List<Location> locs) {
-		return null;
+		IQuadTree quadTree = new QuadTree();
+		for (Location location : locs) {
+			quadTree.insert(location);
+		}
+		return quadTree;
 	}
 
 	@Override

@@ -3,9 +3,18 @@ package main;
 import java.util.List;
 
 public class QuadTree implements IQuadTree {
+	
+	private BaseNode root;
+	
+	public QuadTree(Range treeRange) {
+		root = new InternalNode(treeRange);
+	}
 
 	@Override
 	public boolean insert(Location loc) {
+		if (root == null) {
+			enclosingQuad(locs)
+		}
 		return false;
 	}
 
@@ -15,7 +24,7 @@ public class QuadTree implements IQuadTree {
 	}
 
 	@Override
-	public Range enclosingQuad(List<Location> locs) {
+	public Coordinate enclosingQuad(List<Location> locs) {
 		return null;
 	}
 }
