@@ -100,8 +100,6 @@ public class InternalNode extends BaseNode {
 		this.southW = southW;
 	}
 
-
-
 	public BaseNode getNorthE() {
 		return northE;
 	}

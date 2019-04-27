@@ -60,7 +60,6 @@ public class QuadTree implements IQuadTree {
 			newNode = insert(newNode, coord, loc);
 			return newNode;
 		}
-		
 		// If current node is Internal Node, then we should insert the location in its children
 		Range curRange = ((InternalNode) node).getRange();
 		Coordinate UL = curRange.getUpperL();
@@ -77,7 +76,6 @@ public class QuadTree implements IQuadTree {
 		} else if (coord.getLat() > lat && coord.getLon() < lon) {
 			((InternalNode) node).setSouthW(insert(node, coord, loc));
 		}
-		
 		return node;
 	}
 
