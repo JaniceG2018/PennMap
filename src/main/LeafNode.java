@@ -99,10 +99,27 @@ public class LeafNode extends BaseNode {
 	}
 	
 	/**
-	 * split() splits a LeafNode into 4 and returns the InternalNode that is the root of these 4 LeafNodes
+	 * split() splits a LeafNode into 4 and returns the InternalNode that is the root of these 4 LeafNodes.
+	 * It also transit the current contents stored in this leaf node to its children.
 	 * @return the InternalNode that is the root of the 4 LeafNodes after splitting
 	 */
 	public InternalNode split() {
-		return null;
+		Coordinate UL = range.getUpperL();
+		Coordinate BR = range.getBottomR();
+		double lat = (UL.getLat() + BR.getLat()) / 2;
+		double lon = (UL.getLon() + BR.getLon()) / 2;
+		
+		BaseNode newNode = new InternalNode();
+		BaseNode leaf = this;
+		if (coord.getLat() < lat && coord.getLon() < lon) {
+			((InternalNode) newNode).setNorthW(leaf);
+		} else if (coord.getLat() < lat && coord.getLon() > lon) {
+			((InternalNode) newNode).setNorthE(leaf);
+		} else if (coord.getLat() > lat && coord.getLon() > lon) {
+			((InternalNode) newNode).setSouthE(leaf);
+		} else if (coord.getLat() > lat && coord.getLon() < lon) {
+			((InternalNode) newNode).setSouthW(leaf);
+		}
+		return (InternalNode)newNode;
 	}
 }

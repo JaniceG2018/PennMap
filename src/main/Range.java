@@ -27,6 +27,10 @@ public class Range {
 		this.bottomR = bottomR;
 	}
 	
+	public Range() {
+		this.upperL = new Coordinate();
+		this.bottomR = new Coordinate();
+	}
 	
 	/**
 	 * check if the given coordinate is contained in this range
