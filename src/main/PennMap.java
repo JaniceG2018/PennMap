@@ -12,12 +12,9 @@ import java.util.List;
 public class PennMap implements IMapMaker, IMapModel {
 
 
-	/**
-	 * the QuadTree representing the map
-	 */
-	private QuadTree tree;
-	private Graph graph;
-	private Coordinate currentPoint;
+	private QuadTree tree; //the QuadTree representing the map
+	private Graph graph; //the Graph representing the map
+	private Coordinate currentPoint;  // current Location of user
 	private List<Road> roadList = new ArrayList<Road>();
 	private List<Location> locationList = new ArrayList<Location>();
 	
