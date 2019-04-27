@@ -12,7 +12,7 @@ public abstract class BaseNode {
 	/**
 	 * 
 	 */
-	private Range range;
+	protected Range range;
 	
 	/**
 	 * empty constructor for this class

@@ -94,6 +94,7 @@ public class QuadTree implements IQuadTree {
 	 */
 	@Override
 	public Range enclosingQuad(List<Location> locs) {
+		
 		return null;
 	}
 }

@@ -85,7 +85,6 @@ public class LeafNode extends BaseNode {
 		this.name = name;
 		this.type = type;
 		this.coord = coord;
-//		this.roadTo = roadTo;
 	}
 
 	/**
@@ -93,7 +92,10 @@ public class LeafNode extends BaseNode {
 	 */
 	@Override
 	public void search(String type, Range range, List<Location> locs) {
-		
+		if (this.type.equals(type) && range.contains(coord)) {
+			Location cur = new Location(name, type, coord);
+			locs.add(cur);
+		}
 	}
 	
 	/**
@@ -101,10 +103,6 @@ public class LeafNode extends BaseNode {
 	 * @return the InternalNode that is the root of the 4 LeafNodes after splitting
 	 */
 	public InternalNode split() {
-		if (range.contains(coord) && this.type.equals(type)) {
-			Location cur = new Location(this.getName(), this.getType(), this.getCoord());
-			locs.add(cur);
-		}
 		return null;
 	}
 }
