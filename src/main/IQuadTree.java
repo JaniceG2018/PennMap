@@ -15,7 +15,6 @@ public interface IQuadTree {
 	 * @return true if the new Location has been successfully inserted and false otherwise
 	 */
 	public boolean insert(Location loc);
-	//TODO: insert BaseNode or Location
 	
 	/**
 	 * search() returns a list of Locations of a specified type within a given Range from home
@@ -27,11 +26,10 @@ public interface IQuadTree {
 	public List<Location> search(String type, Range range);
 	
 	/**
-	 * enclosingQuad calculates the minimum range to include given locations
+	 * enclosingQuad calculates the minimum range to include given locations, also set the root of the QuadTree
 	 * @param locs a list of Locations
 	 * @return a minimum range to include all given locations
 	 */
 	public Range enclosingQuad(List<Location> locs);
-	//TODO: confirm the return type: Coordinate or BaseNode or Range
-	//someone finish this
+
 }

@@ -1,21 +1,26 @@
 package main;
 
+/**
+ * the Coordinate class models a Coordinate
+ * @author calchen
+ *
+ */
 public class Coordinate {
 	
 	/**
-	 * 
+	 * longitude
 	 */
 	private double lon;
 	
 	/**
-	 * 
+	 * latitude
 	 */
 	private double lat;
 	
 	/**
-	 * 
-	 * @param lon
-	 * @param lat
+	 * constructor for the Coordinate: initializes the longitude and latitude of the Coordinate
+	 * @param lon longitude
+	 * @param lat latitude
 	 */
 	public Coordinate(double lon, double lat) {
 		this.lon = lon;
@@ -23,28 +28,28 @@ public class Coordinate {
 	}
 
 	/**
-	 * @return the lon
+	 * @return longitude
 	 */
 	public double getLon() {
 		return lon;
 	}
 
 	/**
-	 * @param lon the lon to set
+	 * @param lon the new longitude
 	 */
 	public void setLon(double lon) {
 		this.lon = lon;
 	}
 
 	/**
-	 * @return the lat
+	 * @return latitude
 	 */
 	public double getLat() {
 		return lat;
 	}
 
 	/**
-	 * @param lat the lat to set
+	 * @param lat the new latitude
 	 */
 	public void setLat(double lat) {
 		this.lat = lat;
