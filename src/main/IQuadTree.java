@@ -26,10 +26,10 @@ public interface IQuadTree {
 	public List<Location> search(String type, Range range);
 	
 	/**
-	 * enclosingQuad calculates the minimum range to include given locations
+	 * enclosingQuad calculates the minimum range to include given locations, also set the root of the QuadTree
 	 * @param locs a list of Locations
 	 * @return a minimum range to include all given locations
 	 */
-	public Coordinate enclosingQuad(List<Location> locs);
+	public Range enclosingQuad(List<Location> locs);
 
 }

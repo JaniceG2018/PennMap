@@ -18,7 +18,7 @@ public abstract class BaseNode {
 	 * 
 	 */
 	public BaseNode() {
-		range = new Range(null, null);
+		setRange(new Range(null, null));
 	}
 	
 	/**
@@ -26,7 +26,7 @@ public abstract class BaseNode {
 	 * @param range
 	 */
 	public BaseNode(Range range) {
-		this.range = range;
+		this.setRange(range);
 	}
 	
 	/**
@@ -36,4 +36,13 @@ public abstract class BaseNode {
 	 * @param locs
 	 */
 	public abstract void search(String type, Range range, List<Location> locs);
+	
+	
+	public Range getRange() {
+		return range;
+	}
+
+	public void setRange(Range range) {
+		this.range = range;
+	}
 }

@@ -63,6 +63,7 @@ public class PennMap implements IMapMaker, IMapModel {
 	@Override
 	public IQuadTree makeQuadTree(List<Location> locs) {
 		IQuadTree quadTree = new QuadTree();
+		quadTree.enclosingQuad(locs);
 		for (Location location : locs) {
 			quadTree.insert(location);
 		}
