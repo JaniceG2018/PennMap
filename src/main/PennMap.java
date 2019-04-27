@@ -6,42 +6,124 @@ import java.util.List;
 
 /**
  * 
- * 
+ * @author calchen, jingwen qiang
  *
  */
 public class PennMap implements IMapMaker, IMapModel {
-	
-	// not sure if we need those fields
 
-// 	/**
-// 	 * the QuadTree representing the map
-// 	 */
-// 	private QuadTree tree;
+
+	/**
+	 * the QuadTree representing the map
+	 */
+	private QuadTree tree;
+	private Graph graph;
+	private Coordinate currentPoint;
+	private List<Road> roadList = new ArrayList<Road>();
+	private List<Location> locationList = new ArrayList<Location>();
 	
-// 	/**
-// 	 * the road network
-// 	 */
-// 	private Graph graph;
-	
-	List<Road> roadList;
-	List<Location> locationList;
+
+
 	
 	public PennMap() {
 		roadList = new ArrayList<Road>();
 		locationList = new ArrayList<Location>();
 	}
+
 	
-	/**
-	 * 
-	 * @param list
-	 * @param startingPt
-	 */
-//	public PennMap(List<String> list, Coordinate startingPt) {
-//		this.startingPt = startingPt;
-//	}
+	// Changed the data input stream to do the parsing first 
+	public PennMap(List<String> init, Coordinate currPt) {
+		this.currentPoint = currPt;
+		parser(init);
+	}
 	
+	private void parser(List<String> initData) {
+		for (int i = 0; i < initData.size(); i++) {
+			String s = initData.get(i);
+			String[] sa = s.split(", ");
+
+			String[] sStartCoord = sa[0].substring(1, sa[0].length() - 1).split(",");
+
+			double sLat = Double.valueOf(sStartCoord[1]); // y
+			double sLon = Double.valueOf(sStartCoord[0]); // x
+			Coordinate startCoord = new Coordinate(sLon, sLat);
+
+			Location startLoc = new Location(sa[1], sa[2], startCoord);
+			if (!locationList.contains(startLoc))
+				locationList.add(startLoc);
+
+			String[] sEndCoord = sa[3].substring(1, sa[3].length() - 1).split(",");
+			System.out.println(sa[3] + "|||||");
+
+			double eLon = Double.valueOf(sEndCoord[0]); // x
+			double eLat = Double.valueOf(sEndCoord[1]); // y
+
+			Coordinate endCoord = new Coordinate(eLon, eLat);
+
+			Location endLoc = new Location(sa[4], sa[5], endCoord);
+			if (!locationList.contains(endLoc))
+				locationList.add(endLoc);
+
+			double distance = Math.sqrt(
+					(Math.abs(sLat - eLat) * Math.abs(sLat - eLat)) + (Math.abs(sLon - eLon) * Math.abs(sLon - eLon)));
+
+			Road rd = new Road(sa[1], sa[4], sa[6], distance);
+			if (!roadList.contains(rd))
+				roadList.add(rd);
+
+		}
+	}
+
+	
+
+	
+	
+	public QuadTree getTree() {
+		return tree;
+	}
+
+	public void setTree(QuadTree tree) {
+		this.tree = tree;
+	}
+
+	public Graph getGraph() {
+		return graph;
+	}
+
+	public void setGraph(Graph graph) {
+		this.graph = graph;
+	}
+
+	public Coordinate getCurrentPoint() {
+		return currentPoint;
+	}
+
+	public void setCurrentPoint(Coordinate currentPoint) {
+		this.currentPoint = currentPoint;
+	}
+
+	public List<Road> getRoadList() {
+		return roadList;
+	}
+
+	public void setRoadList(List<Road> roadList) {
+		this.roadList = roadList;
+	}
+
+	public List<Location> getLocationList() {
+		return locationList;
+	}
+
+	public void setLocationList(List<Location> locationList) {
+		this.locationList = locationList;
+	}
+	
+	
+	
+	
+	
+
 	/**
-	 * findShorte
+	 * findShortest Path 
 	 */
 	@Override
 	public String findShortestPath(String loc1, String loc2) {
@@ -74,53 +156,26 @@ public class PennMap implements IMapMaker, IMapModel {
 		for (Location location : locs) {
 			quadTree.insert(location);
 		}
+		this.tree=(QuadTree) quadTree;
 		return quadTree;
 	}
 
 	/**
+	 * changed the input parameter
+	 * 
 	 * 
 	 */
 	@Override
-	public IGraph makeGraph(List<String> locNames) {
-		parser(locNames);		
+	public IGraph makeGraph() {		
 		Graph graph = new Graph(locationList, roadList);
+		this.graph = graph;
 		return graph;
 	}
 	
-	private void parser(List<String> locNames) {
-		for(int i =0; i<locNames.size();i++) {
-			String s = locNames.get(i);
-			String[] sa= s.split(", ");
-	
-			String[] sStartCoord = sa[0].substring(1, sa[0].length()-1).split(",");
 
-			double sLat=Double.valueOf(sStartCoord[1]); // y
-			double sLon=Double.valueOf(sStartCoord[0]); // x
-			Coordinate startCoord = new Coordinate(sLon,sLat);
-		
-			Location startLoc = new Location(sa[1],sa[2],startCoord);
-			if (!locationList.contains(startLoc))
-				locationList.add(startLoc);
-		
-			String[] sEndCoord = sa[3].substring(1, sa[3].length()-1).split(",");
-			System.out.println(sa[3]+"|||||");
-		
-			double eLon=Double.valueOf(sEndCoord[0]); //x
-			double eLat=Double.valueOf(sEndCoord[1]); //y 
 
-			Coordinate endCoord = new Coordinate(eLon,eLat);
-		
-			Location endLoc = new Location(sa[4],sa[5],endCoord);
-			if (!locationList.contains(endLoc))
-				locationList.add(endLoc);
-		
-			double distance = Math.sqrt((Math.abs(sLat-eLat)*Math.abs(sLat-eLat))+(Math.abs(sLon-eLon)*Math.abs(sLon-eLon)));
-		
-			Road rd = new Road(sa[1], sa[4], sa[6], distance);
-			if (!roadList.contains(rd))
-				roadList.add(rd);
-		}
-	}
+
+
 	
 	// database map
 	public static void main (String args[]) {
@@ -154,3 +209,4 @@ public class PennMap implements IMapMaker, IMapModel {
 		System.out.println(p.locationList.get(2).getName());
 	}
 }
+
