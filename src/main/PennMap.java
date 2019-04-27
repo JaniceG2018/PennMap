@@ -1,5 +1,7 @@
 package main;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -21,20 +23,22 @@ public class PennMap implements IMapMaker, IMapModel {
 // 	 */
 // 	private Graph graph;
 	
+	List<Road> roadList;
+	List<Location> locationList;
 	
-
-	
-	List<Road> roadList= new ArrayList<Road>();
-	List<Location> locationList = new ArrayList<Location>();
+	public PennMap() {
+		roadList = new ArrayList<Road>();
+		locationList = new ArrayList<Location>();
+	}
 	
 	/**
 	 * 
 	 * @param list
 	 * @param startingPt
 	 */
-	public PennMap(List<String> list, Coordinate startingPt) {
-		this.startingPt = startingPt;
-	}
+//	public PennMap(List<String> list, Coordinate startingPt) {
+//		this.startingPt = startingPt;
+//	}
 	
 	/**
 	 * findShorte
@@ -76,7 +80,7 @@ public class PennMap implements IMapMaker, IMapModel {
 	/**
 	 * 
 	 */
-@Override
+	@Override
 	public IGraph makeGraph(List<String> locNames) {
 		parser(locNames);		
 		Graph graph = new Graph(locationList, roadList);
@@ -84,46 +88,43 @@ public class PennMap implements IMapMaker, IMapModel {
 	}
 	
 	private void parser(List<String> locNames) {
-	for(int i =0; i<locNames.size();i++) {
-		String s = locNames.get(i);
-		String[] sa= s.split(", ");
-		
+		for(int i =0; i<locNames.size();i++) {
+			String s = locNames.get(i);
+			String[] sa= s.split(", ");
 	
-		String[] sStartCoord = sa[0].substring(1, sa[0].length()-1).split(",");
+			String[] sStartCoord = sa[0].substring(1, sa[0].length()-1).split(",");
 
-		double sLat=Double.valueOf(sStartCoord[1]); // y
-		double sLon=Double.valueOf(sStartCoord[0]); // x
-		Coordinate startCoord = new Coordinate(sLon,sLat);
+			double sLat=Double.valueOf(sStartCoord[1]); // y
+			double sLon=Double.valueOf(sStartCoord[0]); // x
+			Coordinate startCoord = new Coordinate(sLon,sLat);
 		
-		Location startLoc = new Location(sa[1],sa[2],startCoord);
-		if (!locationList.contains(startLoc)) locationList.add(startLoc);
+			Location startLoc = new Location(sa[1],sa[2],startCoord);
+			if (!locationList.contains(startLoc))
+				locationList.add(startLoc);
 		
+			String[] sEndCoord = sa[3].substring(1, sa[3].length()-1).split(",");
+			System.out.println(sa[3]+"|||||");
+		
+			double eLon=Double.valueOf(sEndCoord[0]); //x
+			double eLat=Double.valueOf(sEndCoord[1]); //y 
 
-		String[] sEndCoord = sa[3].substring(1, sa[3].length()-1).split(",");
-		System.out.println(sa[3]+"|||||");
+			Coordinate endCoord = new Coordinate(eLon,eLat);
 		
-		double eLon=Double.valueOf(sEndCoord[0]); //x
-		double eLat=Double.valueOf(sEndCoord[1]); //y 
-
-
-		Coordinate endCoord = new Coordinate(eLon,eLat);
+			Location endLoc = new Location(sa[4],sa[5],endCoord);
+			if (!locationList.contains(endLoc))
+				locationList.add(endLoc);
 		
-		Location endLoc = new Location(sa[4],sa[5],endCoord);
-		if (!locationList.contains(endLoc)) locationList.add(endLoc);
+			double distance = Math.sqrt((Math.abs(sLat-eLat)*Math.abs(sLat-eLat))+(Math.abs(sLon-eLon)*Math.abs(sLon-eLon)));
 		
-		double distance = Math.sqrt((Math.abs(sLat-eLat)*Math.abs(sLat-eLat))+(Math.abs(sLon-eLon)*Math.abs(sLon-eLon)));
-		
-	
-		Road rd = new Road(sa[1], sa[4], sa[6], distance);
-		if (!roadList.contains(rd)) roadList.add(rd);
-		
+			Road rd = new Road(sa[1], sa[4], sa[6], distance);
+			if (!roadList.contains(rd))
+				roadList.add(rd);
+		}
 	}
-}
-	
 	
 	// database map
 	public static void main (String args[]) {
-		String[] arr= {"(0,0), Fine Wine and Good Spirit, Store, (20,10), Pottruck Fitness Center, School, Spring St",
+		String[] arr = {"(0,0), Fine Wine and Good Spirit, Store, (20,10), Pottruck Fitness Center, School, Spring St",
 		               "(0,0), Fine Wine and Good Spirit, Store, (0,50), AT&T, Store, 41th St",
 		               "(0,0), Fine Wine and Good Spirit, Store, (0,50), (20,0), WaWa@Chestnut, Restaurant, Chestnut St-D",
 		               "(20,0), WaWa@Chestnut, Restaurant, (25,0), Ochatto, Restaurant, Chestnut St-E",
@@ -146,10 +147,10 @@ public class PennMap implements IMapMaker, IMapModel {
 		               "(60,90), Irvine Auditorm, School, (60,100), Williams Hall, School, 34th St-D",
 		               "(60,100), Williams Hall, School, (100,100), Happy Ending Bar, Restaurant, Spruce St",
 		               "(80,10), Parking Lot, School, (100,100), Happy Ending Bar, Restaurant, 33th St"};
-		
 		PennMap p = new PennMap();
 		List<String> list = new ArrayList<>();
 		Collections.addAll(list, arr);
-		Graph p2 = (Graph) p.makeGraph(list);
+//		Graph p2 = (Graph) p.makeGraph(list);
 		System.out.println(p.locationList.get(2).getName());
 	}
+}

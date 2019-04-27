@@ -1,5 +1,6 @@
 package test;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,8 +10,6 @@ import org.junit.Test;
 
 import main.BaseNode;
 import main.LeafNode;
-import main.InternalNode;
-
 import main.QuadTree;
 import main.Coordinate;
 import main.Location;
@@ -23,20 +22,14 @@ public class QuadTreeTest {
 	
 	@Before
 	public void setUp() {
-		BaseNode root = new LeafNode("name", "type", new Coordinate(1.0, 1.0), new ArrayList<LeafNode>());
+		BaseNode root = new LeafNode("name", "type", new Coordinate(1.0, 1.0));
 		tree = new QuadTree(root);
 	}
 	
 	@Test
 	public void testInsert() {
-		BaseNode newLeafNode = new LeafNode("name", "type", new Coordinate(1.0, 1.0), new ArrayList<LeafNode>());
-		assertTrue(tree.insert(newLeafNode));
-		
-		BaseNode newInternalNode = new InternalNode(new LeafNode("name", "type", new Coordinate(1.0, 1.0), new ArrayList<LeafNode>()),
-				new LeafNode("name", "type", new Coordinate(1.0, 1.0), new ArrayList<LeafNode>()),
-				new LeafNode("name", "type", new Coordinate(1.0, 1.0), new ArrayList<LeafNode>()),
-				new LeafNode("name", "type", new Coordinate(1.0, 1.0), new ArrayList<LeafNode>()));
-		assertTrue(tree.insert(newInternalNode));
+		Location loc = new Location("name", "type", new Coordinate(1.0, 1.0));
+		assertTrue(tree.insert(loc));
 	}
 	
 	@Test

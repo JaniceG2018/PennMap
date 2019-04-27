@@ -1,9 +1,6 @@
 package main;
 
 import java.util.List;
-import java.util.Spliterator;
-
-import org.junit.validator.PublicClassValidator;
 
 /**
  * LeafNode of our QuadTree, which stores the location info
