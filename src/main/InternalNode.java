@@ -41,10 +41,10 @@ public class InternalNode extends BaseNode {
 	 * 
 	 */
 	public InternalNode() {
-		setNorthE(null);
-		northW = null;
-		southE = null;
-		southW = null;
+		northE = QuadTree.emptyNode;
+		northW = QuadTree.emptyNode;
+		southE = QuadTree.emptyNode;
+		southW = QuadTree.emptyNode;
 	}
 	
 	/**

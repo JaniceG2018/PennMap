@@ -10,7 +10,7 @@ import java.util.List;
  */
 public class QuadTree implements IQuadTree {
 	
-	private final static BaseNode emptyNode = new EmptyNode();
+	public static final BaseNode emptyNode = new EmptyNode();
 	
 	/**
 	 * the root of the QuadTree
