@@ -1,5 +1,6 @@
 package test;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
@@ -8,13 +9,10 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import main.BaseNode;
-import main.LeafNode;
 import main.QuadTree;
 import main.Coordinate;
 import main.Location;
 import main.Range;
-
 
 public class QuadTreeTest {
 
@@ -22,35 +20,32 @@ public class QuadTreeTest {
 	
 	@Before
 	public void setUp() {
-		BaseNode root = new LeafNode("name", "type", new Coordinate(1.0, 1.0));
-		tree = new QuadTree(root);
+		tree = new QuadTree();
 	}
 	
 	@Test
 	public void testInsert() {
-		Location loc = new Location("name", "type", new Coordinate(1.0, 1.0));
-		assertTrue(tree.insert(loc));
+		assertFalse(tree.insert(null));
+		Location loc1 = new Location("Fine Wine and Good Spirit", "Store", new Coordinate(0, 0));
+		assertTrue(tree.insert(loc1));
+		Location loc2 = new Location("WaWa@Chestnut", "Restaurant", new Coordinate(20, 0));
+		assertTrue(tree.insert(loc2));
 	}
 	
 	@Test
 	public void testSearch() {
-		Range range = new Range(new Coordinate(1.0, 1.0), new Coordinate(1.0, 1.0));
+		Range range = new Range(new Coordinate(0, 0), new Coordinate(100, 100));
 		List<Location> exp = new ArrayList<Location>();
-		exp.add(new Location("name", "type", new Coordinate(1.0, 1.0)));
-		exp.add(new Location("name", "type", new Coordinate(1.0, 1.0)));
-		exp.add(new Location("name", "type", new Coordinate(1.0, 1.0)));
-		exp.add(new Location("name", "type", new Coordinate(1.0, 1.0)));
-		assertEquals(exp, tree.search("type", range));
+		exp.add(new Location("Fine Wine and Good Spirit", "Store", new Coordinate(0, 0)));
+		assertEquals(exp, tree.search("Store", range));
 	}
 	
 	@Test
 	public void testEnclosingQuad() {
-		List<Location> locations = new ArrayList<Location>();
-		locations.add(new Location("name", "type", new Coordinate(1.0, 1.0)));
-		locations.add(new Location("name", "type", new Coordinate(1.0, 1.0)));
-		locations.add(new Location("name", "type", new Coordinate(1.0, 1.0)));
-		locations.add(new Location("name", "type", new Coordinate(1.0, 1.0)));
-		Coordinate exp = new Coordinate(1.0, 1.0);
-		assertEquals(exp, tree.enclosingQuad(locations));
+		List<Location> locs = new ArrayList<Location>();
+		locs.add(new Location("Fine Wine and Good Spirit", "Store", new Coordinate(0, 0)));
+		locs.add(new Location("WaWa@Chestnut", "Restaurant", new Coordinate(20, 0)));		
+		Range exp = new Range(new Coordinate(0, 0), new Coordinate(20, 0));
+		assertEquals(exp, tree.enclosingQuad(locs));
 	}
 }

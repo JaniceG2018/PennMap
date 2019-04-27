@@ -38,6 +38,8 @@ public class Range {
 	 * @param if this range includes the given coordinate, true if this range includes the given coordinate, vice versa
 	 */
 	public boolean contains(Coordinate coord) {
+		if (coord == null)
+			return false;
 		double minX = upperL.getLon();
 		double minY = upperL.getLat();
 		double maxX = bottomR.getLon();

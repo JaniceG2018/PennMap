@@ -12,7 +12,6 @@ public class EmptyNodeTest {
 
 	@Test
 	public void testSearch() {
-		//search returns void??? what's the point of search then???
 		EmptyNode node = new EmptyNode();
 		Location l1 = new Location("Franklin Table", "Restuarant", new Coordinate(5,5));
 		Location l2 = new Location("Levine Hall", "Department Building", new Coordinate(10,15));
