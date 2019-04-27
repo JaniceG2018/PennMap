@@ -23,8 +23,7 @@ public class PennMapTest {
 	
 	@Before
 	public void setUp() {
-		List<String> strs = new ArrayList<String>();
-		pennMap = new PennMap(strs, new Coordinate(1.0, 1.0));
+		pennMap = new PennMap();
 	}
 	
 	@Test
@@ -35,10 +34,10 @@ public class PennMapTest {
 		locations.add(new Location("name", "type", new Coordinate(1.0, 1.0)));
 		locations.add(new Location("name", "type", new Coordinate(1.0, 1.0)));
 		
-		BaseNode root = new InternalNode(new LeafNode("name", "type", new Coordinate(1.0, 1.0), new ArrayList<LeafNode>()),
-				new LeafNode("name", "type", new Coordinate(1.0, 1.0), new ArrayList<LeafNode>()),
-				new LeafNode("name", "type", new Coordinate(1.0, 1.0), new ArrayList<LeafNode>()),
-				new LeafNode("name", "type", new Coordinate(1.0, 1.0), new ArrayList<LeafNode>()));
+		BaseNode root = new InternalNode(new LeafNode("name", "type", new Coordinate(1.0, 1.0)),
+				new LeafNode("name", "type", new Coordinate(1.0, 1.0)),
+				new LeafNode("name", "type", new Coordinate(1.0, 1.0)),
+				new LeafNode("name", "type", new Coordinate(1.0, 1.0)));
 		QuadTree exp = new QuadTree(root);
 		assertEquals(exp, pennMap.makeQuadTree(locations));
 	}

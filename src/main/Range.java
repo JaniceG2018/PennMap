@@ -56,10 +56,10 @@ public class Range {
 	 * @param a boolean value, true if this range intersects with the given range, vice versa
 	 */
 	public boolean intersects(Range otherRange) {
-		double minX = upperL.getLon();
-		double minY = upperL.getLat();
-		double maxX = bottomR.getLon();
-		double maxY = bottomR.getLat();
+//		double minX = upperL.getLon();
+//		double minY = upperL.getLat();
+//		double maxX = bottomR.getLon();
+//		double maxY = bottomR.getLat();
 		Coordinate UL = otherRange.upperL;
 		Coordinate BR = otherRange.bottomR;
 		Coordinate BL = new Coordinate(UL.getLon(), BR.getLat());
