@@ -10,17 +10,17 @@ import java.util.List;
 public class PennMap implements IMapMaker, IMapModel {
 
 	/**
-	 * 
+	 * the QuadTree representing the map
 	 */
 	private QuadTree tree;
 	
 	/**
-	 * 
+	 * the road network
 	 */
 	private Graph graph;
 	
 	/**
-	 * 
+	 * the "home" Coordinate
 	 */
 	private Coordinate startingPt;
 	
@@ -34,7 +34,7 @@ public class PennMap implements IMapMaker, IMapModel {
 	}
 	
 	/**
-	 * 
+	 * findShorte
 	 */
 	@Override
 	public String findShortestPath(String loc1, String loc2) {
