@@ -26,6 +26,11 @@ public class Coordinate {
 		this.lon = lon;
 		this.lat = lat;
 	}
+	
+	public Coordinate() {
+		this.lon = 0;
+		this.lat = 0;
+	}
 
 	/**
 	 * @return longitude

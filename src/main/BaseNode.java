@@ -16,17 +16,17 @@ public abstract class BaseNode {
 	/**
 	 * 
 	 */
-	private Range range;
+	protected Range range;
 	
 	/**
-	 * 
+	 * empty constructor for this class
 	 */
 	public BaseNode() {
 		setRange(new Range(null, null));
 	}
 	
 	/**
-	 * 
+	 * copy constructor for this class, initialize the Range with a given Range
 	 * @param range
 	 */
 	public BaseNode(Range range) {
@@ -35,17 +35,22 @@ public abstract class BaseNode {
 	
 	/**
 	 * 
-	 * @param type type of location
+	 * @param type type of Location
 	 * @param range
-	 * @param locs
+	 * @param locs 
 	 */
 	public abstract void search(String type, Range range, List<Location> locs);
 	
-	
+	/**
+	 * @return the Range
+	 */
 	public Range getRange() {
 		return range;
 	}
 
+	/**
+	 * @param range the new Range
+	 */
 	public void setRange(Range range) {
 		this.range = range;
 	}
