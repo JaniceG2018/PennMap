@@ -46,10 +46,11 @@ public abstract class BaseNode {
 	}
 	
 	/**
-	 * 
-	 * @param type
-	 * @param range
-	 * @param locs
+	 * search() searches Locations of a given type with in a given Range and modifies a parameter locs to include
+	 * all search results. 
+	 * @param type  type of the target locations(e.g. "Restaurant")
+	 * @param range range of the target locations
+	 * @param locs  result of target locations
 	 */
 	public abstract void search(String type, Range range, List<Location> locs);
 	
@@ -60,12 +61,12 @@ public abstract class BaseNode {
 	public abstract boolean isEmpty();
 	
 	/**
-	 * 
-	 * @param range
-	 * @param c
-	 * @return
+	 * mathSplit() static method help to calculate which direction of the range is the given coordinate in
+	 * @param range  range to split 
+	 * @param c      coordinate of target
+	 * @return a sub-Range in which c is in (NE, NW, SE, SW)
 	 */
-	public Range mathSplit(Range range, Coordinate c) {
+	public static Range mathSplit(Range range, Coordinate c) {
 		
 		Coordinate UL = range.getUpperL();
 		Coordinate BR = range.getBottomR();

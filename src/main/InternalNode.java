@@ -40,7 +40,7 @@ public class InternalNode extends BaseNode {
 	}
 	
 	/**
-	 * Constructor of the InternalNode class, 
+	 * Constructor of the InternalNode class, set the range of this node
 	 * @param range
 	 */
 	public InternalNode(Range range) {
@@ -55,10 +55,52 @@ public class InternalNode extends BaseNode {
 	 * Copy constructor of the InternalNode class, which initializes all 4 children to given BaseNodes
 	 */
 	public InternalNode(BaseNode northE, BaseNode northW, BaseNode southE, BaseNode southW) {
-		this.setNorthE(northE);
+		this.northE = northE;
 		this.northW = northW;
 		this.southE = southE;
 		this.southW = southW;
+	}
+	
+	/**
+	 * search() searches locations of given type within given range in children node representing four directions NE, NW, SE, SW
+	 * @param type the type of Location we want to search
+	 * @param range the search Range
+	 * @param locs a list of Locations containing the search results (mofify in-place)
+	 */
+	@Override
+	public void search(String type, Range range, List<Location> locs) {
+		if (range.intersects(northW.getRange()))
+			northW.search(type, range, locs);
+		if (range.intersects(northE.getRange()))
+			northE.search(type, range, locs);
+		if (range.intersects(southW.getRange()))
+			southW.search(type, range, locs);
+		if (range.intersects(southE.getRange()))
+			southE.search(type, range, locs);
+	}
+
+	/**
+	 * isEmpty() checks if all 4 children of this InternalNode are EmptyNodes
+	 * @return true if all 4 children of this InternalNode are EmptyNodes and false otherwise
+	 */
+	@Override
+	public boolean isEmpty() {
+		if (isNull(northW) && isNull(northE) && isNull(southE) && isNull(southW)) {
+			return true;
+		}
+		return false;
+	}
+	
+	/**
+	 * isNull() is a helper function that checks if a given BaseNode is an EmptyNode
+	 * @param node the BaseNode we want to examine
+	 * @return true if the given BaseNode is an EmptyNode
+	 */
+	private boolean isNull(BaseNode node) {
+		if (node instanceof EmptyNode)
+			return true;
+		else
+			return false;
 	}
 	
 	/**
@@ -123,48 +165,5 @@ public class InternalNode extends BaseNode {
 	 */
 	public void setSouthW(BaseNode southW) {
 		this.southW = southW;
-	}
-
-	/**
-	 * search() searches Locations of a given type with in a given Range and modifies a parameter to include
-	 * all search results
-	 * @param type the type of Location we want to search
-	 * @param range the search Range
-	 * @param locs a list of Locations containing the search results (mofify in-place)
-	 */
-	@Override
-	public void search(String type, Range range, List<Location> locs) {
-		if (range.intersects(northW.getRange()))
-			northW.search(type, range, locs);
-		if (range.intersects(northE.getRange()))
-			northE.search(type, range, locs);
-		if (range.intersects(southW.getRange()))
-			southW.search(type, range, locs);
-		if (range.intersects(southE.getRange()))
-			southE.search(type, range, locs);
-	}
-
-	/**
-	 * isEmpty() checks if all 4 children of this InternalNode are EmptyNodes
-	 * @return true if all 4 children of this InternalNode are EmptyNodes and false otherwise
-	 */
-	@Override
-	public boolean isEmpty() {
-		if (isNull(northW) && isNull(northE) && isNull(southE) && isNull(southW)) {
-			return true;
-		}
-		return false;
-	}
-	
-	/**
-	 * isNull() is a helper function that checks if a given BaseNode is an EmptyNode
-	 * @param node the BaseNode we want to examine
-	 * @return true if the given BaseNode is an EmptyNode
-	 */
-	private boolean isNull(BaseNode node) {
-		if (node instanceof EmptyNode)
-			return true;
-		else
-			return false;
 	}
 }

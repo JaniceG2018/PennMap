@@ -21,6 +21,11 @@ public class QuadTree implements IQuadTree {
 	private BaseNode root;
 	
 	/**
+	 * number of locations stored in the tree 
+	 */
+	private int size;
+	
+	/**
 	 * Empty constructor of the QuadTree class, which creates an empty QuadTree
 	 */
 	public QuadTree() {
@@ -44,6 +49,7 @@ public class QuadTree implements IQuadTree {
 			return false;
 		Coordinate coord = loc.getCoord();
 		root = insert(root, coord, loc, root.getRange());
+		setSize(getSize() + 1);
 		return true;
 	}
 	
@@ -84,7 +90,7 @@ public class QuadTree implements IQuadTree {
 		// (lon, lat) is the central point of current Quad
 		double lat = (UL.getLat() + BR.getLat()) / 2;
 		double lon = (UL.getLon() + BR.getLon()) / 2;
-		Range childrenRange = node.mathSplit(curRange, coord);
+		Range childrenRange = BaseNode.mathSplit(curRange, coord);
 		// Decide which children to insert according to this location's coordinate
 		if (coord.getLat() <= lat && coord.getLon() <= lon)
 			((InternalNode) node).setNorthW(insert(((InternalNode) node).getNorthW(), coord, loc, childrenRange));
@@ -152,5 +158,13 @@ public class QuadTree implements IQuadTree {
 			bottomR.setLat(lat);
 		range.setUpperL(upperL);
 		range.setBottomR(bottomR);
+	}
+
+	public int getSize() {
+		return size;
+	}
+
+	public void setSize(int size) {
+		this.size = size;
 	}
 }

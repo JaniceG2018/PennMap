@@ -4,7 +4,7 @@ import java.util.List;
 
 /**
  * The LeafNode class models a LeafNode in our QuadTree, which stores the location info
- * @author calchen
+ * @author calchen xuanwang
  *
  */
 public class LeafNode extends BaseNode {
@@ -46,7 +46,7 @@ public class LeafNode extends BaseNode {
 	}
 
 	/**
-	 * @param name new name of the location
+	 * @param set new name of the location
 	 */
 	public void setName(String name) {
 		this.name = name;
@@ -67,22 +67,23 @@ public class LeafNode extends BaseNode {
 	}
 
 	/**
-	 * @return Coordinate of the location
+	 * @return get Coordinate of the location
 	 */
 	public Coordinate getCoord() {
 		return coord;
 	}
 
 	/**
-	 * @param coord new Coordinate of the location
+	 * @param set new Coordinate of the location
 	 */
 	public void setCoord(Coordinate coord) {
 		this.coord = coord;
 	}
 	
 	/**
-	 * search() searches Locations of a given type with in a given Range and modifies a parameter to include
-	 * all search results
+	 * search() searches Locations of a given type with in a given Range and modifies a parameter locs to include
+	 * all search results. If this leafnode contains a location with given type and the coordinate of this location is in 
+	 * the given range, we add the location to the List of Locations locs
 	 * @param type the type of Location we want to search
 	 * @param range the search Range
 	 * @param locs a list of Locations containing the search results (mofify in-place)
@@ -122,8 +123,8 @@ public class LeafNode extends BaseNode {
 	}
 
 	/**
-	 * isEmpty() checks if this LeafNode is null
-	 * @return true if this LeafNode is null
+	 * isEmpty() checks if this LeafNode is empty
+	 * @return true if this LeafNode contains no location in it
 	 */
 	@Override
 	public boolean isEmpty() {

@@ -17,9 +17,9 @@ public interface IQuadTree {
 	public boolean insert(Location loc);
 	
 	/**
-	 * search() returns a list of Locations of a given type within a given Range
-	 * @param type the type of Locations we want to search
-	 * @param range the search Range
+	 * search() returns a list of Locations of a given type within a given Range by traversing the QuadTree
+	 * @param type the type of Locations we want to search(e.g. "School")
+	 * @param range the search range
 	 * @return a list of Locations of the given type within the given Range   
 	 */
 	public List<Location> search(String type, Range range);
@@ -31,4 +31,4 @@ public interface IQuadTree {
 	 * @return the smallest possible Range that includes all given Locations
 	 */
 	public Range enclosingQuad(List<Location> locs);
-} //all checked
+}
