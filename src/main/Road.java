@@ -1,14 +1,14 @@
 package main;
 
 /**
- * The Road class models a Road
+ * The Road class models a Road with a starting point, end point, name and distance
  * @author calchen
  *
  */
 public class Road {
 	
 	/**
-	 * The name of starting point of the Road
+	 * The name of the starting point of the Road
 	 */
 	private String start;
 	
@@ -28,8 +28,9 @@ public class Road {
 	private double dist;
 	
 	/**
-	 * Copy constructor of the Road class, which initializes the starting point, end point, name and distance of the Road
-	 * @param startPt the name of starting point of the Road
+	 * Copy constructor of the Road class, which initializes the starting point, end point, name and distance
+	 * of the Road to given values
+	 * @param startPt the name of the starting point of the Road
 	 * @param endPt the name of the end point of the Road
 	 * @param rdName the name of the Road
 	 * @param dist the distance of the Road
@@ -43,7 +44,7 @@ public class Road {
 
 	/**
 	 * Getter for the starting point of the Road
-	 * @return the name of starting point of the Road
+	 * @return the name of the starting point of the Road
 	 */
 	public String getStart() {
 		return start;
@@ -104,4 +105,4 @@ public class Road {
 	public void setDist(double dist) {
 		this.dist = dist;
 	}
-}
+} //all checked

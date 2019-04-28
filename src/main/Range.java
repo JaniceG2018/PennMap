@@ -1,7 +1,7 @@
 package main;
 
 /**
- * The Range class models a Range on the map
+ * The Range class models a Range on the map defined by a upper-left and a bottom-right Coordinates
  * 
  * @author calchen
  *
@@ -9,17 +9,18 @@ package main;
 public class Range {
 
 	/**
-	 * the upper-left Coordinate of the Range
+	 * The upper-left Coordinate of the Range
 	 */
 	private Coordinate upperL;
 
 	/**
-	 * the bottom-right Coordinate of the Range
+	 * The bottom-right Coordinate of the Range
 	 */
 	private Coordinate bottomR;
 
 	/**
-	 * Empty constructor of the Range class, which initializes 
+	 * Empty constructor of the Range class, which initializes the upper-left and bottom-right
+	 * Coordinates of the Range to default values
 	 */
 	public Range() {
 		this.upperL = new Coordinate();
@@ -27,7 +28,8 @@ public class Range {
 	}
 
 	/**
-	 * constructor for the Range: initializes the upper-left and bottom-right Coordinates of the Range
+	 * Copy constructor of the Range class, which initializes the upper-left and bottom-right
+	 * Coordinates of the Range to given values
 	 * @param upperL the upper-left Coordinate of the Range
 	 * @param bottomR the bottom-right Coordinate of the Range
 	 */
@@ -37,7 +39,7 @@ public class Range {
 	}
 
 	/**
-	 * 
+	 * Getter for the upper-left Coordinate of the Range
 	 * @return the upper-left Coordinate of the Range
 	 */
 	public Coordinate getUpperL() {
@@ -45,7 +47,7 @@ public class Range {
 	}
 
 	/**
-	 * 
+	 * Setter for the upper-left Coordinate of the Range
 	 * @param upperL the new upper-left Coordinate of the Range
 	 */
 	public void setUpperL(Coordinate upperL) {
@@ -53,7 +55,7 @@ public class Range {
 	}
 
 	/**
-	 * 
+	 * Getter for the bottom-right Coordinate of the Range
 	 * @return the bottom-right Coordinate of the Range
 	 */
 	public Coordinate getBottomR() {
@@ -61,7 +63,7 @@ public class Range {
 	}
 
 	/**
-	 * 
+	 * Setter for the bottom-right Coordinate of the Range
 	 * @param bottomR the new bottom-right Coordinate of the Range
 	 */
 	public void setBottomR(Coordinate bottomR) {
@@ -69,9 +71,9 @@ public class Range {
 	}
 
 	/**
-	 * check if the given coordinate is contained in this range
-	 * @param coord
-	 * @return if this range includes the given coordinate, true if this range includes the given coordinate, vice versa
+	 * contains() checks if a given Coordinate is contained within this Range
+	 * @param coord the Coordinate we want to examine
+	 * @return true if the given Coordinate is contained within this Range, and false otherwise
 	 */
 	public boolean contains(Coordinate coord) {
 		if (coord == null)
@@ -82,29 +84,29 @@ public class Range {
 		double maxY = bottomR.getLat();
 		double lat = coord.getLat();
 		double lon = coord.getLon();
-		// If this coord is on left and upper border
 		if (minX == 0 && minY == 0) {
+			// if coord is on left and upper border
 			if (lat <= maxY && lat >= minY && lon <= maxX && lon >= minX)
 				return true;
 		} else if (minX == 0) {
-			// If this coordinate is on left border
+			// if coord is on left border
 			if (lat <= maxY && lat > minY && lon <= maxX && lon >= minX)
 				return true;
 		} else if (minY == 0) {
-			// If this coordinate is on upper border
+			// if coord is on upper border
 			if (lat <= maxY && lat >= minY && lon <= maxX && lon > minX)
 				return true;
 		} else if (lat <= maxY && lat > minY && lon <= maxX && lon > minX) {
-			// If this coordinate is neither on upper nor left border
+			// if coord is on neither left nor upper border
 			return true;
 		}
 		return false;
 	}
 
 	/**
-	 * check if the given range is intersected with this range
-	 * @param otherRange
-	 * @return boolean value, true if this range intersects with the given range, vice versa
+	 * intersects() checks if a given Range intersects with this Range
+	 * @param otherRange the Range we want to examine
+	 * @return true if the given Range intersects with this Range, and false otherwise
 	 */
 	public boolean intersects(Range otherRange) {
 		if (otherRange == null)
@@ -115,4 +117,4 @@ public class Range {
 		Coordinate UR = new Coordinate(BR.getLon(), UL.getLat());
 		return contains(UL) || contains(BR) || contains(UR) || contains(BL);
 	}
-}
+} //all checked

@@ -13,10 +13,12 @@ public class RangeTest {
 	@Test
 	public void testContains() {
 		Range range = new Range(new Coordinate(0, 0), new Coordinate(100, 100));
-		Coordinate inRange = new Coordinate(50, 50);
+		Coordinate inRange1 = new Coordinate(0, 0);
+		Coordinate inRange2 = new Coordinate(50, 50);
 		Coordinate outOfRange = new Coordinate(150, 150);
 		assertFalse(range.contains(null));
-		assertTrue(range.contains(inRange));
+		assertTrue(range.contains(inRange1));
+		assertTrue(range.contains(inRange2));
 		assertFalse(range.contains(outOfRange));
 	}
 	

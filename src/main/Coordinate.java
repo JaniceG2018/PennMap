@@ -1,24 +1,24 @@
 package main;
 
 /**
- * The Coordinate class models a Coordinate with a longitude and a latitude
+ * The Coordinate class models a Coordinate on the map with a longitude and a latitude
  * @author calchen
  *
  */
 public class Coordinate {
 	
 	/**
-	 * Longitude of the Coordinate
+	 * The longitude of the Coordinate
 	 */
 	private double lon;
 	
 	/**
-	 * Latitude of the Coordinate
+	 * The latitude of the Coordinate
 	 */
 	private double lat;
 	
 	/**
-	 * Empty constructor of the Coordinate class, which initializes the longitude and the latitude of
+	 * Empty constructor of the Coordinate class, which initializes the longitude and latitude of
 	 * the Coordinate to 0
 	 */
 	public Coordinate() {
@@ -27,10 +27,10 @@ public class Coordinate {
 	}
 	
 	/**
-	 * Copy constructor of the Coordinate class, which initializes the longitude and the latitude of
+	 * Copy constructor of the Coordinate class, which initializes the longitude and latitude of
 	 * the Coordinate to given values
-	 * @param lon longitude
-	 * @param lat latitude
+	 * @param lon the longitude of the Coordinate
+	 * @param lat the latitude of the Coordinate
 	 */
 	public Coordinate(double lon, double lat) {
 		this.lon = lon;
@@ -38,7 +38,7 @@ public class Coordinate {
 	}
 	
 	/**
-	 * Getter for the longitude
+	 * Getter for the longitude of the Coordinate
 	 * @return the longitude of the Coordinate
 	 */
 	public double getLon() {
@@ -46,7 +46,7 @@ public class Coordinate {
 	}
 
 	/**
-	 * Setter for the longitude
+	 * Setter for the longitude of the Coordinate
 	 * @param lon the new longitude of the Coordinate
 	 */
 	public void setLon(double lon) {
@@ -54,7 +54,7 @@ public class Coordinate {
 	}
 	
 	/**
-	 * Getter for the latitude
+	 * Getter for the latitude of the Coordinate
 	 * @return the latitude of the Coordinate
 	 */
 	public double getLat() {
@@ -62,7 +62,7 @@ public class Coordinate {
 	}
 
 	/**
-	 * Setter for the latitude
+	 * Setter for the latitude of the Coordinate
 	 * @param lat the new latitude of the Coordinate
 	 */
 	public void setLat(double lat) {

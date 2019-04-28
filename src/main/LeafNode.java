@@ -3,26 +3,40 @@ package main;
 import java.util.List;
 
 /**
- * LeafNode of our QuadTree, which stores the location info
+ * The LeafNode class models a LeafNode in our QuadTree, which stores the location info
  * @author calchen
  *
  */
 public class LeafNode extends BaseNode {
 
 	/**
-	 * name of the location
+	 * The name of the Location
 	 */
 	private String name;
 	
 	/**
-	 * type of location
+	 * The type of the Location
 	 */
 	private String type;
 	
 	/**
-	 * Coordinate of the location
+	 * The Coordinate of the Location
 	 */
 	private Coordinate coord;
+	
+	/**
+	 * copy constructor of this class, which initializes name, type and coord with given values
+	 * @param name name of the location
+	 * @param type type of location
+	 * @param coord coordinate of the location
+	 * @param roadTo other locations this connects to via road(s)
+	 */
+	public LeafNode(String name, String type, Coordinate coord, Range range) {
+		this.name = name;
+		this.type = type;
+		this.coord = coord;
+		this.range = range;
+	}
 	
 	/**
 	 * @return name of the location
@@ -67,21 +81,11 @@ public class LeafNode extends BaseNode {
 	}
 	
 	/**
-	 * copy constructor of this class, which initializes name, type and coord with given values
-	 * @param name name of the location
-	 * @param type type of location
-	 * @param coord coordinate of the location
-	 * @param roadTo other locations this connects to via road(s)
-	 */
-	public LeafNode(String name, String type, Coordinate coord, Range range) {
-		this.name = name;
-		this.type = type;
-		this.coord = coord;
-		this.range = range;
-	}
-	
-	/**
-	 * 
+	 * search() searches Locations of a given type with in a given Range and modifies a parameter to include
+	 * all search results
+	 * @param type the type of Location we want to search
+	 * @param range the search Range
+	 * @param locs a list of Locations containing the search results (mofify in-place)
 	 */
 	@Override
 	public void search(String type, Range range, List<Location> locs) {
@@ -92,8 +96,8 @@ public class LeafNode extends BaseNode {
 	}
 	
 	/**
-	 * split() splits a LeafNode into 4 and returns the InternalNode that is the root of these 4 LeafNodes.
-	 * It also transit the current contents stored in this leaf node to its children.
+	 * split() splits a LeafNode into 4 and returns the InternalNode that is the root of these 4 LeafNodes;
+	 * it also transit the current contents stored in this leaf node to its children
 	 * @return the InternalNode that is the root of the 4 LeafNodes after splitting
 	 */
 	public InternalNode split() {
@@ -117,6 +121,10 @@ public class LeafNode extends BaseNode {
 		return (InternalNode)newNode;
 	}
 
+	/**
+	 * isEmpty() checks if this LeafNode is null
+	 * @return true if this LeafNode is null
+	 */
 	@Override
 	public boolean isEmpty() {
 		if (name == null)
