@@ -1,6 +1,7 @@
 package test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,5 +41,12 @@ public class GraphTest {
 	@Test
 	public void testFindShortestPath() {
 		assertEquals("A -> road AB -> B -> road BC -> C",graph.findShortestPath("A", "C"));
+		try {
+			graph.findShortestPath("Z", "B");
+		} catch (Exception e) {
+			assertTrue(e instanceof IllegalArgumentException);
+		}
 	}
+	
+	
 }
