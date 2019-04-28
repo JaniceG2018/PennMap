@@ -41,7 +41,12 @@ public abstract class BaseNode {
 	 */
 	public abstract void search(String type, Range range, List<Location> locs);
 	
+	/**
+	 * 
+	 * @return a boolean value to indicate if this node is empty 
+	 */
 	public abstract boolean isEmpty();
+	
 	/**
 	 * @return the Range
 	 */

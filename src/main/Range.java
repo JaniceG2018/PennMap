@@ -88,18 +88,19 @@ public class Range {
 		double maxY = bottomR.getLat();
 		double lat = coord.getLat();
 		double lon = coord.getLon();
+		// If this coord is on left and upper border
 		if (minX == 0 && minY == 0) {
 			if (lat <= maxY && lat >= minY && lon <= maxX && lon >= minX)
 				return true;
-		} else if (minX == 0) {
+		} else if (minX == 0) {    // If this coordinate is on left border
 			if (lat <= maxY && lat > minY && lon <= maxX && lon >= minX) {
 				return true;
 			}
-		} else if (minY == 0) {
+		} else if (minY == 0) { 	// If this coordinate is on upper border
 			if (lat <= maxY && lat >= minY && lon <= maxX && lon > minX) {
 				return true;
-			}
-		} else if (lat <= maxY && lat > minY && lon <= maxX && lon > minX) {
+			}		
+		} else if (lat <= maxY && lat > minY && lon <= maxX && lon > minX) {	// If this coordinate is neither on upper nor left border
 			return true;
 		}
 		return false;

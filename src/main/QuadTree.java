@@ -46,34 +46,30 @@ public class QuadTree implements IQuadTree {
 	}
 	
 	private BaseNode insert(BaseNode node, Coordinate coord, Location loc, Range curRange) {
-//		Range curRange = node.getRange();
 		
-		// if node is root
+		// 1. if node is root and this node is empty
 		if (node == root && node.isEmpty()) {
 			// Calculate range of the new LeafNode
 			return new LeafNode(loc.getName(), loc.getType(), coord, node.getRange());
 		}
 		
-		// node is empty or empty leaf, create new leafnode and store the info of given location
+		// 2. node is empty or empty leaf, create new leafnode and store the info of given location
 		if (node instanceof EmptyNode) {
 			// Calculate range of the new LeafNode
 			Range leafRange = curRange;
 			return new LeafNode(loc.getName(), loc.getType(), coord, leafRange);
 		}
 	
-		// If we need to add location in a quad that includes a location in it, we need to split it 
+		// 3. If we need to add location in a quad that includes a location in it, we need to split it 
 		// into an internal node and add both old and new locations to it 
 		if (node instanceof LeafNode) {
 			BaseNode newNode = ((LeafNode) node).split();
-//			LeafNode leaf = (LeafNode) node;
-//			Location old = new Location(leaf.getName(), leaf.getType(), leaf.getCoord());
-//			newNode = insert(newNode, old.getCoord(), old);
 			newNode = insert(newNode, coord, loc, newNode.getRange());
 			return newNode;
 		}
 	
 		
-		// If current node is Internal Node, then we should insert the location in its children
+		// 4. If current node is Internal Node, then we should insert the location in its children
 		Coordinate UL = curRange.getUpperL();
 		Coordinate BR = curRange.getBottomR();
 		// (lon, lat) is the central point of current Quad
