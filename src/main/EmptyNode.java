@@ -9,18 +9,29 @@ import java.util.List;
  */
 public class EmptyNode extends BaseNode {
 
+	/**
+	 * Empty constructor of the EmptyNode class, which initializes 
+	 */
 	public EmptyNode() {
 		range.setUpperL(new Coordinate(Double.NEGATIVE_INFINITY,Double.NEGATIVE_INFINITY));
 		range.setBottomR(new Coordinate(Double.NEGATIVE_INFINITY,Double.NEGATIVE_INFINITY));
-	;}
+	}
+
 	/**
 	 * 
+	 * @param type
+	 * @param range
+	 * @param locs
 	 */
 	@Override
 	public void search(String type, Range range, List<Location> locs) {
-		return;
+		
 	}
 
+	/**
+	 * isEmpty() returns true if a node is empty
+	 * @return true if this node is empty (always)
+	 */
 	@Override
 	public boolean isEmpty() {
 		return true;

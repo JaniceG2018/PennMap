@@ -1,24 +1,34 @@
 package main;
 
 /**
- * the Coordinate class models a Coordinate
+ * The Coordinate class models a Coordinate with a longitude and a latitude
  * @author calchen
  *
  */
 public class Coordinate {
 	
 	/**
-	 * longitude
+	 * Longitude of the Coordinate
 	 */
 	private double lon;
 	
 	/**
-	 * latitude
+	 * Latitude of the Coordinate
 	 */
 	private double lat;
 	
 	/**
-	 * constructor for the Coordinate: initializes the longitude and latitude of the Coordinate
+	 * Empty constructor of the Coordinate class, which initializes the longitude and the latitude of
+	 * the Coordinate to 0
+	 */
+	public Coordinate() {
+		this.lon = 0;
+		this.lat = 0;
+	}
+	
+	/**
+	 * Copy constructor of the Coordinate class, which initializes the longitude and the latitude of
+	 * the Coordinate to given values
 	 * @param lon longitude
 	 * @param lat latitude
 	 */
@@ -27,36 +37,35 @@ public class Coordinate {
 		this.lat = lat;
 	}
 	
-	public Coordinate() {
-		this.lon = 0;
-		this.lat = 0;
-	}
-
 	/**
-	 * @return longitude
+	 * Getter for the longitude
+	 * @return the longitude of the Coordinate
 	 */
 	public double getLon() {
 		return lon;
 	}
 
 	/**
-	 * @param lon the new longitude
+	 * Setter for the longitude
+	 * @param lon the new longitude of the Coordinate
 	 */
 	public void setLon(double lon) {
 		this.lon = lon;
 	}
-
+	
 	/**
-	 * @return latitude
+	 * Getter for the latitude
+	 * @return the latitude of the Coordinate
 	 */
 	public double getLat() {
 		return lat;
 	}
 
 	/**
-	 * @param lat the new latitude
+	 * Setter for the latitude
+	 * @param lat the new latitude of the Coordinate
 	 */
 	public void setLat(double lat) {
 		this.lat = lat;
 	}
-}
+} //all checked

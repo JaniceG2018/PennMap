@@ -4,9 +4,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import apple.laf.JRSUIUtils.Tree;
-
-
 /**
  * 
  * @author calchen, jingwen qiang
