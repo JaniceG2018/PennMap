@@ -41,20 +41,26 @@ public class QuadTree implements IQuadTree {
 			return false;
 		}
 		Coordinate coord = loc.getCoord();
-		root = insert(root, coord, loc);
+		root = insert(root, coord, loc, root.getRange());
 		return true;
 	}
 	
-	private BaseNode insert(BaseNode node, Coordinate coord, Location loc) {
+	private BaseNode insert(BaseNode node, Coordinate coord, Location loc, Range curRange) {
+//		Range curRange = node.getRange();
 		
-		Range curRange = node.getRange();
-		// Root is empty or empty leaf, create new leafnode and store the info of given location
-		if (node == root || node instanceof EmptyNode) {
+		// if node is root
+		if (node == root && node.isEmpty()) {
 			// Calculate range of the new LeafNode
-			Range leafRange = node.mathSplit(curRange, coord);
-
+			return new LeafNode(loc.getName(), loc.getType(), coord, node.getRange());
+		}
+		
+		// node is empty or empty leaf, create new leafnode and store the info of given location
+		if (node instanceof EmptyNode) {
+			// Calculate range of the new LeafNode
+			Range leafRange = curRange;
 			return new LeafNode(loc.getName(), loc.getType(), coord, leafRange);
 		}
+	
 		// If we need to add location in a quad that includes a location in it, we need to split it 
 		// into an internal node and add both old and new locations to it 
 		if (node instanceof LeafNode) {
@@ -62,25 +68,27 @@ public class QuadTree implements IQuadTree {
 //			LeafNode leaf = (LeafNode) node;
 //			Location old = new Location(leaf.getName(), leaf.getType(), leaf.getCoord());
 //			newNode = insert(newNode, old.getCoord(), old);
-			newNode = insert(newNode, coord, loc);
+			newNode = insert(newNode, coord, loc, newNode.getRange());
 			return newNode;
 		}
+	
+		
 		// If current node is Internal Node, then we should insert the location in its children
-		Range curRange = ((InternalNode) node).getRange();
 		Coordinate UL = curRange.getUpperL();
 		Coordinate BR = curRange.getBottomR();
 		// (lon, lat) is the central point of current Quad
 		double lat = (UL.getLat() + BR.getLat()) / 2;
 		double lon = (UL.getLon() + BR.getLon()) / 2;
+		Range childrenRange = node.mathSplit(curRange, coord);
 		// Decide which children to insert according to this location's coordinate
-		if (coord.getLat() < lat && coord.getLon() < lon) {
-			((InternalNode) node).setNorthW(insert(((InternalNode) node).getNorthW(), coord, loc));
-		} else if (coord.getLat() < lat && coord.getLon() > lon) {
-			((InternalNode) node).setNorthE(insert(((InternalNode) node).getNorthE(), coord, loc));
+		if (coord.getLat() <= lat && coord.getLon() <= lon) {
+			((InternalNode) node).setNorthW(insert(((InternalNode) node).getNorthW(), coord, loc, childrenRange));
+		} else if (coord.getLat() <= lat && coord.getLon() > lon) {
+			((InternalNode) node).setNorthE(insert(((InternalNode) node).getNorthE(), coord, loc, childrenRange));
 		} else if (coord.getLat() > lat && coord.getLon() > lon) {
-			((InternalNode) node).setSouthE(insert(((InternalNode) node).getSouthE(), coord, loc));
-		} else if (coord.getLat() > lat && coord.getLon() < lon) {
-			((InternalNode) node).setSouthW(insert(((InternalNode) node).getSouthW(), coord, loc));
+			((InternalNode) node).setSouthE(insert(((InternalNode) node).getSouthE(), coord, loc, childrenRange));
+		} else if (coord.getLat() > lat && coord.getLon() <= lon) {
+			((InternalNode) node).setSouthW(insert(((InternalNode) node).getSouthW(), coord, loc, childrenRange));
 		}
 		return node;
 	}
@@ -106,8 +114,7 @@ public class QuadTree implements IQuadTree {
 			locCoord = loc.getCoord();
 			updateRange(locCoord, quadRange);
 		}
-		BaseNode root = new InternalNode();
-		root.setRange(quadRange);
+		BaseNode root = new InternalNode(quadRange);
 		this.root = root;
 		return quadRange;
 	}

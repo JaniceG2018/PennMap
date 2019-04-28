@@ -51,6 +51,10 @@ public class InternalNode extends BaseNode {
 	
 	public InternalNode(Range range) {
 		super(range);
+		northE = QuadTree.emptyNode;
+		northW = QuadTree.emptyNode;
+		southE = QuadTree.emptyNode;
+		southW = QuadTree.emptyNode;
 	}
 	
 	/**
@@ -122,5 +126,20 @@ public class InternalNode extends BaseNode {
 			southW.search(type, range, locs);
 		if (range.intersects(southE.getRange()))
 			southE.search(type, range, locs);
+	}
+
+	@Override
+	public boolean isEmpty() {
+		if (isNull(northW) && isNull(northE) && isNull(southE) && isNull(southW)) {
+			return true;
+		}
+		return false;
+	}
+	
+	private boolean isNull(BaseNode node) {
+		if (node instanceof EmptyNode) {
+			return true;
+		}
+		return false;
 	}
 }

@@ -85,28 +85,6 @@ public class LeafNode extends BaseNode {
 		this.range = range;
 	}
 	
-	public LeafNode(String name, String type, Coordinate coord, Range range, String direction) {
-		this.name = name;
-		this.type = type;
-		this.coord = coord;
-		// Calculate range
-		Range r;
-		
-		Coordinate UL = range.getUpperL();
-		Coordinate BR = range.getBottomR();
-		double lat = (UL.getLat() + BR.getLat()) / 2;
-		double lon = (UL.getLon() + BR.getLon()) / 2;
-		Coordinate central = new Coordinate(lon, lat);
-		Coordinate upperCentral = new Coordinate(lon, )
-;
-		Coordinate tmp2;
-		
-		if (direction.equals("SW")) {
-			r = new Range(UL, tmp1);
-		} else if (direction.equals("SE")) {
-			r = new Range()
-		}
-	}
 
 	/**
 	 * 
@@ -131,7 +109,9 @@ public class LeafNode extends BaseNode {
 		double lon = (UL.getLon() + BR.getLon()) / 2;
 		
 		BaseNode newNode = new InternalNode(this.range);
-		BaseNode leaf = this;
+		Range leafRange = mathSplit(this.range, this.coord);
+		BaseNode leaf = new LeafNode(name, type, coord, leafRange);
+		
 		if (coord.getLat() < lat && coord.getLon() < lon) {
 			((InternalNode) newNode).setNorthW(leaf);
 		} else if (coord.getLat() < lat && coord.getLon() > lon) {
@@ -142,5 +122,13 @@ public class LeafNode extends BaseNode {
 			((InternalNode) newNode).setSouthW(leaf);
 		}
 		return (InternalNode)newNode;
+	}
+
+	@Override
+	public boolean isEmpty() {
+		if (name == null) {
+			return true;
+		}
+		return false;
 	}
 }

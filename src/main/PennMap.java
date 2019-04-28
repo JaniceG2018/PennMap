@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import apple.laf.JRSUIUtils.Tree;
+
 
 /**
  * 
@@ -215,8 +217,11 @@ public class PennMap implements IMapMaker, IMapModel {
 		List<Location> locs = p.getLocationList();
 		p.tree = p.makeQuadTree(locs);
 //		p.makeGraph();
-		System.out.println(p.getLocationList().get(2).getName());
-
+		Range range = new Range(new Coordinate(20,75),new Coordinate(100,100));
+		List<Location> locations = p.tree.search("School", range);
+		for (Location loc: locations) {
+			System.out.println(loc.getName());
+		}
 	}
 }
 

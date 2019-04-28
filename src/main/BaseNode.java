@@ -41,6 +41,7 @@ public abstract class BaseNode {
 	 */
 	public abstract void search(String type, Range range, List<Location> locs);
 	
+	public abstract boolean isEmpty();
 	/**
 	 * @return the Range
 	 */
@@ -60,17 +61,17 @@ public abstract class BaseNode {
 		Coordinate UL = range.getUpperL();
 		Coordinate BR = range.getBottomR();
 		
-		double halfWidth = Math.sqrt((BR.getLon()*BR.getLon() - UL.getLon()*UL.getLon())) / 2;
-		double halfHeight = Math.sqrt((BR.getLat()*BR.getLat() - UL.getLat()*UL.getLat())) / 2;
+		double halfWidth = (BR.getLon() - UL.getLon() )/ 2;
+		double halfHeight = (BR.getLat() - UL.getLat() )/ 2;;
 		// NW:
 			double Rx1 = (UL.getLon() + BR.getLon()) / 2;
 			double Ry1 = (UL.getLat() + BR.getLat()) / 2;
-			Coordinate L1 = new Coordinate(Rx1, Ry1);
+			Coordinate R1 = new Coordinate(Rx1, Ry1);
 			
 
 			double Lx1 = UL.getLon();
 			double Ly1 = UL.getLat();
-			Coordinate R1 = new Coordinate(Lx1, Ly1);
+			Coordinate L1 = new Coordinate(Lx1, Ly1);
 			Range r1 = new Range(L1, R1);
 			
 		// NE:
