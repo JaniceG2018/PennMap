@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+
 /**
  * 
  * @author calchen, jingwen qiang
@@ -12,7 +13,7 @@ import java.util.List;
 public class PennMap implements IMapMaker, IMapModel {
 
 
-	private QuadTree tree; //the QuadTree representing the map
+	private IQuadTree tree; //the QuadTree representing the map
 	private Graph graph; //the Graph representing the map
 	private Coordinate currentPoint;  // current Location of user
 	private List<Road> roadList = new ArrayList<Road>();
@@ -74,7 +75,7 @@ public class PennMap implements IMapMaker, IMapModel {
 
 	
 	
-	public QuadTree getTree() {
+	public IQuadTree getTree() {
 		return tree;
 	}
 
@@ -199,11 +200,13 @@ public class PennMap implements IMapMaker, IMapModel {
 		               "(60,90), Irvine Auditorm, School, (60,100), Williams Hall, School, 34th St-D",
 		               "(60,100), Williams Hall, School, (100,100), Happy Ending Bar, Restaurant, Spruce St",
 		               "(80,10), Parking Lot, School, (100,100), Happy Ending Bar, Restaurant, 33th St"};
-		PennMap p = new PennMap();
 		List<String> list = new ArrayList<>();
 		Collections.addAll(list, arr);
-//		Graph p2 = (Graph) p.makeGraph(list);
-		System.out.println(p.locationList.get(2).getName());
+		PennMap p = new PennMap(list,new Coordinate(1.0,1.0));
+		List<Location> locs = p.getLocationList();
+		p.tree = p.makeQuadTree(locs);
+//		p.makeGraph();
+		System.out.println(p.getLocationList().get(2).getName());
 	}
 }
 

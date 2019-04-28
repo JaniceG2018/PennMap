@@ -46,9 +46,14 @@ public class QuadTree implements IQuadTree {
 	}
 	
 	private BaseNode insert(BaseNode node, Coordinate coord, Location loc) {
+		
+		Range curRange = node.getRange();
 		// Root is empty or empty leaf, create new leafnode and store the info of given location
-		if (node instanceof EmptyNode) {
-			return new LeafNode(loc.getName(), loc.getType(), coord);
+		if (node == root || node instanceof EmptyNode) {
+			// Calculate range of the new LeafNode
+			Range leafRange = node.mathSplit(curRange, coord);
+
+			return new LeafNode(loc.getName(), loc.getType(), coord, leafRange);
 		}
 		// If we need to add location in a quad that includes a location in it, we need to split it 
 		// into an internal node and add both old and new locations to it 
@@ -69,13 +74,13 @@ public class QuadTree implements IQuadTree {
 		double lon = (UL.getLon() + BR.getLon()) / 2;
 		// Decide which children to insert according to this location's coordinate
 		if (coord.getLat() < lat && coord.getLon() < lon) {
-			((InternalNode) node).setNorthW(insert(node, coord, loc));
+			((InternalNode) node).setNorthW(insert(((InternalNode) node).getNorthW(), coord, loc));
 		} else if (coord.getLat() < lat && coord.getLon() > lon) {
-			((InternalNode) node).setNorthE(insert(node, coord, loc));
+			((InternalNode) node).setNorthE(insert(((InternalNode) node).getNorthE(), coord, loc));
 		} else if (coord.getLat() > lat && coord.getLon() > lon) {
-			((InternalNode) node).setSouthE(insert(node, coord, loc));
+			((InternalNode) node).setSouthE(insert(((InternalNode) node).getSouthE(), coord, loc));
 		} else if (coord.getLat() > lat && coord.getLon() < lon) {
-			((InternalNode) node).setSouthW(insert(node, coord, loc));
+			((InternalNode) node).setSouthW(insert(((InternalNode) node).getSouthW(), coord, loc));
 		}
 		return node;
 	}
@@ -101,6 +106,9 @@ public class QuadTree implements IQuadTree {
 			locCoord = loc.getCoord();
 			updateRange(locCoord, quadRange);
 		}
+		BaseNode root = new InternalNode();
+		root.setRange(quadRange);
+		this.root = root;
 		return quadRange;
 	}
 	

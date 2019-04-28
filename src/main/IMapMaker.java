@@ -22,5 +22,5 @@ public interface IMapMaker {
 	 * @param locNames a list of location names
 	 * @return a IGraph representing a road network
 	 */
-	public IGraph makeGraph(List<String> locNames);
+	public IGraph makeGraph();
 }

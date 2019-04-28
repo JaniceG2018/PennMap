@@ -78,10 +78,34 @@ public class LeafNode extends BaseNode {
 	 * @param coord coordinate of the location
 	 * @param roadTo other locations this connects to via road(s)
 	 */
-	public LeafNode(String name, String type, Coordinate coord) {
+	public LeafNode(String name, String type, Coordinate coord, Range range) {
 		this.name = name;
 		this.type = type;
 		this.coord = coord;
+		this.range = range;
+	}
+	
+	public LeafNode(String name, String type, Coordinate coord, Range range, String direction) {
+		this.name = name;
+		this.type = type;
+		this.coord = coord;
+		// Calculate range
+		Range r;
+		
+		Coordinate UL = range.getUpperL();
+		Coordinate BR = range.getBottomR();
+		double lat = (UL.getLat() + BR.getLat()) / 2;
+		double lon = (UL.getLon() + BR.getLon()) / 2;
+		Coordinate central = new Coordinate(lon, lat);
+		Coordinate upperCentral = new Coordinate(lon, )
+;
+		Coordinate tmp2;
+		
+		if (direction.equals("SW")) {
+			r = new Range(UL, tmp1);
+		} else if (direction.equals("SE")) {
+			r = new Range()
+		}
 	}
 
 	/**
@@ -106,7 +130,7 @@ public class LeafNode extends BaseNode {
 		double lat = (UL.getLat() + BR.getLat()) / 2;
 		double lon = (UL.getLon() + BR.getLon()) / 2;
 		
-		BaseNode newNode = new InternalNode();
+		BaseNode newNode = new InternalNode(this.range);
 		BaseNode leaf = this;
 		if (coord.getLat() < lat && coord.getLon() < lon) {
 			((InternalNode) newNode).setNorthW(leaf);

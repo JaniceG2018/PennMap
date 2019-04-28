@@ -9,14 +9,6 @@ import java.util.List;
  */
 public class InternalNode extends BaseNode {
 	
-//	public InternalNode() {
-//		super();
-//	}
-//	
-//	public InternalNode(Range range) {
-//		super(range);
-//	}
-
 	/**
 	 * 
 	 */
@@ -55,6 +47,10 @@ public class InternalNode extends BaseNode {
 		this.northW = northW;
 		this.southE = southE;
 		this.southW = southW;
+	}
+	
+	public InternalNode(Range range) {
+		super(range);
 	}
 	
 	/**
