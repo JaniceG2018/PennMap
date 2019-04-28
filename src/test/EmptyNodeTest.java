@@ -1,11 +1,13 @@
 package test;
+
 import java.util.ArrayList;
 import java.util.List;
+
 import org.junit.Test;
 
-import main.Coordinate;
 import main.EmptyNode;
 import main.Location;
+import main.Coordinate;
 import main.Range;
 
 public class EmptyNodeTest {

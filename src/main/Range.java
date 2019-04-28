@@ -18,6 +18,14 @@ public class Range {
 	private Coordinate bottomR;
 	
 	/**
+	 * 
+	 */
+	public Range() {
+		this.upperL = new Coordinate();
+		this.bottomR = new Coordinate();
+	}
+	
+	/**
 	 * constructor for the Range: initializes the upper-left and bottom-right Coordinates of the Range
 	 * @param upperL the upper-left Coordinate of the Range
 	 * @param bottomR the bottom-right Coordinate of the Range
@@ -25,11 +33,6 @@ public class Range {
 	public Range(Coordinate upperL, Coordinate bottomR) {
 		this.upperL = upperL;
 		this.bottomR = bottomR;
-	}
-	
-	public Range() {
-		this.upperL = new Coordinate();
-		this.bottomR = new Coordinate();
 	}
 	
 	/**
@@ -74,10 +77,10 @@ public class Range {
 		double maxY = bottomR.getLat();
 		double lat = coord.getLat();
 		double lon = coord.getLon();
-		if (lat <= maxY && lat >= minY && lon <= maxX && lon >= minX) {
+		if (lat <= maxY && lat >= minY && lon <= maxX && lon >= minX)
 			return true;
-		}
-		return false;
+		else
+			return false;
 	}
 	
 	/**
@@ -86,16 +89,12 @@ public class Range {
 	 * @param a boolean value, true if this range intersects with the given range, vice versa
 	 */
 	public boolean intersects(Range otherRange) {
-		if (this == null || otherRange == null)
+		if (otherRange == null)
 			return false;
-//		double minX = upperL.getLon();
-//		double minY = upperL.getLat();
-//		double maxX = bottomR.getLon();
-//		double maxY = bottomR.getLat();
 		Coordinate UL = otherRange.upperL;
 		Coordinate BR = otherRange.bottomR;
 		Coordinate BL = new Coordinate(UL.getLon(), BR.getLat());
 		Coordinate UR = new Coordinate(BR.getLon(), UL.getLat());
-		return contains(UL) && contains(BR) && contains(UR) && contains(BL);
+		return contains(UL) || contains(BR) || contains(UR) || contains(BL);
 	}
 }

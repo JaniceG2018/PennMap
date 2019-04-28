@@ -5,8 +5,8 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import main.Range;
 import main.Coordinate;
+import main.Range;
 
 public class RangeTest {
 
@@ -25,9 +25,7 @@ public class RangeTest {
 		Range thisRange = new Range(new Coordinate(0, 0), new Coordinate(100, 100));
 		Range intersectedRange = new Range(new Coordinate(50, 50), new Coordinate(150, 150));
 		Range separateRange = new Range(new Coordinate(150, 150), new Coordinate(200, 200));
-		Range nullRange = null;
 		assertFalse(thisRange.intersects(null));
-		assertFalse(nullRange.intersects(thisRange));
 		assertTrue(thisRange.intersects(intersectedRange));
 		assertTrue(intersectedRange.intersects(thisRange));
 		assertFalse(thisRange.intersects(separateRange));

@@ -1,4 +1,5 @@
 package test;
+
 import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
@@ -9,10 +10,10 @@ import org.junit.Before;
 import org.junit.Test;
 
 import main.BaseNode;
-import main.LeafNode;
-import main.InternalNode;
 import main.Coordinate;
 import main.Graph;
+import main.InternalNode;
+import main.LeafNode;
 import main.Location;
 import main.PennMap;
 import main.QuadTree;
@@ -24,7 +25,6 @@ public class PennMapTest {
 	
 	@Before
 	public void setUp() {
-
 		List<String> initData = new ArrayList<String>();
 		String[] arr= {"(0,0), Fine Wine and Good Spirit, Store, (20,10), Pottruck Fitness Center, School, Spring St",
 				"(0,0), Fine Wine and Good Spirit, Store, (0,50), AT&T, Store, 41th St",
@@ -34,20 +34,12 @@ public class PennMapTest {
 				"(0,0), Fine Wine and Good Spirit, Store, (10,50), John Huntsman Hall, School, 40th St",
 				"(0,0), Fine Wine and Good Spirit, Store, (20,50), Graduate Center, School, Winter St",
 				"(20,20), Pottruck Fitness Center, School, (20,50), Graduate Center, School, Summer St"};
-				Collections.addAll(initData, arr);
-		
+		Collections.addAll(initData, arr);
 		pennMap = new PennMap(initData, new Coordinate(1.0, 1.0));
-
 	}
 	
 	@Test
-	public void testMakeQuadTree() {
-//		List<Location> locations = new ArrayList<Location>();
-//		locations.add(new Location("Starbucks", "type", new Coordinate(1.0, 1.0)));
-//		locations.add(new Location("name", "type", new Coordinate(1.0, 1.0)));
-//		locations.add(new Location("name", "type", new Coordinate(1.0, 1.0)));
-//		locations.add(new Location("name", "type", new Coordinate(1.0, 1.0)));
-		
+	public void testMakeQuadTree() {		
 		BaseNode root = new InternalNode(new LeafNode("name", "type", new Coordinate(1.0, 1.0)),
 				new LeafNode("name", "type", new Coordinate(1.0, 1.0)),
 				new LeafNode("name", "type", new Coordinate(1.0, 1.0)),
@@ -58,7 +50,6 @@ public class PennMapTest {
 	
 	@Test
 	public void testMakeGraph() {
-
 		List<Location> locations = new ArrayList<Location>();
 		locations.add(new Location("Fine Wine and Good Spirit", "Store", new Coordinate(0, 0)));
 		locations.add(new Location("Pottruck Fitness Center", "School", new Coordinate(20, 10)));
@@ -78,9 +69,7 @@ public class PennMapTest {
 		roads.add(new Road("Fine Wine and Good Spirit", "Graduate Center, School", "Winter St", 1.0));
 		roads.add(new Road("Pottruck Fitness Center", "Graduate Center, School", "Summer St", 1.0));
 
-		
-		Graph exp = new Graph(locations, roads);
-		
+		Graph exp = new Graph(locations, roads);		
 		assertEquals(exp, pennMap.makeGraph());
 	}
 	

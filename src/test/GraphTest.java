@@ -5,10 +5,10 @@ import java.util.List;
 
 import org.junit.Test;
 
-import main.Road;
-import main.Location;
 import main.Coordinate;
 import main.Graph;
+import main.Location;
+import main.Road;
 
 public class GraphTest {
 
