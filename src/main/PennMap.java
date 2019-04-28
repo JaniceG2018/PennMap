@@ -120,11 +120,12 @@ public class PennMap implements IMapMaker, IMapModel {
 	
 
 	/**
-	 * findShortest Path 
+	 * findShortestPath() returns the directions for the shortest path from one location to another
 	 */
 	@Override
 	public String findShortestPath(String loc1, String loc2) {
-		return null;
+		return graph.findShortestPath(loc1, loc2);
+		
 	}
 
 	/**
@@ -132,7 +133,15 @@ public class PennMap implements IMapMaker, IMapModel {
 	 */
 	@Override
 	public List<Location> findAll(String type, double dist) {
-		return null;
+		double currY = currentPoint.getLat();
+		double currX = currentPoint.getLon();
+		
+		Coordinate upperLeft= new Coordinate(currX-(dist/2),currY-(dist/2));
+		Coordinate lowerRight= new Coordinate(currX+(dist/2),currY+(dist/2));
+		
+		Range range = new Range(upperLeft,lowerRight);
+		
+		return tree.search(type, range);		
 	}
 
 	/**
@@ -178,7 +187,7 @@ public class PennMap implements IMapMaker, IMapModel {
 	public static void main (String args[]) {
 		String[] arr = {"(0,0), Fine Wine and Good Spirit, Store, (20,10), Pottruck Fitness Center, School, Spring St",
 		               "(0,0), Fine Wine and Good Spirit, Store, (0,50), AT&T, Store, 41th St",
-		               "(0,0), Fine Wine and Good Spirit, Store, (0,50), (20,0), WaWa@Chestnut, Restaurant, Chestnut St-D",
+		               "(0,0), Fine Wine and Good Spirit, Store, (20,0), WaWa@Chestnut, Restaurant, Chestnut St-D",
 		               "(20,0), WaWa@Chestnut, Restaurant, (25,0), Ochatto, Restaurant, Chestnut St-E",
 		               "(25,0), Ochatto, Restaurant, (30,0), Spicy Now, Restaurant, Chestnut St-F",
 		               "(0,0), Fine Wine and Good Spirit, Store, (10,50), John Huntsman Hall, School, 40th St",
@@ -199,10 +208,10 @@ public class PennMap implements IMapMaker, IMapModel {
 		               "(60,90), Irvine Auditorm, School, (60,100), Williams Hall, School, 34th St-D",
 		               "(60,100), Williams Hall, School, (100,100), Happy Ending Bar, Restaurant, Spruce St",
 		               "(80,10), Parking Lot, School, (100,100), Happy Ending Bar, Restaurant, 33th St"};
-		PennMap p = new PennMap();
+		
 		List<String> list = new ArrayList<>();
 		Collections.addAll(list, arr);
-//		Graph p2 = (Graph) p.makeGraph(list);
+		PennMap p = new PennMap(list,new Coordinate(1.0,1.0));
 		System.out.println(p.locationList.get(2).getName());
 	}
 }
