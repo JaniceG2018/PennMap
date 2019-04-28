@@ -29,7 +29,7 @@ public class LeafNode extends BaseNode {
 	 * @param name name of the location
 	 * @param type type of location
 	 * @param coord coordinate of the location
-	 * @param roadTo other locations this connects to via road(s)
+	 * @param range
 	 */
 	public LeafNode(String name, String type, Coordinate coord, Range range) {
 		this.name = name;

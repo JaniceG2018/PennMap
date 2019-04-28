@@ -2,20 +2,20 @@ package test;
 
 import org.junit.Test;
 
-public class LeafNodeTest {
+public class BaseNodeTest {
 
 	@Test
 	public void testSearch() {
-
-	}
-	
-	@Test
-	public void testSplit() {
-
+		
 	}
 	
 	@Test
 	public void testIsEmpty() {
-
+		
+	}
+	
+	@Test
+	public void testMathSplit() {
+		
 	}
 }

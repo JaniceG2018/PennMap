@@ -71,7 +71,7 @@ public class PennMapTest {
 	}
 	
 	@Test
-	public void testShortestPath() {
+	public void testFindShortestPath() {
 		assertEquals("Fine Wine and Good Spirit -> road 41th st -> AT&T", pennMap.findShortestPath("Fine Wine and Good Spirit", "AT&T"));
 		assertEquals("Fine Wine and Good Spirit -> road Chestnut St-D -> WaWa@Chestnut -> road Chest", pennMap.findShortestPath("Fine Wine and Good Spirit", "Ochatto"));
 	}

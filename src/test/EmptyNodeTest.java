@@ -22,4 +22,9 @@ public class EmptyNodeTest {
 		locs.add(l2);
 		node.search("Street", new Range(new Coordinate(1.0, 1.0), new Coordinate(1.0, 1.0)), locs);
 	}
+	
+	@Test
+	public void testIsEmpty() {
+
+	}
 }
