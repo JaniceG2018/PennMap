@@ -11,28 +11,112 @@ import java.util.List;
  */
 public class PennMap implements IMapMaker, IMapModel {
 
-
 	private IQuadTree tree; //the QuadTree representing the map
 	private Graph graph; //the Graph representing the map
 	private Coordinate currentPoint;  // current Location of user
 	private List<Road> roadList = new ArrayList<Road>();
 	private List<Location> locationList = new ArrayList<Location>();
 	
-
-
-	
 	public PennMap() {
 		roadList = new ArrayList<Road>();
 		locationList = new ArrayList<Location>();
 	}
-
 	
-	// Changed the data input stream to do the parsing first 
+	/**
+	 * 
+	 * @param init
+	 * @param currPt
+	 */
 	public PennMap(List<String> init, Coordinate currPt) {
+		// Changed the data input stream to do the parsing first 
 		this.currentPoint = currPt;
 		parser(init);
 	}
 	
+	/**
+	 * 
+	 * @return
+	 */
+	public IQuadTree getTree() {
+		return tree;
+	}
+
+	/**
+	 * 
+	 * @param tree
+	 */
+	public void setTree(QuadTree tree) {
+		this.tree = tree;
+	}
+
+	/**
+	 * 
+	 * @return
+	 */
+	public Graph getGraph() {
+		return graph;
+	}
+
+	/**
+	 * 
+	 * @param graph
+	 */
+	public void setGraph(Graph graph) {
+		this.graph = graph;
+	}
+
+	/**
+	 * 
+	 * @return
+	 */
+	public Coordinate getCurrentPoint() {
+		return currentPoint;
+	}
+
+	/**
+	 * 
+	 * @param currentPoint
+	 */
+	public void setCurrentPoint(Coordinate currentPoint) {
+		this.currentPoint = currentPoint;
+	}
+
+	/**
+	 * 
+	 * @return
+	 */
+	public List<Road> getRoadList() {
+		return roadList;
+	}
+
+	/**
+	 * 
+	 * @param roadList
+	 */
+	public void setRoadList(List<Road> roadList) {
+		this.roadList = roadList;
+	}
+
+	/**
+	 * 
+	 * @return
+	 */
+	public List<Location> getLocationList() {
+		return locationList;
+	}
+
+	/**
+	 * 
+	 * @param locationList
+	 */
+	public void setLocationList(List<Location> locationList) {
+		this.locationList = locationList;
+	}
+	
+	/**
+	 * 
+	 * @param initData
+	 */
 	private void parser(List<String> initData) {
 		for (int i = 0; i < initData.size(); i++) {
 			String s = initData.get(i);
@@ -66,58 +150,8 @@ public class PennMap implements IMapMaker, IMapModel {
 			Road rd = new Road(sa[1], sa[4], sa[6], distance);
 			if (!roadList.contains(rd))
 				roadList.add(rd);
-
 		}
 	}
-
-	
-
-	
-	
-	public IQuadTree getTree() {
-		return tree;
-	}
-
-	public void setTree(QuadTree tree) {
-		this.tree = tree;
-	}
-
-	public Graph getGraph() {
-		return graph;
-	}
-
-	public void setGraph(Graph graph) {
-		this.graph = graph;
-	}
-
-	public Coordinate getCurrentPoint() {
-		return currentPoint;
-	}
-
-	public void setCurrentPoint(Coordinate currentPoint) {
-		this.currentPoint = currentPoint;
-	}
-
-	public List<Road> getRoadList() {
-		return roadList;
-	}
-
-	public void setRoadList(List<Road> roadList) {
-		this.roadList = roadList;
-	}
-
-	public List<Location> getLocationList() {
-		return locationList;
-	}
-
-	public void setLocationList(List<Location> locationList) {
-		this.locationList = locationList;
-	}
-	
-	
-	
-	
-	
 
 	/**
 	 * findShortestPath() returns the directions for the shortest path from one location to another
@@ -178,11 +212,6 @@ public class PennMap implements IMapMaker, IMapModel {
 		return graph;
 	}
 	
-
-
-
-
-	
 	// database map
 	public static void main (String args[]) {
 		String[] arr = {"(0,0), Fine Wine and Good Spirit, Store, (20,10), Pottruck Fitness Center, School, Spring St",
@@ -221,4 +250,3 @@ public class PennMap implements IMapMaker, IMapModel {
 		}
 	}
 }
-

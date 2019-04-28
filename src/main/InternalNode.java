@@ -3,34 +3,34 @@ package main;
 import java.util.List;
 
 /**
- * The InternalNode class models an InternalNode of a QuadTree with 4 children
+ * The InternalNode class models an InternalNode of our QuadTree with 4 children
  * @author calchen
  *
  */
 public class InternalNode extends BaseNode {
 
 	/**
-	 * the north-east child of this node
+	 * The north-east child of this InternalNode
 	 */
 	private BaseNode northE;
 	
 	/**
-	 * the north-west child of this node
+	 * The north-west child of this InternalNode
 	 */
 	private BaseNode northW;
 	
 	/**
-	 * the south-east child of this node
+	 * The south-east child of this InternalNode
 	 */
 	private BaseNode southE;
 	
 	/**
-	 * the south-west child of this node
+	 * The south-west child of this InternalNode
 	 */
 	private BaseNode southW;
 	
 	/**
-	 * default constructor of this class, which initializes all 4 children to EmptyNode
+	 * Empty constructor of the InternalNode class, which initializes all 4 children to EmptyNode
 	 */
 	public InternalNode() {
 		northE = QuadTree.emptyNode;
@@ -40,21 +40,25 @@ public class InternalNode extends BaseNode {
 	}
 	
 	/**
-	 * copy constructor of this class, which initializes all 4 children by copying given children
+	 * 
+	 * @param range
 	 */
-	public InternalNode(BaseNode northE, BaseNode northW, BaseNode southE, BaseNode southW) {
-		this.setNorthE(northE);
-		this.northW = northW;
-		this.southE = southE;
-		this.southW = southW;
-	}
-	
 	public InternalNode(Range range) {
 		super(range);
 		northE = QuadTree.emptyNode;
 		northW = QuadTree.emptyNode;
 		southE = QuadTree.emptyNode;
 		southW = QuadTree.emptyNode;
+	}
+	
+	/**
+	 * Copy constructor of the InternalNode class, which initializes all 4 children to given BaseNodes
+	 */
+	public InternalNode(BaseNode northE, BaseNode northW, BaseNode southE, BaseNode southW) {
+		this.setNorthE(northE);
+		this.northW = northW;
+		this.southE = southE;
+		this.southW = southW;
 	}
 	
 	/**

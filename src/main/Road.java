@@ -1,34 +1,34 @@
 package main;
 
 /**
- * the Road class models a Road
+ * The Road class models a Road
  * @author calchen
  *
  */
 public class Road {
 	
 	/**
-	 * the name of starting point of the Road
+	 * The name of starting point of the Road
 	 */
 	private String start;
 	
 	/**
-	 * the name of the end point of the Road
+	 * The name of the end point of the Road
 	 */
 	private String end;
 	
 	/**
-	 * the name of the Road
+	 * The name of the Road
 	 */
 	private String rdName;
 	
 	/**
-	 * the distance of the Road
+	 * The distance of the Road
 	 */
 	private double dist;
 	
 	/**
-	 * constructor for the Road: initializes the starting point, end point, name and distance of the Road
+	 * Copy constructor of the Road class, which initializes the starting point, end point, name and distance of the Road
 	 * @param startPt the name of starting point of the Road
 	 * @param endPt the name of the end point of the Road
 	 * @param rdName the name of the Road
@@ -42,6 +42,7 @@ public class Road {
 	}
 
 	/**
+	 * Getter for the starting point of the Road
 	 * @return the name of starting point of the Road
 	 */
 	public String getStart() {
@@ -49,6 +50,7 @@ public class Road {
 	}
 
 	/**
+	 * Setter for the starting point of the Road
 	 * @param start the name of the new starting point of the Road
 	 */
 	public void setStart(String start) {
@@ -56,6 +58,7 @@ public class Road {
 	}
 
 	/**
+	 * Getter for the end point of the Road
 	 * @return the name of the end point of the Road
 	 */
 	public String getEnd() {
@@ -63,6 +66,7 @@ public class Road {
 	}
 
 	/**
+	 * Setter for the end point of the Road
 	 * @param end the name of the new end point of the Road
 	 */
 	public void setEnd(String end) {
@@ -70,6 +74,7 @@ public class Road {
 	}
 
 	/**
+	 * Getter for the name of the Road
 	 * @return the name of the Road
 	 */
 	public String getRdName() {
@@ -77,6 +82,7 @@ public class Road {
 	}
 
 	/**
+	 * Setter for the name of the Road
 	 * @param rdName the new name of the Road
 	 */
 	public void setRdName(String rdName) {
@@ -84,6 +90,7 @@ public class Road {
 	}
 
 	/**
+	 * Getter for the distance of the Road
 	 * @return the distance of the Road
 	 */
 	public double getDist() {
@@ -91,6 +98,7 @@ public class Road {
 	}
 
 	/**
+	 * Setter for the distance of the Road
 	 * @param dist the new distance of the Road
 	 */
 	public void setDist(double dist) {

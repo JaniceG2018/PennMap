@@ -24,4 +24,3 @@ public interface IMapMaker {
 	 */
 	public IGraph makeGraph();
 }
-

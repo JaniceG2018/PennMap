@@ -8,11 +8,11 @@ package main;
 public interface IGraph {
 
 	/**
-	 * findShortestPath() returns the directions in text for the
-	 * shortest path from a starting location to a destination
-	 * @param loc1 the name of the starting location
+	 * findShortestPath() returns the directions in text for the shortest path from
+	 * a starting Location to a destination
+	 * @param loc1 the name of the starting Location
 	 * @param loc2 the name of the destination
-	 * @return the directions in text from loc1 to loc2
+	 * @return the directions in text from the starting Location to the destination
 	 */
 	public String findShortestPath(String loc1, String loc2);
-}
+} //all checked

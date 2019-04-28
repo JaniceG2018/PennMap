@@ -1,7 +1,7 @@
 package main;
 
 /**
- * the Range class models a range on the map
+ * The Range class models a Range on the map
  * 
  * @author calchen
  *
@@ -19,7 +19,7 @@ public class Range {
 	private Coordinate bottomR;
 
 	/**
-	 * 
+	 * Empty constructor of the Range class, which initializes 
 	 */
 	public Range() {
 		this.upperL = new Coordinate();
@@ -27,13 +27,9 @@ public class Range {
 	}
 
 	/**
-	 * constructor for the Range: initializes the upper-left and bottom-right
-	 * Coordinates of the Range
-	 * 
-	 * @param upperL
-	 *            the upper-left Coordinate of the Range
-	 * @param bottomR
-	 *            the bottom-right Coordinate of the Range
+	 * constructor for the Range: initializes the upper-left and bottom-right Coordinates of the Range
+	 * @param upperL the upper-left Coordinate of the Range
+	 * @param bottomR the bottom-right Coordinate of the Range
 	 */
 	public Range(Coordinate upperL, Coordinate bottomR) {
 		this.upperL = upperL;
@@ -41,6 +37,7 @@ public class Range {
 	}
 
 	/**
+	 * 
 	 * @return the upper-left Coordinate of the Range
 	 */
 	public Coordinate getUpperL() {
@@ -48,14 +45,15 @@ public class Range {
 	}
 
 	/**
-	 * @param upperL
-	 *            the new upper-left Coordinate of the Range
+	 * 
+	 * @param upperL the new upper-left Coordinate of the Range
 	 */
 	public void setUpperL(Coordinate upperL) {
 		this.upperL = upperL;
 	}
 
 	/**
+	 * 
 	 * @return the bottom-right Coordinate of the Range
 	 */
 	public Coordinate getBottomR() {
@@ -63,8 +61,8 @@ public class Range {
 	}
 
 	/**
-	 * @param bottomR
-	 *            the new bottom-right Coordinate of the Range
+	 * 
+	 * @param bottomR the new bottom-right Coordinate of the Range
 	 */
 	public void setBottomR(Coordinate bottomR) {
 		this.bottomR = bottomR;
@@ -72,12 +70,8 @@ public class Range {
 
 	/**
 	 * check if the given coordinate is contained in this range
-	 * 
-	 * @param a
-	 *            coordinate
-	 * @param if
-	 *            this range includes the given coordinate, true if this range
-	 *            includes the given coordinate, vice versa
+	 * @param coord
+	 * @return if this range includes the given coordinate, true if this range includes the given coordinate, vice versa
 	 */
 	public boolean contains(Coordinate coord) {
 		if (coord == null)
@@ -92,15 +86,16 @@ public class Range {
 		if (minX == 0 && minY == 0) {
 			if (lat <= maxY && lat >= minY && lon <= maxX && lon >= minX)
 				return true;
-		} else if (minX == 0) {    // If this coordinate is on left border
-			if (lat <= maxY && lat > minY && lon <= maxX && lon >= minX) {
+		} else if (minX == 0) {
+			// If this coordinate is on left border
+			if (lat <= maxY && lat > minY && lon <= maxX && lon >= minX)
 				return true;
-			}
-		} else if (minY == 0) { 	// If this coordinate is on upper border
-			if (lat <= maxY && lat >= minY && lon <= maxX && lon > minX) {
+		} else if (minY == 0) {
+			// If this coordinate is on upper border
+			if (lat <= maxY && lat >= minY && lon <= maxX && lon > minX)
 				return true;
-			}		
-		} else if (lat <= maxY && lat > minY && lon <= maxX && lon > minX) {	// If this coordinate is neither on upper nor left border
+		} else if (lat <= maxY && lat > minY && lon <= maxX && lon > minX) {
+			// If this coordinate is neither on upper nor left border
 			return true;
 		}
 		return false;
@@ -108,12 +103,8 @@ public class Range {
 
 	/**
 	 * check if the given range is intersected with this range
-	 * 
-	 * @param a
-	 *            range
-	 * @param a
-	 *            boolean value, true if this range intersects with the given range,
-	 *            vice versa
+	 * @param otherRange
+	 * @return boolean value, true if this range intersects with the given range, vice versa
 	 */
 	public boolean intersects(Range otherRange) {
 		if (otherRange == null)

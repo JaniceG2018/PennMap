@@ -65,11 +65,6 @@ public class LeafNode extends BaseNode {
 	public void setCoord(Coordinate coord) {
 		this.coord = coord;
 	}
-
-//	/**
-//	 * other locations this connects to via road(s)
-//	 */
-//	private List<LeafNode> roadTo;
 	
 	/**
 	 * copy constructor of this class, which initializes name, type and coord with given values
@@ -85,7 +80,6 @@ public class LeafNode extends BaseNode {
 		this.range = range;
 	}
 	
-
 	/**
 	 * 
 	 */
@@ -112,23 +106,22 @@ public class LeafNode extends BaseNode {
 		Range leafRange = mathSplit(this.range, this.coord);
 		BaseNode leaf = new LeafNode(name, type, coord, leafRange);
 		
-		if (coord.getLat() < lat && coord.getLon() < lon) {
+		if (coord.getLat() < lat && coord.getLon() < lon)
 			((InternalNode) newNode).setNorthW(leaf);
-		} else if (coord.getLat() < lat && coord.getLon() > lon) {
+		else if (coord.getLat() < lat && coord.getLon() > lon)
 			((InternalNode) newNode).setNorthE(leaf);
-		} else if (coord.getLat() > lat && coord.getLon() > lon) {
+		else if (coord.getLat() > lat && coord.getLon() > lon)
 			((InternalNode) newNode).setSouthE(leaf);
-		} else if (coord.getLat() > lat && coord.getLon() < lon) {
+		else if (coord.getLat() > lat && coord.getLon() < lon)
 			((InternalNode) newNode).setSouthW(leaf);
-		}
 		return (InternalNode)newNode;
 	}
 
 	@Override
 	public boolean isEmpty() {
-		if (name == null) {
+		if (name == null)
 			return true;
-		}
-		return false;
+		else
+			return false;
 	}
 }

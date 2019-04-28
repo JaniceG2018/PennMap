@@ -92,7 +92,7 @@ public class Graph implements IGraph {
 		String start = loc2;
 		String temp_start, temp_end;
 		List<Road> routes = new ArrayList<>();
-		while (predecessor.get(start) != start) {
+		while (!predecessor.get(start).equals(start)) {
 			path.add(start);
 			temp_end = start;
 			temp_start = predecessor.get(start);
