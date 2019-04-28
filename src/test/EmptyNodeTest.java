@@ -1,5 +1,7 @@
 package test;
 
+import static org.junit.Assert.assertTrue;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,6 +27,7 @@ public class EmptyNodeTest {
 	
 	@Test
 	public void testIsEmpty() {
-
+		EmptyNode node = new EmptyNode();
+		assertTrue(node.isEmpty());
 	}
 }

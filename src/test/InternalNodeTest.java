@@ -3,19 +3,24 @@ package test;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import java.util.ArrayList;
+
 import org.junit.Test;
 
 import main.Coordinate;
 import main.EmptyNode;
 import main.InternalNode;
 import main.LeafNode;
+import main.Location;
 import main.Range;
 
 public class InternalNodeTest {
 
 	@Test
 	public void testSearch() {
-		
+		InternalNode node = new InternalNode();
+		ArrayList<Location> locs = new ArrayList<Location>();
+		node.search("type", new Range(new Coordinate(0, 0), new Coordinate(10, 10)), locs);
 	}
 	
 	@Test
