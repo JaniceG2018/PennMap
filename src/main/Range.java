@@ -117,4 +117,14 @@ public class Range {
 		Coordinate UR = new Coordinate(BR.getLon(), UL.getLat());
 		return contains(UL) || contains(BR) || contains(UR) || contains(BL);
 	}
+	
+	@Override
+	public int hashCode() {
+		return super.hashCode();
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		return upperL.equals(((Range)obj).upperL) && bottomR.equals(((Range)obj).bottomR);
+	}
 } //all checked

@@ -68,4 +68,14 @@ public class Coordinate {
 	public void setLat(double lat) {
 		this.lat = lat;
 	}
+	
+	@Override
+	public int hashCode() {
+		return super.hashCode();
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		return lat == ((Coordinate)obj).getLat() && lon == ((Coordinate)obj).getLon();
+	}
 } //all checked
