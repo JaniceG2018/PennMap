@@ -4,7 +4,7 @@ import java.util.List;
 
 /**
  * The BaseNode class models a generic node in our QuadTree
- * @author calchen
+ * @author calchen Jiaying Guo
  *
  */
 public abstract class BaseNode {

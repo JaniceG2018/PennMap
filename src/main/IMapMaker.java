@@ -1,7 +1,5 @@
 package main;
 
-import java.util.List;
-
 /**
  * The IMapMaker interface is used to construct a QuadTree object from
  * a list of Locations and a Graph object from a list of location names

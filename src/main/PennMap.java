@@ -1,7 +1,6 @@
 package main;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -33,8 +32,6 @@ public class PennMap implements IMapMaker, IMapModel {
 		this.currentPoint = currPt;
 		parser(init);
 	}
-	
-
 	
 	/**
 	 * this parser method will parse the initial data and put data in to location and road data fields in pennmap
@@ -135,20 +132,18 @@ public class PennMap implements IMapMaker, IMapModel {
 		return quadTree;
 	}
 
-/**
- * 
- * make a graph for the pennmap
- * 
- * @return a graph that associated with this specific pennmap
- */
+	/**
+	 * 
+	 * make a graph for the pennmap
+	 * 
+	 * @return a graph that associated with this specific pennmap
+	 */
 	@Override
 	public IGraph makeGraph() {		
 		Graph graph = new Graph(locationList, roadList);
 		this.graph = graph;
 		return graph;
 	}
-	
-	
 	
 	/**
 	 * get quadtree that associated with this map
@@ -229,6 +224,4 @@ public class PennMap implements IMapMaker, IMapModel {
 	public void setLocationList(List<Location> locationList) {
 		this.locationList = locationList;
 	}
-	
-
 }

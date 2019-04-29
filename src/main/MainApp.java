@@ -3,6 +3,8 @@ package main;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Scanner;
+
 /**
  * 
  * This main app will take in initial map data, and using {@PennMap.java} to make the function work
@@ -17,7 +19,6 @@ import java.util.List;
  * @author jingwen qiang
  *
  */
-
 public class MainApp {
 
 	public static void main(String[] args) {
@@ -44,18 +45,35 @@ public class MainApp {
 	               "(60,90), Irvine Auditorm, School, (60,100), Williams Hall, School, 34th St-D, 45",
 	               "(60,100), Williams Hall, School, (100,100), Happy Ending Bar, Restaurant, Spruce St, 40",
 	               "(80,10), Parking Lot, School, (100,100), Happy Ending Bar, Restaurant, 33th St, 100"};
-	List<String> list = new ArrayList<>();
-	Collections.addAll(list, arr);
-	PennMap p = new PennMap(list,new Coordinate(50,50));
-	List<Location> locs = p.getLocationList();
-	p.setTree((QuadTree) p.makeQuadTree()); 
-//	p.makeGraph();
-	Range range = new Range(new Coordinate(20,75),new Coordinate(100,100));
-	List<Location> locations = p.getTree().search("School", range);
-	for (Location loc: locations) {
-		System.out.println(loc.getName());
-	}
 
+		List<String> list = new ArrayList<>();
+		Collections.addAll(list, arr);
+		PennMap p = new PennMap(list,new Coordinate(1.0,1.0));
+//		List<Location> locs = p.getLocationList();
+		p.setTree((QuadTree) p.makeQuadTree()); 
+		p.makeGraph();
+		Range range = new Range(new Coordinate(20,75),new Coordinate(100,100));
+		List<Location> locations = p.getTree().search("School", range);
+		for (Location loc: locations) {
+			System.out.println(loc.getName());
+		}
+		Scanner in = new Scanner(System.in);
+		String userChoice = "";
+		do {
+			System.out.println("Please select a function: 1 to find the shortest path, 2 to find all nearby locations of a given type, 3 to find the nearest location of a given type");
+			userChoice = in.next();
+			if (!userChoice.equals("1")) {
+				System.out.println("please select the starting location: 1 for ....");
+				System.out.println("please select the destination: 1 for ....");
+			} else if (!userChoice.equals("2")) {
+				System.out.println("please select the type of location you want to search: 1 for restarants, ...");
+				System.out.println("please enter the search distance");
+			} else if (!userChoice.equals("3")) {
+				System.out.println("please select the type of locaiton you want to search: 1 for restaurants ...");
+			} else {
+				System.out.println("invalid selection");
+			}
+		} while (!userChoice.equals("q"));
+		System.out.println("program terminates");
 	}
-
 }
