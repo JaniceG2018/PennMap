@@ -15,7 +15,7 @@ public interface IMapMaker {
 	 * @param locs a list of all Locations
 	 * @return a IQuadTree storing the list of Locations
 	 */
-	public IQuadTree makeQuadTree(List<Location> locs);
+	public IQuadTree makeQuadTree();
 	
 	/**
 	 * makeGraph() is used to generate a IGraph from a list of location names

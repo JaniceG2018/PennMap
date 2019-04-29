@@ -14,8 +14,8 @@ public class PennMap implements IMapMaker, IMapModel {
 	private IQuadTree tree; //the QuadTree representing the map
 	private Graph graph; //the Graph representing the map
 	private Coordinate currentPoint;  // current Location of user
-	private List<Road> roadList = new ArrayList<Road>();
-	private List<Location> locationList = new ArrayList<Location>();
+	private List<Road> roadList = new ArrayList<Road>();  // list of all roads in the map
+	private List<Location> locationList = new ArrayList<Location>(); // list of all locations in the map
 	
 	public PennMap() {
 		roadList = new ArrayList<Road>();
@@ -23,9 +23,10 @@ public class PennMap implements IMapMaker, IMapModel {
 	}
 	
 	/**
+	 * This constructor is to make a field of all locations and roads based on the input data
 	 * 
-	 * @param init
-	 * @param currPt
+	 * @param initial data input
+	 * @param current location of the user
 	 */
 	public PennMap(List<String> init, Coordinate currPt) {
 		// Changed the data input stream to do the parsing first 
@@ -33,88 +34,10 @@ public class PennMap implements IMapMaker, IMapModel {
 		parser(init);
 	}
 	
-	/**
-	 * 
-	 * @return
-	 */
-	public IQuadTree getTree() {
-		return tree;
-	}
 
-	/**
-	 * 
-	 * @param tree
-	 */
-	public void setTree(QuadTree tree) {
-		this.tree = tree;
-	}
-
-	/**
-	 * 
-	 * @return
-	 */
-	public Graph getGraph() {
-		return graph;
-	}
-
-	/**
-	 * 
-	 * @param graph
-	 */
-	public void setGraph(Graph graph) {
-		this.graph = graph;
-	}
-
-	/**
-	 * 
-	 * @return
-	 */
-	public Coordinate getCurrentPoint() {
-		return currentPoint;
-	}
-
-	/**
-	 * 
-	 * @param currentPoint
-	 */
-	public void setCurrentPoint(Coordinate currentPoint) {
-		this.currentPoint = currentPoint;
-	}
-
-	/**
-	 * 
-	 * @return
-	 */
-	public List<Road> getRoadList() {
-		return roadList;
-	}
-
-	/**
-	 * 
-	 * @param roadList
-	 */
-	public void setRoadList(List<Road> roadList) {
-		this.roadList = roadList;
-	}
-
-	/**
-	 * 
-	 * @return
-	 */
-	public List<Location> getLocationList() {
-		return locationList;
-	}
-
-	/**
-	 * 
-	 * @param locationList
-	 */
-	public void setLocationList(List<Location> locationList) {
-		this.locationList = locationList;
-	}
 	
 	/**
-	 * 
+	 * this parser method will parse the initial data and put data in to location and road data fields in pennmap
 	 * @param initData
 	 */
 	private void parser(List<String> initData) {
@@ -144,8 +67,9 @@ public class PennMap implements IMapMaker, IMapModel {
 			if (!locationList.contains(endLoc))
 				locationList.add(endLoc);
 
-			double distance = Math.sqrt(
-					(Math.abs(sLat - eLat) * Math.abs(sLat - eLat)) + (Math.abs(sLon - eLon) * Math.abs(sLon - eLon)));
+//			double distance = Math.sqrt(
+//					(Math.abs(sLat - eLat) * Math.abs(sLat - eLat)) + (Math.abs(sLon - eLon) * Math.abs(sLon - eLon)));
+			double distance = Double.valueOf(sa[7]);
 
 			Road rd = new Road(sa[1], sa[4], sa[6], distance);
 			if (!roadList.contains(rd))
@@ -154,7 +78,10 @@ public class PennMap implements IMapMaker, IMapModel {
 	}
 
 	/**
-	 * findShortestPath() returns the directions for the shortest path from one location to another
+	 * 
+	 * @param loc1---- the starting location
+	 * @param loc2---- the ending location
+	 * @return the directions for the shortest path from one location to another
 	 */
 	@Override
 	public String findShortestPath(String loc1, String loc2) {
@@ -163,7 +90,11 @@ public class PennMap implements IMapMaker, IMapModel {
 	}
 
 	/**
+	 * this method will find all locations for the specific distance given
 	 * 
+	 * @param type --- type of the location
+	 * @param dist----the distance from user input
+	 * @return  a list of locations in the given distance
 	 */
 	@Override
 	public List<Location> findAll(String type, double dist) {
@@ -179,6 +110,8 @@ public class PennMap implements IMapMaker, IMapModel {
 	}
 
 	/**
+	 * @param type---the type of location
+	 * @return the nearest location for the specific type
 	 * 
 	 */
 	@Override
@@ -188,23 +121,26 @@ public class PennMap implements IMapMaker, IMapModel {
 
 	/**
 	 * 
+	 * @param locationList---- list of locations of this pennmap
+	 * @return a quadtree that  is associated with this pennmap
 	 */
 	@Override
-	public IQuadTree makeQuadTree(List<Location> locs) {
+	public IQuadTree makeQuadTree() {
 		IQuadTree quadTree = new QuadTree();
-		quadTree.enclosingQuad(locs);
-		for (Location location : locs) {
+		quadTree.enclosingQuad(locationList);
+		for (Location location : locationList) {
 			quadTree.insert(location);
 		}
 		this.tree=(QuadTree) quadTree;
 		return quadTree;
 	}
 
-	/**
-	 * changed the input parameter
-	 * 
-	 * 
-	 */
+/**
+ * 
+ * make a graph for the pennmap
+ * 
+ * @return a graph that associated with this specific pennmap
+ */
 	@Override
 	public IGraph makeGraph() {		
 		Graph graph = new Graph(locationList, roadList);
@@ -212,41 +148,87 @@ public class PennMap implements IMapMaker, IMapModel {
 		return graph;
 	}
 	
-	// database map
-	public static void main (String args[]) {
-		String[] arr = {"(0,0), Fine Wine and Good Spirit, Store, (20,10), Pottruck Fitness Center, School, Spring St",
-		               "(0,0), Fine Wine and Good Spirit, Store, (0,50), AT&T, Store, 41th St",
-		               "(0,0), Fine Wine and Good Spirit, Store, (20,0), WaWa@Chestnut, Restaurant, Chestnut St-D",
-		               "(20,0), WaWa@Chestnut, Restaurant, (25,0), Ochatto, Restaurant, Chestnut St-E",
-		               "(25,0), Ochatto, Restaurant, (30,0), Spicy Now, Restaurant, Chestnut St-F",
-		               "(0,0), Fine Wine and Good Spirit, Store, (10,50), John Huntsman Hall, School, 40th St",
-		               "(0,0), Fine Wine and Good Spirit, Store, (20,50), Graduate Center, School, Winter St",
-		               "(20,20), Pottruck Fitness Center, School, (20,50), Graduate Center, School, Summer St",
-		               "(20,20), Pottruck Fitness Center, School, (20,10), Institute of Comtemporary Art, Museum, Chestnut St-A",
-		               "(20,10), Institute of Comtemporary Art, Museum, (60,20), White Dog Cafe, Restaurant, Chestnut St-B",
-		               "(60,20), White Dog Cafe, Restaurant, (80,10), Parking Lot, School, Chestnut St-C",
-		               "(20,50), Graduate Center, School, (30,50), Honey Grow, Restaurant, Walnut St-A",
-		               "(30,50), Honey Grow, Restaurant, (35,50), Annenberg School for Communication Library, School, Walnut St-B",
-		               "(35,50), Annenberg School for Communication Library, School, (40,50), Franklin Building, School, Walnut St-C",
-		               "(35,50), Annenberg School for Communication Library, School, (30,100), SteinBerg Hall, School, 38th St",
-		               "(40,50), Franklin Building, School, (55,50), Van Pelt Library, School, School, Walnut St-D",
-		               "(55,50), Van Pelt Library, School, (60,50), Starbucks, Restaurant, Walnut St-E",
-		               "(55,50), Van Pelt Library, School, (60,80), Fisher Fine Arts Library, School, 34th St-B",
-		               "(60,50), Starbucks, Restaurant, (60,20), White Dog Cafe, Restaurant, 34th St-A",
-		               "(60,80), Fisher Fine Arts Library, School, (60,90), Irvine Auditorm, School, 34th St-C",
-		               "(60,90), Irvine Auditorm, School, (60,100), Williams Hall, School, 34th St-D",
-		               "(60,100), Williams Hall, School, (100,100), Happy Ending Bar, Restaurant, Spruce St",
-		               "(80,10), Parking Lot, School, (100,100), Happy Ending Bar, Restaurant, 33th St"};
-		List<String> list = new ArrayList<>();
-		Collections.addAll(list, arr);
-		PennMap p = new PennMap(list,new Coordinate(1.0,1.0));
-		List<Location> locs = p.getLocationList();
-		p.tree = p.makeQuadTree(locs);
-//		p.makeGraph();
-		Range range = new Range(new Coordinate(20,75),new Coordinate(100,100));
-		List<Location> locations = p.tree.search("School", range);
-		for (Location loc: locations) {
-			System.out.println(loc.getName());
-		}
+	
+	
+	/**
+	 * get quadtree that associated with this map
+	 * @return this quadtree
+	 */
+	public IQuadTree getTree() {
+		return tree;
 	}
+
+	/**
+	 * set tree
+	 * @param tree
+	 */
+	public void setTree(QuadTree tree) {
+		this.tree = tree;
+	}
+
+	/**
+	 * get graph
+	 * @return the graph associated with the map
+	 */
+	public Graph getGraph() {
+		return graph;
+	}
+
+	/**
+	 * set the graph
+	 * @param graph
+	 */
+	public void setGraph(Graph graph) {
+		this.graph = graph;
+	}
+
+	/**
+	 * get the current location of user
+	 * @return the current location of user
+	 */
+	public Coordinate getCurrentPoint() {
+		return currentPoint;
+	}
+
+	/**
+	 * set users current location
+	 * @param currentPoint
+	 */
+	public void setCurrentPoint(Coordinate currentPoint) {
+		this.currentPoint = currentPoint;
+	}
+
+	/**
+	 * get road list or all roads
+	 * @return the roadlist
+	 */
+	public List<Road> getRoadList() {
+		return roadList;
+	}
+
+	/**
+	 * set the roadlist to de destinated list
+	 * @param roadList
+	 */
+	public void setRoadList(List<Road> roadList) {
+		this.roadList = roadList;
+	}
+
+	/**
+	 * get all locations
+	 * @return location list
+	 */
+	public List<Location> getLocationList() {
+		return locationList;
+	}
+
+	/**
+	 * set location list
+	 * @param locationList
+	 */
+	public void setLocationList(List<Location> locationList) {
+		this.locationList = locationList;
+	}
+	
+
 }

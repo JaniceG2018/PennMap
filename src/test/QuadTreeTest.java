@@ -23,7 +23,7 @@ public class QuadTreeTest {
 	private QuadTree tree;
 	private List<Location> locs;
 	Location loc0 = new Location("White Dog Cafe", "Restaurant", new Coordinate(60,20));
-	Location loc1 = new Location("Pottruck Fitness Center", "School", new Coordinate(20,10)); 
+	Location loc1 = new Location("Pottruck Fitness Center", "School", new Coordinate(10,20)); 
 	Location loc2 = new Location("Fine Wine and Good Spirit", "Store", new Coordinate(0, 0)); 
 	Location loc3 = new Location("Parking Lot", "School", new Coordinate(80,10));
 	Location loc4 = new Location("Ochatto", "Restaurant", new Coordinate(25,0)); 
@@ -35,7 +35,7 @@ public class QuadTreeTest {
 	Location loc10 = new Location("Starbucks", "Restaurant", new Coordinate(60,50)); 
 	Location loc11 = new Location("Honey Grow", "Restaurant", new Coordinate(30,50)); 
 	Location loc12 = new Location("AT&T", "Store", new Coordinate(0,50)); 
-	Location loc13 = new Location("Institute of Comtemporary Art", "Museum", new Coordinate(20,10)); 
+	Location loc13 = new Location("Institute of Contemporary Art", "Museum", new Coordinate(40,20)); 
 	Location loc14 = new Location("Van Pelt Library", "School", new Coordinate(55,50)); 
 	Location loc15 = new Location("Spicy Now", "Restaurant", new Coordinate(30,0)); 
 	Location loc16 = new Location("Irvine Auditorm", "School", new Coordinate(60,90)); 
