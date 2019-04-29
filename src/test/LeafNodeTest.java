@@ -1,6 +1,8 @@
 package test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,6 +10,8 @@ import java.util.List;
 import org.junit.Test;
 
 import main.Coordinate;
+import main.EmptyNode;
+import main.InternalNode;
 import main.LeafNode;
 import main.Location;
 import main.Range;
