@@ -115,4 +115,16 @@ public class Graph implements IGraph {
 		route += path.get(0);
 		return route;
 	}
+
+
+/**
+	 * get road// 
+	 * added this method for test purposes
+	 * @param locName
+	 * @return the list of all roadname
+	 */
+	
+	public List<Road> getRoad(String locName){
+		return this.graph.get(locName);
+	}
 }
