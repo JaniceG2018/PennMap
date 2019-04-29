@@ -46,7 +46,7 @@ public class MainApp {
 	               "(80,10), Parking Lot, School, (100,100), Happy Ending Bar, Restaurant, 33th St, 100"};
 	List<String> list = new ArrayList<>();
 	Collections.addAll(list, arr);
-	PennMap p = new PennMap(list,new Coordinate(1.0,1.0));
+	PennMap p = new PennMap(list,new Coordinate(50,50));
 	List<Location> locs = p.getLocationList();
 	p.setTree((QuadTree) p.makeQuadTree()); 
 //	p.makeGraph();

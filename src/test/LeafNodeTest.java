@@ -1,6 +1,8 @@
 package test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,6 +10,8 @@ import java.util.List;
 import org.junit.Test;
 
 import main.Coordinate;
+import main.EmptyNode;
+import main.InternalNode;
 import main.LeafNode;
 import main.Location;
 import main.Range;
@@ -27,11 +31,16 @@ public class LeafNodeTest {
 	
 	@Test
 	public void testSplit() {
-
+		LeafNode node = new LeafNode("name", "type", new Coordinate(1, 1), new Range(new Coordinate(0, 0), new Coordinate(10, 10)));
+		InternalNode exp = new InternalNode(new EmptyNode(), new LeafNode("name", "type", new Coordinate(1, 1), new Range(new Coordinate(0, 0), new Coordinate(5, 5))), new EmptyNode(), new EmptyNode());
+		assertEquals(exp, node.split());
 	}
 	
 	@Test
 	public void testIsEmpty() {
-
+		LeafNode node = new LeafNode("name", "type", new Coordinate(1, 1), new Range(new Coordinate(0, 0), new Coordinate(10, 10)));
+		assertFalse(node.isEmpty());
+		LeafNode node2 = new LeafNode(null, "type", new Coordinate(1, 1), new Range(new Coordinate(0, 0), new Coordinate(10, 10)));
+		assertTrue(node2.isEmpty());
 	}
 }

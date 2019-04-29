@@ -4,7 +4,9 @@ import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -107,11 +109,13 @@ public class PennMapTest {
 	@Test
 	public void testFindAll() {
 //		List<Location> expNull = new ArrayList<Location>();
-		List<Location> exp = new ArrayList<Location>();
+		Set<Location> exp = new HashSet<Location>();
+		
 		exp.add(new Location("Starbucks", "Restaurant", new Coordinate(60, 50)));
 		exp.add(new Location("Honey Grow", "Restaurant", new Coordinate(30, 50)));
-//		assertEquals(expNull, pennMap.findAll("Restaurant", 1.0));
-		assertEquals(exp, pennMap.findAll("Restaurant", 10));
+		Set<Location> result = new HashSet(pennMap.findAll("Restaurant", 10));
+		//		assertEquals(expNull, pennMap.findAll("Restaurant", 1.0));
+		assertEquals(exp, result);
 	}
 	
 	@Test

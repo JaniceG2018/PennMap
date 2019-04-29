@@ -115,6 +115,19 @@ public class Range {
 		Coordinate BR = otherRange.bottomR;
 		Coordinate BL = new Coordinate(UL.getLon(), BR.getLat());
 		Coordinate UR = new Coordinate(BR.getLon(), UL.getLat());
+		return contains(UL) || contains(BR) || contains(UR) || contains(BL) || otherRange.intersects(this, 0);
+	}
+	
+	/**
+	 * helper method for checking if two range intersect
+	 */
+	private boolean intersects(Range otherRange, int flag) {
+		if (otherRange == null)
+			return false;
+		Coordinate UL = otherRange.upperL;
+		Coordinate BR = otherRange.bottomR;
+		Coordinate BL = new Coordinate(UL.getLon(), BR.getLat());
+		Coordinate UR = new Coordinate(BR.getLon(), UL.getLat());
 		return contains(UL) || contains(BR) || contains(UR) || contains(BL);
 	}
 	

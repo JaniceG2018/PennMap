@@ -101,8 +101,8 @@ public class PennMap implements IMapMaker, IMapModel {
 		double currY = currentPoint.getLat();
 		double currX = currentPoint.getLon();
 		
-		Coordinate upperLeft= new Coordinate(currX-(dist/2),currY-(dist/2));
-		Coordinate lowerRight= new Coordinate(currX+(dist/2),currY+(dist/2));
+		Coordinate upperLeft= new Coordinate(currX-dist,currY-dist);
+		Coordinate lowerRight= new Coordinate(currX+dist,currY+dist);
 		
 		Range range = new Range(upperLeft,lowerRight);
 		
