@@ -1,9 +1,11 @@
 package main;
 
 import java.util.ArrayList;
+
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
+
 import java.util.List;
 import java.util.Map;
 import java.util.PriorityQueue;
@@ -39,8 +41,6 @@ public class PennMap implements IMapMaker, IMapModel {
 		this.currentPoint = currLoc.getCoord();
 		parser(init);
 	}
-	
-
 	
 	/**
 	 * this parser method will parse the initial data and put data in to location and road data fields in pennmap
@@ -107,8 +107,8 @@ public class PennMap implements IMapMaker, IMapModel {
 		double currY = currentPoint.getLat();
 		double currX = currentPoint.getLon();
 		
-		Coordinate upperLeft= new Coordinate(currX-(dist/2),currY-(dist/2));
-		Coordinate lowerRight= new Coordinate(currX+(dist/2),currY+(dist/2));
+		Coordinate upperLeft= new Coordinate(currX-dist,currY-dist);
+		Coordinate lowerRight= new Coordinate(currX+dist,currY+dist);
 		
 		Range range = new Range(upperLeft,lowerRight);
 		
@@ -142,20 +142,18 @@ public class PennMap implements IMapMaker, IMapModel {
 		return quadTree;
 	}
 
-/**
- * 
- * make a graph for the pennmap
- * 
- * @return a graph that associated with this specific pennmap
- */
+	/**
+	 * 
+	 * make a graph for the pennmap
+	 * 
+	 * @return a graph that associated with this specific pennmap
+	 */
 	@Override
 	public IGraph makeGraph() {		
 		Graph graph = new Graph(locationList, roadList);
 		this.graph = graph;
 		return graph;
 	}
-	
-	
 	
 	/**
 	 * get quadtree that associated with this map
@@ -236,6 +234,4 @@ public class PennMap implements IMapMaker, IMapModel {
 	public void setLocationList(List<Location> locationList) {
 		this.locationList = locationList;
 	}
-	
-
 }

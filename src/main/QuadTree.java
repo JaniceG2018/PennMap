@@ -5,7 +5,7 @@ import java.util.List;
 
 /**
  * 
- * @author calchen
+ * @author xuanwang calchen
  *
  */
 public class QuadTree implements IQuadTree {
@@ -48,7 +48,14 @@ public class QuadTree implements IQuadTree {
 		if (loc == null)
 			return false;
 		Coordinate coord = loc.getCoord();
-		root = insert(root, coord, loc, root.getRange());
+		BaseNode res;
+		try {
+			res = insert(root, coord, loc, root.getRange());
+		} catch (IllegalStateException e) {
+			System.out.println("Error: " + e.getMessage());
+			return false;
+		}
+		root = res;
 		setSize(getSize() + 1);
 		return true;
 	}
@@ -79,6 +86,10 @@ public class QuadTree implements IQuadTree {
 		// 3. If we need to add location in a quad that includes a location in it, we need to split it 
 		// into an internal node and add both old and new locations to it 
 		if (node instanceof LeafNode) {
+			// Check Duplicate Name
+			if (((LeafNode) node).getName().equals(loc.getName())) {
+	            throw new IllegalStateException("Location existed!");
+			}
 			BaseNode newNode = ((LeafNode) node).split();
 			newNode = insert(newNode, coord, loc, newNode.getRange());
 			return newNode;

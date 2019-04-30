@@ -4,7 +4,9 @@ import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -50,7 +52,6 @@ public class PennMapTest {
 		
 	}
 	
-	
 	/**
 	 * test make quadtree method
 	 */
@@ -66,17 +67,14 @@ public class PennMapTest {
 		locations.add(new Location("Graduate Center", "School", new Coordinate(20, 50)));
 		
 		QuadTree tree = (QuadTree)pennMap.makeQuadTree();
-		
 		assertEquals(8,tree.getSize());
 	}
-	
 	
 	/**
 	 * 
 	 */
 	@Test
 	public void testMakeGraph() {
-		
 		List<Road> roads = new ArrayList<Road>();
 		roads.add(new Road("Fine Wine and Good Spirit", "Pottruck Fitness Center", "Spring St", 25));
 		roads.add(new Road("Fine Wine and Good Spirit", "AT&T", "41th St",50));
@@ -110,6 +108,7 @@ public class PennMapTest {
 	public void testFindAll() {
 		pennMap.makeQuadTree();
 //		List<Location> expNull = new ArrayList<Location>();
+
 		List<Location> exp = new ArrayList<Location>();
 		
 //		assertEquals(expNull, pennMap.findAll("Restaurant", 1.0));
@@ -120,7 +119,7 @@ public class PennMapTest {
 	@Test
 	public void testFindNearest() {
 		pennMap.makeQuadTree();
-		Location exp = new Location("Starbucks", "Restaurant", new Coordinate(60, 50));
+//		Location exp = new Location("Starbucks", "Restaurant", new Coordinate(60, 50));
 		System.out.println(pennMap.findNearest("Restuarant").getName());
 		//assertEquals(exp.getName(), pennMap.findNearest("Restaurant").getName());
 	}
