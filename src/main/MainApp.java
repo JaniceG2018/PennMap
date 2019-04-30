@@ -2,6 +2,7 @@ package main;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Scanner;
 
@@ -45,35 +46,136 @@ public class MainApp {
 	               "(60,90), Irvine Auditorm, School, (60,100), Williams Hall, School, 34th St-D, 45",
 	               "(60,100), Williams Hall, School, (100,100), Happy Ending Bar, Restaurant, Spruce St, 40",
 	               "(80,10), Parking Lot, School, (100,100), Happy Ending Bar, Restaurant, 33th St, 100"};
-
-		List<String> list = new ArrayList<>();
-		Collections.addAll(list, arr);
-		PennMap p = new PennMap(list,new Coordinate(1.0,1.0));
-//		List<Location> locs = p.getLocationList();
-		p.setTree((QuadTree) p.makeQuadTree()); 
-		p.makeGraph();
-		Range range = new Range(new Coordinate(20,75),new Coordinate(100,100));
-		List<Location> locations = p.getTree().search("School", range);
-		for (Location loc: locations) {
-			System.out.println(loc.getName());
+//		List<String> list = new ArrayList<>();
+//		Collections.addAll(list, arr);
+//		PennMap p = new PennMap(list,new Coordinate(1.0,1.0));
+////		List<Location> locs = p.getLocationList();
+//		p.setTree((QuadTree) p.makeQuadTree()); 
+//		p.makeGraph();
+//		Range range = new Range(new Coordinate(20,75),new Coordinate(100,100));
+//		List<Location> locations = p.getTree().search("School", range);
+//		for (Location loc: locations) {
+//			System.out.println(loc.getName());
+//		}
+		HashSet<String> locNames = new HashSet<String>();
+		for (String s : arr) {
+			locNames.add(s.split(", ")[1]);
 		}
 		Scanner in = new Scanner(System.in);
-		String userChoice = "";
+		String userInput;
+		boolean newSearch;
 		do {
-			System.out.println("Please select a function: 1 to find the shortest path, 2 to find all nearby locations of a given type, 3 to find the nearest location of a given type");
-			userChoice = in.next();
-			if (!userChoice.equals("1")) {
-				System.out.println("please select the starting location: 1 for ....");
-				System.out.println("please select the destination: 1 for ....");
-			} else if (!userChoice.equals("2")) {
-				System.out.println("please select the type of location you want to search: 1 for restarants, ...");
-				System.out.println("please enter the search distance");
-			} else if (!userChoice.equals("3")) {
-				System.out.println("please select the type of locaiton you want to search: 1 for restaurants ...");
+			userInput = "";
+			newSearch = false;
+			System.out.println("What do you want to do?");
+			System.out.println("1 to find the shortest path between 2 locations");
+			System.out.println("2 to find all nearby locations of a given type within a given distance");
+			System.out.println("3 to find the nearest location of a given type");
+			System.out.println("q to quit");
+			userInput = in.next();
+			if (userInput.equals("q"))
+				break;
+			else if (userInput.equals("1")) {
+				in.nextLine();
+				do {
+					System.out.println();
+					System.out.println("Please enter the starting location");
+					String startLoc = in.nextLine();
+					if (locNames.contains(startLoc)) {
+						do {
+							System.out.println();
+							System.out.println("Please enter the destination");
+							String endLoc = in.nextLine();
+							if (locNames.contains(endLoc)) {
+								System.out.println("map.findShortestPath(startLoc, endLoc)");
+								newSearch = true;
+							} else {
+								System.out.println("Invalid input");
+							}
+							if (newSearch == true)
+								break;
+						} while (true);
+					} else {
+						System.out.println("Invalid input");
+					}
+					if (newSearch == true)
+						break;
+				} while (true);
+			} else if (userInput.equals("2")) {
+				do {
+					System.out.println();
+					System.out.println("Please select the type of location you want to find");
+					System.out.println("1 for store");
+					System.out.println("2 for school");
+					System.out.println("3 for restaurant");
+					System.out.println("4 for museum");
+					userInput = in.next();
+					if (userInput.equals("1") || userInput.equals("2") || userInput.equals("3") || userInput.equals("4")) {
+						String type;
+						switch (userInput) {
+							case "1":
+								type = "Store";
+							case "2":
+								type = "School";
+							case "3":
+								type = "Restaurant";
+							case "4":
+								type = "Museum";
+						}
+						do {
+							System.out.println();
+							System.out.println("Please enter the search range");
+							userInput = in.next();
+							Double searchRange;
+							try {
+								searchRange = Double.parseDouble(userInput);
+								System.out.println("map.findAll(type, searchRange)");
+								newSearch = true;
+							} catch (Exception e) {
+								System.out.println("Invalid input");
+							}
+							if (newSearch == true)
+								break;
+						} while (true);
+					} else {
+						System.out.println("Invalid input");
+					}
+					if (newSearch == true)
+						break;
+				} while (true);
+			} else if (userInput.equals("3")) {
+				do {
+					System.out.println();
+					System.out.println("Please select the type of location you want to find");
+					System.out.println("1 for store");
+					System.out.println("2 for school");
+					System.out.println("3 for restaurant");
+					System.out.println("4 for museum");
+					userInput = in.next();
+					if (userInput.equals("1")) {
+						System.out.println("map.findNearest(Store)");
+						newSearch = true;
+					} else if (userInput.equals("2")) {
+						System.out.println("map.findNearest(School)");
+						newSearch = true;
+					} else if (userInput.equals("3")) {
+						System.out.println("map.findNearest(Restaurant)");
+						newSearch = true;
+					} else if (userInput.equals("4")) {
+						System.out.println("map.findNearest(Museum)");
+						newSearch = true;
+					} else {
+						System.out.println("Invalid input");
+					}
+					if (newSearch == true)
+						break;
+				} while (true);
 			} else {
-				System.out.println("invalid selection");
+				System.out.println("Invalid input");
 			}
-		} while (!userChoice.equals("q"));
-		System.out.println("program terminates");
+			System.out.println();
+		} while (true);
+		System.out.println();
+		System.out.println("You have chosen to quit. Program terminates.");
 	}
 }
