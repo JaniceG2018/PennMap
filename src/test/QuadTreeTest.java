@@ -107,9 +107,7 @@ public class QuadTreeTest {
 		exp0.add(loc12);
 		res = tree.search("Store", range);
 		result = new HashSet<>(res);
-		for (Location loc : res) {
-			System.out.println(loc.getName());
-		}
+
 		System.out.println();
 		assertEquals(exp0, result);
 
@@ -146,14 +144,11 @@ public class QuadTreeTest {
 		res = tree.search("School", range);
 		result = new HashSet<>(res);
 		System.out.println(res.size());
-		for (Location location : result) {
-			System.out.println(location.getName());
-		}
 		assertTrue(exp3.equals(result));
 		
 		// Search Restaurant
 		Set<Location> exp4 = new HashSet<Location>();
-		range = new Range(new Coordinate(55,0),new Coordinate(80,99));
+		range = new Range(new Coordinate(50,19),new Coordinate(75,75));
 		int restaurant4[] = {0,10};
 		for (int i : restaurant4) {
 			exp4.add(l[i]);
