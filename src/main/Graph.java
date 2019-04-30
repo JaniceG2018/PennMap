@@ -107,12 +107,14 @@ public class Graph implements IGraph {
 		}
 		path.add(start);
 		String route = "";
-	
+		int distance = 0;
 		for (int i = routes.size() - 1, t = path.size() - 1; i >= 0; i--, t--) {
 			Road curr_road = routes.get(i);
+			distance += curr_road.getDist();
 			route += path.get(t) + " -> road " + curr_road.getRdName() + " -> ";
 		}
 		route += path.get(0);
+		route += " Total distance is " + distance;
 		return route;
 	}
 
@@ -157,10 +159,12 @@ public class Graph implements IGraph {
 		String curr ;
 		while (!dist.isEmpty()) {
 			 curr = dist.poll().getEnd();
+			 System.out.println("NEAREST!"+curr);
 			 Location currLoc = findLocation(locations, curr); 
+			 System.out.println("AND"+currLoc.getType());
 			 String currType = currLoc.getType();
 			 
-			 if(curr.equals(currType) && !curr.equals(loc1)) {
+			 if(currType.equals(type) && !curr.equals(loc1)) {
 				 return currLoc;
 			 }
 			 for (Road i : graph.get(curr)) {

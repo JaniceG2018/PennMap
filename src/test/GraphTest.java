@@ -1,6 +1,7 @@
 package test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
@@ -17,10 +18,11 @@ import main.Road;
 public class GraphTest {
 	
 	private Graph graph;
+	private List<Location> locations;
 	
 	@Before
 	public void setup(){
-		List<Location> locations = new ArrayList<Location>();
+		locations = new ArrayList<Location>();
 		locations.add(new Location("A", "X", new Coordinate(1.0, 1.0)));
 		locations.add(new Location("B", "X", new Coordinate(2.0, 1.0)));
 		locations.add(new Location("C", "X", new Coordinate(3.0, 1.0)));
@@ -40,7 +42,8 @@ public class GraphTest {
 
 	@Test
 	public void testFindShortestPath() {
-		assertEquals("A -> road AB -> B -> road BC -> C",graph.findShortestPath("A", "C"));
+		assertEquals("A -> road AB -> B -> road BC -> C Total distance is 3",graph.findShortestPath("A", "C"));
+		//System.out.println(graph.findShortestPath("A", "C"));
 		try {
 			graph.findShortestPath("Z", "B");
 		} catch (Exception e) {
@@ -48,5 +51,20 @@ public class GraphTest {
 		}
 	}
 	
-	
+	@Test
+	public void testFindNearest() {
+		List<Road> roads = new ArrayList<>();
+		roads.add(new Road("B", "C", "BC", 1));
+		//System.out.println(graph.getRoad("B").get(0));
+		//assertEquals(roads, graph.getRoad("B"));
+		Location location = graph.findNearest("A", "X", locations);
+		assertEquals("B", location.getName());
+		try {
+			graph.findNearest("Z", "X", locations);
+		} catch (Exception e) {
+			assertTrue(e instanceof IllegalArgumentException);
+		}
+		assertNull(graph.findNearest("A", "Y", locations));
+	}
+
 }
