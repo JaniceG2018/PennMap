@@ -2,7 +2,11 @@ package main;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.PriorityQueue;
 
 /**
  * 
@@ -13,6 +17,7 @@ public class PennMap implements IMapMaker, IMapModel {
 
 	private IQuadTree tree; //the QuadTree representing the map
 	private Graph graph; //the Graph representing the map
+	private Location currentLoc;
 	private Coordinate currentPoint;  // current Location of user
 	private List<Road> roadList = new ArrayList<Road>();  // list of all roads in the map
 	private List<Location> locationList = new ArrayList<Location>(); // list of all locations in the map
@@ -28,9 +33,10 @@ public class PennMap implements IMapMaker, IMapModel {
 	 * @param initial data input
 	 * @param current location of the user
 	 */
-	public PennMap(List<String> init, Coordinate currPt) {
+	public PennMap(List<String> init, Location currLoc) {
 		// Changed the data input stream to do the parsing first 
-		this.currentPoint = currPt;
+		this.currentLoc = currLoc;
+		this.currentPoint = currLoc.getCoord();
 		parser(init);
 	}
 	
@@ -116,7 +122,8 @@ public class PennMap implements IMapMaker, IMapModel {
 	 */
 	@Override
 	public Location findNearest(String type) {
-		return null;
+		String l1 = currentLoc.getName();
+		return graph.findNearest(l1, type, locationList);
 	}
 
 	/**
