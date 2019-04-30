@@ -159,7 +159,8 @@ public class Graph implements IGraph {
 			 curr = dist.poll().getEnd();
 			 Location currLoc = findLocation(locations, curr); 
 			 String currType = currLoc.getType();
-			 if(curr.equals(currType)) {
+			 
+			 if(curr.equals(currType) && !curr.equals(loc1)) {
 				 return currLoc;
 			 }
 			 for (Road i : graph.get(curr)) {
@@ -178,7 +179,7 @@ public class Graph implements IGraph {
 
 	private Location findLocation(List<Location> locations, String curr) {
 		for(Location l : locations) {
-			if (l.equals(curr)) {
+			if (l.getName().equals(curr)) {
 				return l;
 			}
 		}

@@ -18,7 +18,7 @@ import java.util.PriorityQueue;
 public class PennMap implements IMapMaker, IMapModel {
 
 	private IQuadTree tree; //the QuadTree representing the map
-	private Graph graph; //the Graph representing the map
+	private IGraph graph; //the Graph representing the map
 	private Location currentLoc;
 	private Coordinate currentPoint;  // current Location of user
 	private List<Road> roadList = new ArrayList<Road>();  // list of all roads in the map
@@ -35,13 +35,26 @@ public class PennMap implements IMapMaker, IMapModel {
 	 * @param initial data input
 	 * @param current location of the user
 	 */
-	public PennMap(List<String> init, Location currLoc) {
+	public PennMap(List<String> init, Coordinate current) {
 		// Changed the data input stream to do the parsing first 
-		this.currentLoc = currLoc;
-		this.currentPoint = currLoc.getCoord();
+		this.currentPoint = current;
 		parser(init);
+		currentLoc=matchLocation();
+		tree = makeQuadTree();
+		graph = makeGraph();
 	}
 	
+	
+	
+	private Location matchLocation() {
+		for(Location location : locationList) {
+			if(location.getCoord().equals(currentPoint)) {
+				return location;
+			}
+		}
+		return null;
+	}
+
 	/**
 	 * this parser method will parse the initial data and put data in to location and road data fields in pennmap
 	 * @param initData
@@ -123,7 +136,7 @@ public class PennMap implements IMapMaker, IMapModel {
 	@Override
 	public Location findNearest(String type) {
 		String l1 = currentLoc.getName();
-		return graph.findNearest(l1, type, locationList);
+		return ((Graph)graph).findNearest(l1, type, locationList);
 	}
 
 	/**
@@ -175,7 +188,7 @@ public class PennMap implements IMapMaker, IMapModel {
 	 * get graph
 	 * @return the graph associated with the map
 	 */
-	public Graph getGraph() {
+	public IGraph getGraph() {
 		return graph;
 	}
 
