@@ -69,7 +69,7 @@ public class PennMap implements IMapMaker, IMapModel {
 				locationList.add(startLoc);
 
 			String[] sEndCoord = sa[3].substring(1, sa[3].length() - 1).split(",");
-			System.out.println(sa[3] + "|||||");
+
 
 			double eLon = Double.valueOf(sEndCoord[0]); // x
 			double eLat = Double.valueOf(sEndCoord[1]); // y
