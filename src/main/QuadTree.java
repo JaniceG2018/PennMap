@@ -31,15 +31,7 @@ public class QuadTree implements IQuadTree {
 	public QuadTree() {
 		root = emptyNode;
 	}
-	
-	/**
-	 * 
-	 * @param root
-	 */
-	public QuadTree(BaseNode root) {
-		this.root = root;
-	}
-	
+		
 	/**
 	 * 
 	 */
