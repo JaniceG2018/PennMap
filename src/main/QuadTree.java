@@ -34,6 +34,19 @@ public class QuadTree implements IQuadTree {
 		
 	/**
 	 * 
+	 * @param type
+	 * @param range
+	 * @return 
+	 */
+	@Override
+	public List<Location> search(String type, Range range) {
+		List<Location> results = new ArrayList<>();
+		root.search(type, range, results);
+		return results;
+	}
+	
+	/**
+	 * 
 	 */
 	@Override
 	public boolean insert(Location loc) {
@@ -104,19 +117,6 @@ public class QuadTree implements IQuadTree {
 		else if (coord.getLat() > lat && coord.getLon() <= lon)
 			((InternalNode) node).setSouthW(insert(((InternalNode) node).getSouthW(), coord, loc, childrenRange));
 		return node;
-	}
-
-	/**
-	 * 
-	 * @param type
-	 * @param range
-	 * @return 
-	 */
-	@Override
-	public List<Location> search(String type, Range range) {
-		List<Location> results = new ArrayList<>();
-		root.search(type, range, results);
-		return results;
 	}
 
 	/**

@@ -19,6 +19,14 @@ public interface IMapModel {
 	public String findShortestPath(String loc1, String loc2);
 	
 	/**
+	 * findNearest() returns the nearest Location of a given type from the current user Location,
+	 * or null if not found
+	 * @param type the type of Location we want to find
+	 * @return the nearest Location of the given type from the current user Location
+	 */
+	public Location findNearest(String type);
+	
+	/**
 	 * findAll() returns a list of Locations of a given type within a given distance from
 	 * the current user Location
 	 * @param type the type of Locations we want to find
@@ -27,12 +35,5 @@ public interface IMapModel {
 	 * the current user Location
 	 */
 	public List<Location> findAll(String type, double dist);
-	
-	/**
-	 * findNearest() returns the nearest Location of a given type from the current user Location,
-	 * or null if not found
-	 * @param type the type of Location we want to find
-	 * @return the nearest Location of the given type from the current user Location
-	 */
-	public Location findNearest(String type);
+
 } //all checked

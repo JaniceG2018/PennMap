@@ -28,12 +28,10 @@ public class Graph implements IGraph {
 	 * @param roads a list of Roads on the map
 	 */
 	public Graph(List<Location> locations, List<Road> roads) {
-
 		graph = new HashMap<String, List<Road>>();
 		for (Location l : locations) {
 			String startLoc = l.getName();
 			graph.put(startLoc, new LinkedList<Road>());
-
 		}
 		for (Road r : roads) {
 			String start = r.getStart();
@@ -116,7 +114,6 @@ public class Graph implements IGraph {
 
 				// update the distance of w
 				if (res.get(i.getEnd()) > (res.get(i.getStart()) + i.getDist())) {
-
 					res.put(i.getEnd(), (res.get(i.getStart()) + i.getDist()));
 					predecessor.put(i.getEnd(), i.getStart());
 					minHeap.offer(new Pair((res.get(i.getStart()) + i.getDist()), w));
@@ -157,18 +154,6 @@ public class Graph implements IGraph {
 
 		return route;
 	}
-
-
-	/**
-	 * get road
-	 * added this method for test purposes
-	 * @param locName
-	 * @return the list of road names
-	 */
-	public List<Road> getRoad(String locName) {
-		return this.graph.get(locName);
-	}
-
 
 	/**
 	 * findNearest() returns the nearest Location of a given type from the current user Location,
@@ -262,5 +247,15 @@ public class Graph implements IGraph {
 			}
 		}
 		return null;
+	}
+	
+	/**
+	 * get road
+	 * added this method for test purposes
+	 * @param locName
+	 * @return the list of road names
+	 */
+	public List<Road> getRoad(String locName) {
+		return this.graph.get(locName);
 	}
 }
