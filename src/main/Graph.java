@@ -32,12 +32,13 @@ public class Graph implements IGraph {
 		for (Location l : locations) {
 			String startLoc = l.getName();
 			graph.put(startLoc, new LinkedList<Road>());
-			for (Road r : roads) {
-				if (r.getStart().equals(startLoc)) {
-					graph.get(startLoc).add(r);
-					System.out.println(startLoc);
-				}
-			}
+		}
+		for (Road r : roads) {
+			String start = r.getStart();
+			String end = r.getEnd();
+			graph.get(start).add(r);
+			Road reverseRoad = new Road(r.getEnd(), r.getStart(), r.getRdName(), r.getDist());
+			graph.get(end).add(reverseRoad);				
 		}
 	}
 	
@@ -159,9 +160,9 @@ public class Graph implements IGraph {
 		String curr ;
 		while (!dist.isEmpty()) {
 			 curr = dist.poll().getEnd();
-			 System.out.println("NEAREST!"+curr);
+//			 System.out.println("NEAREST!"+curr);
 			 Location currLoc = findLocation(locations, curr); 
-			 System.out.println("AND"+currLoc.getType());
+//			 System.out.println("AND"+currLoc.getType());
 			 String currType = currLoc.getType();
 			 
 			 if(currType.equals(type) && !curr.equals(loc1)) {
