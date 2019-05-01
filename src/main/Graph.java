@@ -87,8 +87,8 @@ public class Graph implements IGraph {
 			predecessor.put(s, null);
 		}
 
-		if (!res.containsKey(loc1))
-			throw new IllegalArgumentException("The location doesn't exist!");
+		if (!res.containsKey(loc1) || !res.containsKey(loc2))
+			throw new IllegalArgumentException("The starting or ending location doesn't exist!");
 
 		Pair source = new Pair(0, loc1);
 		predecessor.put(loc1, loc1);
@@ -106,6 +106,9 @@ public class Graph implements IGraph {
 
 			// set current position visited
 			visited.add(curr);
+			if (curr.equals(loc2)) {
+				break;
+			}
 			// Unreachable
 			if (res.get(curr).equals(Double.MAX_VALUE)) {
 				return "";
@@ -198,7 +201,7 @@ public class Graph implements IGraph {
 		}
 
 		if (!res.containsKey(loc1)) {
-			throw new IllegalArgumentException("The location doesn't exist!");
+			throw new IllegalArgumentException("The starting location doesn't exist!");
 		}
 
 		Pair source = new Pair(0, loc1);

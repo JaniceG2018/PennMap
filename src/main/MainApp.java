@@ -54,16 +54,7 @@ public class MainApp {
 		// Construct QuadTree and Graph
 		List<String> list = new ArrayList<>();
 		Collections.addAll(list, arr);
-//<<<<<<< HEAD
-//		PennMap p = new PennMap(list, new Coordinate(1.0,1.0));
-////		List<Location> locs = p.getLocationList();
-//		p.setTree((QuadTree) p.makeQuadTree()); 
-//		p.makeGraph();
-//		Range range = new Range(new Coordinate(20,75),new Coordinate(100,100));
-//		List<Location> locations = p.getTree().search("School", range);
-//		for (Location loc: locations) {
-//			System.out.println(loc.getName());
-//=======
+
 		PennMap pMap = new PennMap(list, new Coordinate(30, 50));
 		
 		// For error handling
@@ -99,8 +90,7 @@ public class MainApp {
 							System.out.println("Please enter the destination");
 							String endLoc = in.nextLine();
 							if (locNames.contains(endLoc)) {
-//								System.out.println(startLoc);
-//								System.out.println(endLoc);
+
 								System.out.println("Shortest path: " + pMap.findShortestPath(startLoc, endLoc));
 								newSearch = true;
 							} else {
@@ -179,22 +169,42 @@ public class MainApp {
 					switch (userInput) {
 						case "1":
 //							System.out.println("store");
-							System.out.println(pMap.findNearest("Store").getName());
+							Location loc0 = pMap.findNearest("Store");
+							if(loc0 == null) {
+								System.out.println("No such type of location is near you!");
+								break;
+							}
+							System.out.println(loc0.getName());
 							newSearch = true;
 							break;
 						case "2":
 //							System.out.println("school");
-							System.out.println(pMap.findNearest("School").getName());
+							Location loc1 = pMap.findNearest("School");
+							if(loc1 == null) {
+								System.out.println("No such type of location is near you!");
+								break;
+							}
+							System.out.println(loc1.getName());
 							newSearch = true;
 							break;
 						case "3":
 //							System.out.println("restaurant");
-							System.out.println(pMap.findNearest("Restaurant").getName());
+							Location loc2 = pMap.findNearest("Restaurant");
+							if(loc2 == null) {
+								System.out.println("No such type of location is near you!");
+								break;
+							}
+							System.out.println(loc2.getName());
 							newSearch = true;
 							break;
 						case "4":
 //							System.out.println("museum");
-							System.out.println(pMap.findNearest("Museum").getName());
+							Location loc3 = pMap.findNearest("Museum");
+							if(loc3 == null) {
+								System.out.println("No such type of location is near you!");
+								break;
+							}
+							System.out.println(loc3.getName());
 							newSearch = true;
 							break;
 						default:
