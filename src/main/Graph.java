@@ -103,9 +103,9 @@ public class Graph implements IGraph {
 			}
 			start = temp_start;
 		}
-		for (Road x : routes) {
-			System.out.println(x.getRdName());
-		}
+//		for (Road x : routes) {
+//			System.out.println(x.getRdName());
+//		}
 		path.add(start);
 		String route = "";
 		int distance = 0;
@@ -115,7 +115,7 @@ public class Graph implements IGraph {
 			route += path.get(t) + " -> road " + curr_road.getRdName() + " -> ";
 		}
 		route += path.get(0);
-		route += " Total distance is " + distance;
+		route += "\nTotal distance is " + distance;
 		return route;
 	}
 
