@@ -120,17 +120,24 @@ public class Graph implements IGraph {
 	}
 
 
-/**
-	 * get road// 
+	/**
+	 * get road
 	 * added this method for test purposes
 	 * @param locName
 	 * @return the list of all roadname
 	 */
-	
 	public List<Road> getRoad(String locName){
 		return this.graph.get(locName);
 	}
 	
+	/**
+	 * findNearest() returns the nearest Location of a given type from the current user Location,
+	 * or null if not found
+	 * @param type the type of Location we want to find
+	 * @param loc1 the start location
+	 * @param locations the list of locations
+	 * @return the nearest Location of the given type from the current user Location
+	 */
 	public Location findNearest(String loc1, String type,List<Location> locations) {
 		List<String> path = new ArrayList<>();
 		PriorityQueue<Road> dist = new PriorityQueue<>(new Comparator<Road>() {
@@ -160,9 +167,7 @@ public class Graph implements IGraph {
 		String curr ;
 		while (!dist.isEmpty()) {
 			 curr = dist.poll().getEnd();
-//			 System.out.println("NEAREST!"+curr);
 			 Location currLoc = findLocation(locations, curr); 
-//			 System.out.println("AND"+currLoc.getType());
 			 String currType = currLoc.getType();
 			 
 			 if(currType.equals(type) && !curr.equals(loc1)) {
