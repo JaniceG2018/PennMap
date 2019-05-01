@@ -48,7 +48,7 @@ public class MainApp {
 
 		List<String> list = new ArrayList<>();
 		Collections.addAll(list, arr);
-		PennMap p = new PennMap(list,new Coordinate(1.0,1.0));
+		PennMap p = new PennMap(list, new Coordinate(1.0,1.0));
 //		List<Location> locs = p.getLocationList();
 		p.setTree((QuadTree) p.makeQuadTree()); 
 		p.makeGraph();
