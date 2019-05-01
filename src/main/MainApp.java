@@ -47,7 +47,7 @@ public class MainApp {
 	               		"(60,90), Irvine Auditorium, School, (60,100), Williams Hall, School, 34th St-D, 45",
 	               		"(60,100), Williams Hall, School, (100,100), Happy Ending Bar, Restaurant, Spruce St, 40",
 	               		"(80,10), Parking Lot, School, (100,100), Happy Ending Bar, Restaurant, 33th St, 100", 
-	               		"(30,0), Spicy Now, Restaurant, (20,50), Graduate Center, School, Arvind St, 50", 
+	               		"(30,0), Spicy Now, Restaurant, (20,50), Graduate Center, School, Arvind St, 30", 
 	               		"(30,0), Spicy Now, Restaurant, (40,20), Institute of Contemporary Art, Museum, Eric St, 30", 
 	               		"(40,20), Institute of Contemporary Art, Museum, (35,50), Annenberg School for Communication Library, School, Swap St, 30"};
 		
@@ -55,7 +55,7 @@ public class MainApp {
 		List<String> list = new ArrayList<>();
 		Collections.addAll(list, arr);
 
-		PennMap pMap = new PennMap(list, new Coordinate(30, 50));
+		PennMap pMap = new PennMap(list, new Coordinate(55, 50));
 		
 		// For error handling
 		HashSet<String> locNames = new HashSet<String>();
