@@ -17,12 +17,13 @@ import java.util.Scanner;
  * 2. find the nearest location of a type
  * 3. find all locations in a given distance
  * 
- * @author jingwen qiang
+ * @author calchen, jingwen qiang
  *
  */
 public class MainApp {
 
 	public static void main(String[] args) {
+		
 		String[] arr = {"(0,0), Fine Wine and Good Spirit, Store, (10,20), Pottruck Fitness Center, School, Spring St, 25",
 	               		"(0,0), Fine Wine and Good Spirit, Store, (0,50), AT&T, Store, 41th St, 50",
 	               		"(0,0), Fine Wine and Good Spirit, Store, (20,0), WaWa@Chestnut, Restaurant, Chestnut St-D, 20",
@@ -42,20 +43,27 @@ public class MainApp {
 	               		"(55,50), Van Pelt Library, School, (60,50), Starbucks, Restaurant, Walnut St-E, 10",
 	               		"(55,50), Van Pelt Library, School, (60,80), Fisher Fine Arts Library, School, 34th St-B, 40",
 	               		"(60,50), Starbucks, Restaurant, (60,20), White Dog Cafe, Restaurant, 34th St-A, 40",
-	               		"(60,80), Fisher Fine Arts Library, School, (60,90), Irvine Auditorm, School, 34th St-C, 15",
-	               		"(60,90), Irvine Auditorm, School, (60,100), Williams Hall, School, 34th St-D, 45",
+	               		"(60,80), Fisher Fine Arts Library, School, (60,90), Irvine Auditorium, School, 34th St-C, 15",
+	               		"(60,90), Irvine Auditorium, School, (60,100), Williams Hall, School, 34th St-D, 45",
 	               		"(60,100), Williams Hall, School, (100,100), Happy Ending Bar, Restaurant, Spruce St, 40",
-	               		"(80,10), Parking Lot, School, (100,100), Happy Ending Bar, Restaurant, 33th St, 100"};
-		// Initialize pennmap
+	               		"(80,10), Parking Lot, School, (100,100), Happy Ending Bar, Restaurant, 33th St, 100", 
+	               		"(30,0), Spicy Now, Restaurant, (20,50), Graduate Center, School, Arvind St, 50", 
+	               		"(30,0), Spicy Now, Restaurant, (40,20), Institute of Contemporary Art, Museum, Eric St, 30", 
+	               		"(40,20), Institute of Contemporary Art, Museum, (35,50), Annenberg School for Communication Library, School, Swap St, 30"};
+		
+		// Construct QuadTree and Graph
 		List<String> list = new ArrayList<>();
 		Collections.addAll(list, arr);
-		PennMap p = new PennMap(list,new Coordinate(30,100));
+
+		PennMap pMap = new PennMap(list, new Coordinate(30, 50));
 		
-		// Check duplicate
+		// For error handling
 		HashSet<String> locNames = new HashSet<String>();
-		for (Location loc : p.getLocationList()) {
+		for (Location loc : pMap.getLocationList()) {
 			locNames.add(loc.getName());
+
 		}
+		
 		Scanner in = new Scanner(System.in);
 		String userInput;
 		boolean newSearch;
@@ -82,9 +90,8 @@ public class MainApp {
 							System.out.println("Please enter the destination");
 							String endLoc = in.nextLine();
 							if (locNames.contains(endLoc)) {
-								System.out.println(startLoc);
-								System.out.println(endLoc);
-								System.out.println(p.findShortestPath(startLoc, endLoc));
+
+								System.out.println("Shortest path: " + pMap.findShortestPath(startLoc, endLoc));
 								newSearch = true;
 							} else {
 								System.out.println("Invalid input");
@@ -130,7 +137,7 @@ public class MainApp {
 							Double searchRange;
 							try {
 								searchRange = Double.parseDouble(userInput);
-								List<Location> results = p.findAll(type, searchRange);
+								List<Location> results = pMap.findAll(type, searchRange);
 								if (results.isEmpty())
 									System.out.println("No such location can be found");
 								for (Location l : results) {
@@ -161,23 +168,43 @@ public class MainApp {
 					userInput = in.next();
 					switch (userInput) {
 						case "1":
-							System.out.println("store");
-							System.out.println(p.findNearest("Store").getName());
+//							System.out.println("store");
+							Location loc0 = pMap.findNearest("Store");
+							if(loc0 == null) {
+								System.out.println("No such type of location is near you!");
+								break;
+							}
+							System.out.println(loc0.getName());
 							newSearch = true;
 							break;
 						case "2":
-							System.out.println("school");
-							System.out.println(p.findNearest("School").getName());
+//							System.out.println("school");
+							Location loc1 = pMap.findNearest("School");
+							if(loc1 == null) {
+								System.out.println("No such type of location is near you!");
+								break;
+							}
+							System.out.println(loc1.getName());
 							newSearch = true;
 							break;
 						case "3":
-							System.out.println("restaurant");
-							System.out.println(p.findNearest("Restaurant").getName());
+//							System.out.println("restaurant");
+							Location loc2 = pMap.findNearest("Restaurant");
+							if(loc2 == null) {
+								System.out.println("No such type of location is near you!");
+								break;
+							}
+							System.out.println(loc2.getName());
 							newSearch = true;
 							break;
 						case "4":
-							System.out.println("museum");
-							System.out.println(p.findNearest("Museum").getName());
+//							System.out.println("museum");
+							Location loc3 = pMap.findNearest("Museum");
+							if(loc3 == null) {
+								System.out.println("No such type of location is near you!");
+								break;
+							}
+							System.out.println(loc3.getName());
 							newSearch = true;
 							break;
 						default:
