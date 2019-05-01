@@ -11,7 +11,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-
 import org.junit.Before;
 import org.junit.Test;
 
@@ -46,20 +45,20 @@ public class QuadTreeTest {
 	Location loc19 = new Location("WaWa@Chestnut", "Restaurant", new Coordinate(20, 0));
 	Location loc20 = new Location("Happy Ending Bar", "Restaurant", new Coordinate(100, 100));
 
-	private List<Location> locs2;
-	Location a = new Location("A", "x", new Coordinate(0, 0));
-	Location b = new Location("B", "x", new Coordinate(6, 1));
-	Location c = new Location("C", "x", new Coordinate(8, 4));
-	Location d = new Location("D", "x", new Coordinate(11, 18));
-	Location e = new Location("E", "x", new Coordinate(8, 11));
-	Location f = new Location("F", "x", new Coordinate(18, 6));
-	Location g = new Location("G", "x", new Coordinate(20, 20));
+//	private List<Location> locs2;
+//	Location a = new Location("A", "x", new Coordinate(0, 0));
+//	Location b = new Location("B", "x", new Coordinate(6, 1));
+//	Location c = new Location("C", "x", new Coordinate(8, 4));
+//	Location d = new Location("D", "x", new Coordinate(11, 18));
+//	Location e = new Location("E", "x", new Coordinate(8, 11));
+//	Location f = new Location("F", "x", new Coordinate(18, 6));
+//	Location g = new Location("G", "x", new Coordinate(20, 20));
 
 	@Before
 	public void setUp() {
 		tree = new QuadTree();
-		Location l2[] = new Location[] { a,b,c,d,e,f,g };
-		locs2 = Arrays.asList(l2);
+//		Location l2[] = new Location[] { a,b,c,d,e,f,g };
+//		locs2 = Arrays.asList(l2);
 
 	}
 
@@ -69,18 +68,18 @@ public class QuadTreeTest {
 				loc13, loc14, loc15, loc16, loc17, loc18, loc19, loc20 };
 
 		locs = Arrays.asList(l);
-		tree.enclosingQuad(locs2);
+		tree.enclosingQuad(locs);
 		assertEquals(0, tree.getSize());
 		// Test insert null
 		assertFalse(tree.insert(null));
-		for (int i = 0; i < locs2.size(); i++) {
-			assertTrue(tree.insert(locs2.get(i)));
+		for (int i = 0; i < locs.size(); i++) {
+			assertTrue(tree.insert(locs.get(i)));
 			assertEquals(i + 1, tree.getSize());
 		}
 
 		// Test insert duplicate location
-		// assertFalse(tree.insert(loc0));
-		// assertFalse(tree.insert(loc10));
+		 assertFalse(tree.insert(loc0));
+		 assertFalse(tree.insert(loc10));
 
 	}
 
@@ -89,11 +88,11 @@ public class QuadTreeTest {
 		Location l[] = new Location[] { loc0, loc1, loc2, loc3, loc4, loc5, loc6, loc7, loc8, loc9, loc10, loc11, loc12,
 				loc13, loc14, loc15, loc16, loc17, loc18, loc19, loc20 };
 		locs = Arrays.asList(l);
-		tree.enclosingQuad(locs2);
+		tree.enclosingQuad(locs);
 		assertEquals(0, tree.getSize());
 		// Insert locations into the quadtree
-		for (int i = 0; i < locs2.size(); i++) {
-			assertTrue(tree.insert(locs2.get(i)));
+		for (int i = 0; i < locs.size(); i++) {
+			assertTrue(tree.insert(locs.get(i)));
 			assertEquals(i + 1, tree.getSize());
 		}
 
@@ -101,21 +100,15 @@ public class QuadTreeTest {
 		List<Location> res;
 		Set<Location> result;
 
-		range = new Range(new Coordinate(5,0),new Coordinate(15,10));
-		Set<Location> exp = new HashSet<Location>();
-		exp.add(b);
-		exp.add(c);
-		System.out.println(tree.search("x", range).get(1).getName());
-		result = new HashSet<>(tree.search("x", range));
-		assertEquals(exp, result);
-		
 		// Search all stores
-		/*range = new Range(new Coordinate(0, 0), new Coordinate(100, 100));
+		range = new Range(new Coordinate(0, 0), new Coordinate(100, 100));
 		Set<Location> exp0 = new HashSet<Location>();
 		exp0.add(loc2);
 		exp0.add(loc12);
 		res = tree.search("Store", range);
 		result = new HashSet<>(res);
+
+		System.out.println();
 		assertEquals(exp0, result);
 
 		// Search all schools
@@ -138,7 +131,7 @@ public class QuadTreeTest {
 		}
 		result = new HashSet<>(res);
 
-		assertTrue(exp2.equals(result));*/
+		assertTrue(exp2.equals(result));
 
 		
 		
@@ -151,14 +144,11 @@ public class QuadTreeTest {
 		res = tree.search("School", range);
 		result = new HashSet<>(res);
 		System.out.println(res.size());
-		for (Location location : result) {
-			System.out.println(location.getName());
-		}
 		assertTrue(exp3.equals(result));
 		
 		// Search Restaurant
 		Set<Location> exp4 = new HashSet<Location>();
-		range = new Range(new Coordinate(55,0),new Coordinate(80,99));
+		range = new Range(new Coordinate(50,19),new Coordinate(75,75));
 		int restaurant4[] = {0,10};
 		for (int i : restaurant4) {
 			exp4.add(l[i]);

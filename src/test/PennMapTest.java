@@ -4,9 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -33,14 +31,29 @@ public class PennMapTest {
 		initData = new ArrayList<String>();
 		String[] arr = {"(0,0), Fine Wine and Good Spirit, Store, (10,20), Pottruck Fitness Center, School, Spring St, 25",
 	               "(0,0), Fine Wine and Good Spirit, Store, (0,50), AT&T, Store, 41th St, 50",
-	               "(0,0), Fine Wine and Good Spirit, Store, (20,0), WaWa@Chestnut, Restaurant, Chestnut St-D,  20",
+	               "(0,0), Fine Wine and Good Spirit, Store, (20,0), WaWa@Chestnut, Restaurant, Chestnut St-D, 20",
 	               "(20,0), WaWa@Chestnut, Restaurant, (25,0), Ochatto, Restaurant, Chestnut St-E, 5",
 	               "(25,0), Ochatto, Restaurant, (30,0), Spicy Now, Restaurant, Chestnut St-F, 5",
 	               "(0,0), Fine Wine and Good Spirit, Store, (10,50), John Huntsman Hall, School, 40th St, 70",
 	               "(0,0), Fine Wine and Good Spirit, Store, (20,50), Graduate Center, School, Winter St, 85",
-	               "(10,20), Pottruck Fitness Center, School, (20,50), Graduate Center, School, Summer St, 70",};
+	               "(10,20), Pottruck Fitness Center, School, (20,50), Graduate Center, School, Summer St, 70",
+	               "(10,20), Pottruck Fitness Center, School, (40,20), Institute of Contemporary Art, Museum, Chestnut St-A, 60",
+	               "(40,20), Institute of Contemporary Art, Museum, (60,20), White Dog Cafe, Restaurant, Chestnut St-B, 30",
+	               "(60,20), White Dog Cafe, Restaurant, (80,10), Parking Lot, School, Chestnut St-C, 50",
+	               "(20,50), Graduate Center, School, (30,50), Honey Grow, Restaurant, Walnut St-A, 10",
+	               "(30,50), Honey Grow, Restaurant, (35,50), Annenberg School for Communication Library, School, Walnut St-B, 5",
+	               "(35,50), Annenberg School for Communication Library, School, (40,50), Franklin Building, School, Walnut St-C, 5",
+	               "(35,50), Annenberg School for Communication Library, School, (30,100), SteinBerg Hall, School, 38th St, 70",
+	               "(40,50), Franklin Building, School, (55,50), Van Pelt Library, School, Walnut St-D, 15",
+	               "(55,50), Van Pelt Library, School, (60,50), Starbucks, Restaurant, Walnut St-E, 10",
+	               "(55,50), Van Pelt Library, School, (60,80), Fisher Fine Arts Library, School, 34th St-B, 40",
+	               "(60,50), Starbucks, Restaurant, (60,20), White Dog Cafe, Restaurant, 34th St-A, 40",
+	               "(60,80), Fisher Fine Arts Library, School, (60,90), Irvine Auditorm, School, 34th St-C, 15",
+	               "(60,90), Irvine Auditorm, School, (60,100), Williams Hall, School, 34th St-D, 45",
+	               "(60,100), Williams Hall, School, (100,100), Happy Ending Bar, Restaurant, Spruce St, 40",
+	               "(80,10), Parking Lot, School, (100,100), Happy Ending Bar, Restaurant, 33th St, 100"};
 		Collections.addAll(initData, arr);
-		pennMap = new PennMap(initData, new Coordinate(1.0, 1.0));
+		pennMap = new PennMap(initData, new Coordinate(10, 20));
 	}
 	
 	/**
@@ -67,7 +80,7 @@ public class PennMapTest {
 		locations.add(new Location("Graduate Center", "School", new Coordinate(20, 50)));
 		
 		QuadTree tree = (QuadTree)pennMap.makeQuadTree();
-		assertEquals(8,tree.getSize());
+		assertEquals(21,tree.getSize());
 	}
 	
 	/**
@@ -98,15 +111,15 @@ public class PennMapTest {
 	
 	@Test
 	public void testFindShortestPath() {
-		pennMap.makeGraph();
-		//System.out.println(pennMap.findShortestPath("Fine Wine and Good Spirit", "AT&T"));
+		
+		//System.out.println("----------------------------------------------!!!!!!!!"+pennMap.findShortestPath("Fine Wine and Good Spirit", "AT&T"));
 		//assertEquals("Fine Wine and Good Spirit -> road 41th st -> AT&T", pennMap.findShortestPath("Fine Wine and Good Spirit", "AT&T"));
-		assertEquals("Fine Wine and Good Spirit -> road 41th St -> AT&T", pennMap.findShortestPath("Fine Wine and Good Spirit", "AT&T"));
+		assertEquals("Fine Wine and Good Spirit -> road 41th St -> AT&T Total distance is 50", pennMap.findShortestPath("Fine Wine and Good Spirit", "AT&T"));
 	}
 	
 	@Test
 	public void testFindAll() {
-		pennMap.makeQuadTree();
+		
 //		List<Location> expNull = new ArrayList<Location>();
 
 		List<Location> exp = new ArrayList<Location>();
@@ -118,9 +131,12 @@ public class PennMapTest {
 	
 	@Test
 	public void testFindNearest() {
-		pennMap.makeQuadTree();
+		
 //		Location exp = new Location("Starbucks", "Restaurant", new Coordinate(60, 50));
-		System.out.println(pennMap.findNearest("Restuarant").getName());
+		Location res = pennMap.findNearest("Restaurant");
+		assertEquals("Honey Grow",res.getName());
+		//System.out.println("NEAREST!!"+res.getName());
+		
 		//assertEquals(exp.getName(), pennMap.findNearest("Restaurant").getName());
 	}
 }

@@ -32,12 +32,13 @@ public class Graph implements IGraph {
 		for (Location l : locations) {
 			String startLoc = l.getName();
 			graph.put(startLoc, new LinkedList<Road>());
-			for (Road r : roads) {
-				if (r.getStart().equals(startLoc)) {
-					graph.get(startLoc).add(r);
-					System.out.println(startLoc);
-				}
-			}
+		}
+		for (Road r : roads) {
+			String start = r.getStart();
+			String end = r.getEnd();
+			graph.get(start).add(r);
+			Road reverseRoad = new Road(r.getEnd(), r.getStart(), r.getRdName(), r.getDist());
+			graph.get(end).add(reverseRoad);				
 		}
 	}
 	
@@ -102,17 +103,19 @@ public class Graph implements IGraph {
 			}
 			start = temp_start;
 		}
-		for (Road x : routes) {
-			System.out.println(x.getRdName());
-		}
+//		for (Road x : routes) {
+//			System.out.println(x.getRdName());
+//		}
 		path.add(start);
 		String route = "";
-	
+		int distance = 0;
 		for (int i = routes.size() - 1, t = path.size() - 1; i >= 0; i--, t--) {
 			Road curr_road = routes.get(i);
+			distance += curr_road.getDist();
 			route += path.get(t) + " -> road " + curr_road.getRdName() + " -> ";
 		}
 		route += path.get(0);
+		route += "\nTotal distance is " + distance;
 		return route;
 	}
 
@@ -129,7 +132,6 @@ public class Graph implements IGraph {
 	}
 	
 	public Location findNearest(String loc1, String type,List<Location> locations) {
-		List<String> path = new ArrayList<>();
 		PriorityQueue<Road> dist = new PriorityQueue<>(new Comparator<Road>() {
 			@Override
 			public int compare(Road a, Road b) {
@@ -157,9 +159,12 @@ public class Graph implements IGraph {
 		String curr ;
 		while (!dist.isEmpty()) {
 			 curr = dist.poll().getEnd();
+//			 System.out.println("NEAREST!"+curr);
 			 Location currLoc = findLocation(locations, curr); 
+//			 System.out.println("AND"+currLoc.getType());
 			 String currType = currLoc.getType();
-			 if(curr.equals(currType)) {
+			 
+			 if(currType.equals(type) && !curr.equals(loc1)) {
 				 return currLoc;
 			 }
 			 for (Road i : graph.get(curr)) {
@@ -178,7 +183,7 @@ public class Graph implements IGraph {
 
 	private Location findLocation(List<Location> locations, String curr) {
 		for(Location l : locations) {
-			if (l.equals(curr)) {
+			if (l.getName().equals(curr)) {
 				return l;
 			}
 		}
