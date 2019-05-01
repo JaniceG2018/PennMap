@@ -132,7 +132,6 @@ public class Graph implements IGraph {
 	}
 	
 	public Location findNearest(String loc1, String type,List<Location> locations) {
-		List<String> path = new ArrayList<>();
 		PriorityQueue<Road> dist = new PriorityQueue<>(new Comparator<Road>() {
 			@Override
 			public int compare(Road a, Road b) {
