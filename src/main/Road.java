@@ -105,4 +105,4 @@ public class Road {
 	public void setDist(double dist) {
 		this.dist = dist;
 	}
-} //all checked
+}

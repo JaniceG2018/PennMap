@@ -59,17 +59,16 @@ public class QuadTreeTest {
 		tree = new QuadTree();
 //		Location l2[] = new Location[] { a,b,c,d,e,f,g };
 //		locs2 = Arrays.asList(l2);
-
 	}
 
 	@Test
 	public void testInsert() {
 		Location l[] = new Location[] { loc0, loc1, loc2, loc3, loc4, loc5, loc6, loc7, loc8, loc9, loc10, loc11, loc12,
 				loc13, loc14, loc15, loc16, loc17, loc18, loc19, loc20 };
-
 		locs = Arrays.asList(l);
 		tree.enclosingQuad(locs);
 		assertEquals(0, tree.getSize());
+		
 		// Test insert null
 		assertFalse(tree.insert(null));
 		for (int i = 0; i < locs.size(); i++) {
@@ -80,7 +79,6 @@ public class QuadTreeTest {
 		// Test insert duplicate location
 		 assertFalse(tree.insert(loc0));
 		 assertFalse(tree.insert(loc10));
-
 	}
 
 	@Test
@@ -90,6 +88,7 @@ public class QuadTreeTest {
 		locs = Arrays.asList(l);
 		tree.enclosingQuad(locs);
 		assertEquals(0, tree.getSize());
+		
 		// Insert locations into the quadtree
 		for (int i = 0; i < locs.size(); i++) {
 			assertTrue(tree.insert(locs.get(i)));
@@ -107,7 +106,6 @@ public class QuadTreeTest {
 		exp0.add(loc12);
 		res = tree.search("Store", range);
 		result = new HashSet<>(res);
-
 		System.out.println();
 		assertEquals(exp0, result);
 
@@ -130,11 +128,8 @@ public class QuadTreeTest {
 			exp2.add(l[i]);
 		}
 		result = new HashSet<>(res);
-
 		assertTrue(exp2.equals(result));
 
-		
-		
 		Set<Location> exp3 = new HashSet<Location>();
 		range = new Range(new Coordinate(0,51),new Coordinate(60,101));
 		int school3[] = {5,16, 17, 18};
@@ -160,8 +155,6 @@ public class QuadTreeTest {
 			System.out.println(location.getName());
 		}
 		assertTrue(exp4.equals(result));
-
-
 	}
 
 	@Test
@@ -170,7 +163,6 @@ public class QuadTreeTest {
 		locs.add(new Location("Fine Wine and Good Spirit", "Store", new Coordinate(0, 0)));
 		locs.add(new Location("WaWa@Chestnut", "Restaurant", new Coordinate(20, 0)));
 		Range exp = new Range(new Coordinate(0, 0), new Coordinate(20, 0));
-
 		assertEquals(exp, tree.enclosingQuad(locs));
 	}
 }

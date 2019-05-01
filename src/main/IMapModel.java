@@ -36,4 +36,4 @@ public interface IMapModel {
 	 */
 	public List<Location> findAll(String type, double dist);
 
-} //all checked
+}

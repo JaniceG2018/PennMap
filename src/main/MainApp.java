@@ -54,14 +54,13 @@ public class MainApp {
 		// Construct QuadTree and Graph
 		List<String> list = new ArrayList<>();
 		Collections.addAll(list, arr);
-
+		
 		PennMap pMap = new PennMap(list, new Coordinate(55, 50));
 		
 		// For error handling
 		HashSet<String> locNames = new HashSet<String>();
 		for (Location loc : pMap.getLocationList()) {
 			locNames.add(loc.getName());
-
 		}
 		
 		Scanner in = new Scanner(System.in);
@@ -168,7 +167,6 @@ public class MainApp {
 					userInput = in.next();
 					switch (userInput) {
 						case "1":
-//							System.out.println("store");
 							Location loc0 = pMap.findNearest("Store");
 							if(loc0 == null) {
 								System.out.println("No such type of location is near you!");
@@ -178,7 +176,6 @@ public class MainApp {
 							newSearch = true;
 							break;
 						case "2":
-//							System.out.println("school");
 							Location loc1 = pMap.findNearest("School");
 							if(loc1 == null) {
 								System.out.println("No such type of location is near you!");
@@ -188,7 +185,6 @@ public class MainApp {
 							newSearch = true;
 							break;
 						case "3":
-//							System.out.println("restaurant");
 							Location loc2 = pMap.findNearest("Restaurant");
 							if(loc2 == null) {
 								System.out.println("No such type of location is near you!");
@@ -198,7 +194,6 @@ public class MainApp {
 							newSearch = true;
 							break;
 						case "4":
-//							System.out.println("museum");
 							Location loc3 = pMap.findNearest("Museum");
 							if(loc3 == null) {
 								System.out.println("No such type of location is near you!");

@@ -118,9 +118,7 @@ public class Graph implements IGraph {
 					predecessor.put(i.getEnd(), i.getStart());
 					minHeap.offer(new Pair((res.get(i.getStart()) + i.getDist()), w));
 				}
-
 			}
-
 		}
 
 		String start = loc2;
@@ -138,7 +136,7 @@ public class Graph implements IGraph {
 			}
 			start = temp_start;
 		}
-
+		
 		path.add(start);
 		String route = "";
 		int distance = 0;
@@ -192,13 +190,12 @@ public class Graph implements IGraph {
 			predecessor.put(s, null);
 		}
 
-		if (!res.containsKey(loc1)) {
+		if (!res.containsKey(loc1))
 			throw new IllegalArgumentException("The starting location doesn't exist!");
-		}
 
 		Pair source = new Pair(0, loc1);
 		res.put(loc1, 0.0);
-
+		
 		minHeap.offer(source);
 		String curr = "";
 
@@ -215,36 +212,29 @@ public class Graph implements IGraph {
 				System.out.println("Total distance is " + res.get(curr));
 				return findLocation(locations, curr);
 			}
-
 			visited.add(curr); 
 
 			// Unreachable
-			if (res.get(curr).equals(Double.MAX_VALUE)) {
+			if (res.get(curr).equals(Double.MAX_VALUE))
 				return null;
-			}
 
 			for (Road i : graph.get(curr)) {
 				String w = i.getEnd();
 				// update the distance
 				if (res.get(i.getEnd()) > (res.get(i.getStart()) + i.getDist())) {
-
 					res.put(i.getEnd(), (res.get(i.getStart()) + i.getDist()));
 					predecessor.put(i.getEnd(), i.getStart());
 					minHeap.offer(new Pair((res.get(i.getStart()) + i.getDist()), w));
 				}
-
 			}
 		}
-
 		return null;
-
 	}
 
 	private Location findLocation(List<Location> locations, String curr) {
 		for (Location l : locations) {
-			if (l.getName().equals(curr)) {
+			if (l.getName().equals(curr))
 				return l;
-			}
 		}
 		return null;
 	}

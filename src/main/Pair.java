@@ -1,6 +1,7 @@
 package main;
 
 public class Pair {
+	
 	private String value;
 	private double key;
 	
@@ -23,7 +24,5 @@ public class Pair {
 
 	public void setKey(double key) {
 		this.key = key;
-	}
-	
-	
+	}	
 }

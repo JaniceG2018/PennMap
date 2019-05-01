@@ -105,4 +105,4 @@ public class Location {
 		else
 			return name.equals(((Location) obj).getName());
 	}
-} //all checked
+}

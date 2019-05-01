@@ -38,13 +38,10 @@ public class PennMap implements IMapMaker, IMapModel {
 		graph = makeGraph();
 	}
 	
-	
-	
 	private Location matchLocation() {
 		for(Location location : locationList) {
-			if(location.getCoord().equals(currentPoint)) {
+			if(location.getCoord().equals(currentPoint))
 				return location;
-			}
 		}
 		return null;
 	}
@@ -57,33 +54,24 @@ public class PennMap implements IMapMaker, IMapModel {
 		for (int i = 0; i < initData.size(); i++) {
 			String s = initData.get(i);
 			String[] sa = s.split(", ");
-
+			
 			String[] sStartCoord = sa[0].substring(1, sa[0].length() - 1).split(",");
-
 			double sLat = Double.valueOf(sStartCoord[1]); // y
 			double sLon = Double.valueOf(sStartCoord[0]); // x
 			Coordinate startCoord = new Coordinate(sLon, sLat);
-
 			Location startLoc = new Location(sa[1], sa[2], startCoord);
 			if (!locationList.contains(startLoc))
 				locationList.add(startLoc);
 
 			String[] sEndCoord = sa[3].substring(1, sa[3].length() - 1).split(",");
-
-
 			double eLon = Double.valueOf(sEndCoord[0]); // x
 			double eLat = Double.valueOf(sEndCoord[1]); // y
-
 			Coordinate endCoord = new Coordinate(eLon, eLat);
-
 			Location endLoc = new Location(sa[4], sa[5], endCoord);
 			if (!locationList.contains(endLoc))
 				locationList.add(endLoc);
 
-//			double distance = Math.sqrt(
-//					(Math.abs(sLat - eLat) * Math.abs(sLat - eLat)) + (Math.abs(sLon - eLon) * Math.abs(sLon - eLon)));
 			double distance = Double.valueOf(sa[7]);
-
 			Road rd = new Road(sa[1], sa[4], sa[6], distance);
 			if (!roadList.contains(rd))
 				roadList.add(rd);
@@ -99,7 +87,6 @@ public class PennMap implements IMapMaker, IMapModel {
 	@Override
 	public String findShortestPath(String loc1, String loc2) {
 		return graph.findShortestPath(loc1, loc2);
-		
 	}
 
 	/**
@@ -113,12 +100,9 @@ public class PennMap implements IMapMaker, IMapModel {
 	public List<Location> findAll(String type, double dist) {
 		double currY = currentPoint.getLat();
 		double currX = currentPoint.getLon();
-		
 		Coordinate upperLeft= new Coordinate(currX-dist,currY-dist);
 		Coordinate lowerRight= new Coordinate(currX+dist,currY+dist);
-		
 		Range range = new Range(upperLeft,lowerRight);
-		
 		return tree.search(type, range);		
 	}
 
@@ -150,9 +134,7 @@ public class PennMap implements IMapMaker, IMapModel {
 	}
 
 	/**
-	 * 
 	 * make a graph for the pennmap
-	 * 
 	 * @return a graph that associated with this specific pennmap
 	 */
 	@Override
