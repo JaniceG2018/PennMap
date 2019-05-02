@@ -5,7 +5,7 @@ import java.util.List;
 
 /**
  * 
- * @author xuanwang calchen
+ * @author Xuan Wang, calchen
  *
  */
 public class QuadTree implements IQuadTree {
