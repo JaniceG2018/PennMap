@@ -3,15 +3,14 @@ package main;
 import java.util.List;
 
 /**
- * The IMapModel interface contains methods that support the functionalities of our app
+ * This interface contains methods that support the functionalities of our app
  * @author calchen
  *
  */
 public interface IMapModel {
 
 	/**
-	 * findShortestPath() returns the directions in text for the shortest path from
-	 * a starting Location to a destination
+	 * Return the directions in text for the shortest path from a starting Location to a destination
 	 * @param loc1 the name of the starting Location
 	 * @param loc2 the name of the destination
 	 * @return the directions in text from the starting Location to the destination
@@ -19,7 +18,7 @@ public interface IMapModel {
 	public String findShortestPath(String loc1, String loc2);
 	
 	/**
-	 * findNearest() returns the nearest Location of a given type from the current user Location,
+	 * Return the nearest Location of a given type from the current user Location,
 	 * or null if not found
 	 * @param type the type of Location we want to find
 	 * @return the nearest Location of the given type from the current user Location
@@ -27,13 +26,11 @@ public interface IMapModel {
 	public Location findNearest(String type);
 	
 	/**
-	 * findAll() returns a list of Locations of a given type within a given distance from
+	 * Return a list of Locations of a given type within a given distance from
 	 * the current user Location
 	 * @param type the type of Locations we want to find
 	 * @param dist the search distance from the current user Location
-	 * @return a list of Locations of the given type within the given distance from
-	 * the current user Location
+	 * @return a list of Locations of the given type within the given distance from the current user Location
 	 */
 	public List<Location> findAll(String type, double dist);
-
 }

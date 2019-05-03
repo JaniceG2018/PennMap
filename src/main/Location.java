@@ -1,7 +1,7 @@
 package main;
 
 /**
- * The Location class models a Location with a name, a type and a Coordinate
+ * This class models a Location on the map with a name, a type and a Coordinate
  * @author calchen
  *
  */
@@ -23,11 +23,10 @@ public class Location {
 	private Coordinate coord;
 	
 	/**
-	 * Copy constructor of the Location class, which initializes the name, the type and the Coordinate
-	 * of the Location to given values
-	 * @param name the name of the Location
-	 * @param type the type of the Location
-	 * @param coord the Coordinate of the Location
+	 * Copy constructor of this class, which initializes the name, type and Coordinate of the Location to given values
+	 * @param name   the name of the Location
+	 * @param type   the type of the Location
+	 * @param coord  the Coordinate of the Location
 	 */
 	public Location(String name, String type, Coordinate coord) {
 		this.name = name;
@@ -84,7 +83,7 @@ public class Location {
 	}
 	
 	/**
-	 * hashCode() sets the hasCode of the Location to the hasCode of its name
+	 * Set the hash code of the Location to the hash code of its name
 	 * @return the hash code of the Location's name
 	 */
 	@Override
@@ -93,16 +92,14 @@ public class Location {
 	}
 	
 	/**
-	 * equals() compares this Location with an Object, and returns true if the Object is a Location and
-	 * has the same name as this Location, and false otherwise
-	 * @param obj an Object that we want to compare this Location to
-	 * @return true if the Object is a Location and has the same name as this Location
+	 * Check if a given Location is the same as this Location
+	 * @param loc a given Location we want to examine
+	 * @return true if loc is the same as this Location, and false otherwise
 	 */
-	@Override
-	public boolean equals(Object obj) {
-		if (obj == null || !(obj instanceof Location))
+	public boolean equals(Location loc) {
+		if (loc == null)
 			return false;
 		else
-			return name.equals(((Location) obj).getName());
+			return name.equals(loc.getName());
 	}
-}
+} // ac

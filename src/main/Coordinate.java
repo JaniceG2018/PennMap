@@ -1,7 +1,7 @@
 package main;
 
 /**
- * The Coordinate class models a Coordinate on the map with a longitude and a latitude
+ * This class models a Coordinate on the map with a longitude and a latitude
  * @author calchen
  *
  */
@@ -68,11 +68,11 @@ public class Coordinate {
 	}
 	
 	/**
-	 * equals() checks if this Coordinate is the same as a given Coordinate
+	 * Check if this Coordinate is the same as a given Coordinate
 	 * @param coord a Coordinate we want to compare to
 	 * @return true if this Coordinate is the same as coord
 	 */
 	public boolean equals(Coordinate coord) {
 		return lat == coord.getLat() && lon == coord.getLon();
 	}
-} // all checked
+} // ac

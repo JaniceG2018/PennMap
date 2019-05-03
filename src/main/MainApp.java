@@ -7,17 +7,12 @@ import java.util.List;
 import java.util.Scanner;
 
 /**
- * 
- * This main app will take in initial map data, and using {@PennMap.java} to make the function work
- * it will first call makegraph and make quadtree method to generate the initial map
- * 
- * then based on user input, it will solve three problems
- * 
+ * This class takes in the map data in the form of a String[], and uses the PennMap class to construct the QuadTree and the Graoh.
+ * Then based on user selections, the corresponding methods will be called which allows the following queries:
  * 1. find the shortest path from one location to another 
- * 2. find the nearest location of a type
- * 3. find all locations in a given distance
- * 
- * @author calchen, jingwen qiang
+ * 2. find the nearest location of a given type from current user location
+ * 3. find all locations of a given type within a given distance from current user location
+ * @author calchen, Jingwen Qiang
  *
  */
 public class MainApp {
@@ -51,13 +46,12 @@ public class MainApp {
 	               		"(30,0), Spicy Now, Restaurant, (40,20), Institute of Contemporary Art, Museum, Eric St, 30", 
 	               		"(40,20), Institute of Contemporary Art, Museum, (35,50), Annenberg School for Communication Library, School, Swap St, 30"};
 		
-		// Construct QuadTree and Graph
+		// construct QuadTree and Graph
 		List<String> list = new ArrayList<>();
 		Collections.addAll(list, arr);
-		
 		PennMap pMap = new PennMap(list, new Coordinate(55, 50));
 		
-		// For error handling
+		// for handling invalid inputs from the user later
 		HashSet<String> locNames = new HashSet<String>();
 		for (Location loc : pMap.getLocationList()) {
 			locNames.add(loc.getName());
@@ -217,4 +211,4 @@ public class MainApp {
 		System.out.println();
 		System.out.println("You have chosen to quit. Program terminates.");
 	}
-}
+} // ac

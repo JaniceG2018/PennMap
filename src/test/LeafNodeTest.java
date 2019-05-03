@@ -16,8 +16,16 @@ import main.LeafNode;
 import main.Location;
 import main.Range;
 
+/**
+ * This class tests the methods of the LeafNode class
+ * @author calchen
+ *
+ */
 public class LeafNodeTest {
 
+	/**
+	 * Test the search() method of the LeafNode class
+	 */
 	@Test
 	public void testSearch() {
 		Range range = new Range(new Coordinate(0,0),new Coordinate(100,100));
@@ -29,6 +37,9 @@ public class LeafNodeTest {
 
 	}
 	
+	/**
+	 * Test the split() method of the LeafNode class
+	 */
 	@Test
 	public void testSplit() {
 		LeafNode node = new LeafNode("name", "type", new Coordinate(1, 1), new Range(new Coordinate(0, 0), new Coordinate(10, 10)));
@@ -36,6 +47,9 @@ public class LeafNodeTest {
 		assertEquals(exp, node.split());
 	}
 	
+	/**
+	 * Test the isEmpty() method of the LeafNode class
+	 */
 	@Test
 	public void testIsEmpty() {
 		LeafNode node = new LeafNode("name", "type", new Coordinate(1, 1), new Range(new Coordinate(0, 0), new Coordinate(10, 10)));

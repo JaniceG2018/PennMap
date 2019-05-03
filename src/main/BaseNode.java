@@ -3,7 +3,7 @@ package main;
 import java.util.List;
 
 /**
- * The BaseNode class models a generic node in our QuadTree
+ * This class models a generic node in our QuadTree
  * @author calchen, Jiaying Guo
  *
  */
@@ -46,7 +46,7 @@ public abstract class BaseNode {
 	}
 	
 	/**
-	 * search() finds all Locations of a given type within a given Range and modifies the parameter locs to include
+	 * Find all Locations of a given type within a given Range and modifies the parameter locs to include
 	 * all search results.
 	 * @param type   type of Locations (e.g. "Restaurant")
 	 * @param range  search Range
@@ -55,13 +55,13 @@ public abstract class BaseNode {
 	public abstract void search(String type, Range range, List<Location> locs);
 	
 	/**
-	 * isEmpty() checks if this node is empty
+	 * Check if this node is empty
 	 * @return true if this node is empty
 	 */
 	public abstract boolean isEmpty();
 	
 	/**
-	 * mathSplit() calculates the sub-Range within a given Range where a given Coordinate belongs
+	 * Calculate the sub-Range within a given Range where a given Coordinate belongs
 	 * @param range  a Range
 	 * @param coord  a Coordinate within range
 	 * @return       the sub-Range within range where coord belongs
@@ -119,4 +119,4 @@ public abstract class BaseNode {
 		else
 			return r4;
 	}
-} // all checked
+} // ac

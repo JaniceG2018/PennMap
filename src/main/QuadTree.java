@@ -4,39 +4,39 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 
+ * This class models a QuadTree with a root and a size
  * @author Xuan Wang, calchen
  *
  */
 public class QuadTree implements IQuadTree {
 	
 	/**
-	 * 
+	 * A reference to an EmptyNode
 	 */
 	public static final BaseNode emptyNode = new EmptyNode();
 	
 	/**
-	 * the root of the QuadTree
+	 * The root of the QuadTree
 	 */
 	private BaseNode root;
 	
 	/**
-	 * number of locations stored in the tree 
+	 * The number of Locations stored in our QuadTree
 	 */
 	private int size;
 	
 	/**
-	 * Empty constructor of the QuadTree class, which creates an empty QuadTree
+	 * Empty constructor of the QuadTree class, which sets the root of the QuadTree to an EmptyNode
 	 */
 	public QuadTree() {
 		root = emptyNode;
 	}
 		
 	/**
-	 * 
-	 * @param type
-	 * @param range
-	 * @return 
+	 * Method for searching all Locaitons of a given type within a given Range
+	 * @param type  the type of Locaitons we want to search
+	 * @param range the search Range
+	 * @return a list of all Locations of the given type within range
 	 */
 	@Override
 	public List<Location> search(String type, Range range) {
@@ -46,8 +46,9 @@ public class QuadTree implements IQuadTree {
 	}
 	
 	/**
-	 * 
-	 * @param loc
+	 * Method for inserting a Location into our QuadTree
+	 * @param loc the Location that we want to insert
+	 * @return true if loc is successfully inserted
 	 */
 	@Override
 	public boolean insert(Location loc) {
@@ -67,8 +68,8 @@ public class QuadTree implements IQuadTree {
 	}
 	
 	/**
-	 * 
-	 * @param node
+	 * Helper method for inserting
+	 * @param node the node that we want to insert
 	 * @param coord
 	 * @param loc
 	 * @param curRange
@@ -89,7 +90,7 @@ public class QuadTree implements IQuadTree {
 			return new LeafNode(loc.getName(), loc.getType(), coord, leafRange);
 		}
 	
-		// 3. If we need to add location in a quad that includes a location in it, we need to split it 
+		// 3. if we need to add location in a quad that includes a location in it, we need to split it 
 		// into an internal node and add both old and new locations to it 
 		if (node instanceof LeafNode) {
 			// Check Duplicate Name
@@ -100,14 +101,14 @@ public class QuadTree implements IQuadTree {
 			return newNode;
 		}
 
-		// 4. If current node is Internal Node, then we should insert the location in its children
+		// 4. if current node is Internal Node, then we should insert the location in its children
 		Coordinate UL = curRange.getUpperL();
 		Coordinate BR = curRange.getBottomR();
 		// (lon, lat) is the central point of current Quad
 		double lat = (UL.getLat() + BR.getLat()) / 2;
 		double lon = (UL.getLon() + BR.getLon()) / 2;
 		Range childrenRange = BaseNode.mathSplit(curRange, coord);
-		// Decide which children to insert according to this location's coordinate
+		// decide which children to insert according to this location's coordinate
 		if (coord.getLat() <= lat && coord.getLon() <= lon)
 			((InternalNode) node).setNorthW(insert(((InternalNode) node).getNorthW(), coord, loc, childrenRange));
 		else if (coord.getLat() <= lat && coord.getLon() > lon)
@@ -120,9 +121,9 @@ public class QuadTree implements IQuadTree {
 	}
 
 	/**
-	 * 
-	 * @param locs
-	 * @return
+	 * Method that returns the smallest Range which contains a given list of Locations
+	 * @param locs a list of Locations we want to include
+	 * @return the smallest Range which contains all locs
 	 */
 	@Override
 	public Range enclosingQuad(List<Location> locs) {
@@ -138,9 +139,9 @@ public class QuadTree implements IQuadTree {
 	}
 	
 	/**
-	 * helper method to update current QuadTree range
-	 * @param coord
-	 * @param range
+	 * Helper method to update current QuadTree range
+	 * @param coord a Coordinate
+	 * @param range a Range
 	 */
 	private void updateRange(Coordinate coord, Range range) {
 		double lon = coord.getLon();
@@ -163,10 +164,18 @@ public class QuadTree implements IQuadTree {
 		range.setBottomR(bottomR);
 	}
 
+	/**
+	 * Getter for the size
+	 * @return the size
+	 */
 	public int getSize() {
 		return size;
 	}
 
+	/**
+	 * Setter for the size
+	 * @param size the new size
+	 */
 	public void setSize(int size) {
 		this.size = size;
 	}

@@ -33,16 +33,16 @@ public class Graph implements IGraph {
 			graph.put(startLoc, new LinkedList<Road>());
 		}
 		for (Road r : roads) {
-			String start = r.getStart();
-			String end = r.getEnd();
+			String start = r.getStartLocName();
+			String end = r.getEndLocName();
 			graph.get(start).add(r);
-			Road reverseRoad = new Road(r.getEnd(), r.getStart(), r.getRdName(), r.getDist());
+			Road reverseRoad = new Road(r.getEndLocName(), r.getStartLocName(), r.getRdName(), r.getDist());
 			graph.get(end).add(reverseRoad);
 		}
 	}
 
 	/**
-	 * findShortestPath() returns the directions in text for the shortest path from a given Location to another
+	 * Return the directions in text for the shortest path from a given Location to another
 	 * @param startLoc  the name of the starting Location
 	 * @param endLoc    the name of the destination
 	 * @return the directions in text for the shortest path from startLoc to endLoc
@@ -101,13 +101,13 @@ public class Graph implements IGraph {
 			if (res.get(curr).equals(Double.MAX_VALUE))
 				return "";
 			for (Road i : graph.get(curr)) {
-				String w = i.getEnd();
+				String w = i.getEndLocName();
 
 				// update the distance of w
-				if (res.get(i.getEnd()) > (res.get(i.getStart()) + i.getDist())) {
-					res.put(i.getEnd(), (res.get(i.getStart()) + i.getDist()));
-					pred.put(i.getEnd(), i.getStart());
-					minHeap.offer(new Pair((res.get(i.getStart()) + i.getDist()), w));
+				if (res.get(i.getEndLocName()) > (res.get(i.getStartLocName()) + i.getDist())) {
+					res.put(i.getEndLocName(), (res.get(i.getStartLocName()) + i.getDist()));
+					pred.put(i.getEndLocName(), i.getStartLocName());
+					minHeap.offer(new Pair((res.get(i.getStartLocName()) + i.getDist()), w));
 				}
 			}
 		}
@@ -121,7 +121,7 @@ public class Graph implements IGraph {
 			tempEnd = start;
 			tempStart = pred.get(start);
 			for (Road k : graph.get(tempStart)) {
-				if (k.getEnd().equals(tempEnd))
+				if (k.getEndLocName().equals(tempEnd))
 					routes.add(k);
 			}
 			start = tempStart;
@@ -142,7 +142,7 @@ public class Graph implements IGraph {
 	}
 
 	/**
-	 * findNearest() returns the nearest Location of a given type from the current user Location,
+	 * Return the nearest Location of a given type from the current user Location,
 	 * or null if not found
 	 * @param currLoc  the current user Location
 	 * @param type     type of Locations (e.g. "Restaurant")
@@ -202,12 +202,12 @@ public class Graph implements IGraph {
 				return null;
 
 			for (Road i : graph.get(curr)) {
-				String w = i.getEnd();
+				String w = i.getEndLocName();
 				// update the distance
-				if (res.get(i.getEnd()) > (res.get(i.getStart()) + i.getDist())) {
-					res.put(i.getEnd(), (res.get(i.getStart()) + i.getDist()));
-					predecessor.put(i.getEnd(), i.getStart());
-					minHeap.offer(new Pair((res.get(i.getStart()) + i.getDist()), w));
+				if (res.get(i.getEndLocName()) > (res.get(i.getStartLocName()) + i.getDist())) {
+					res.put(i.getEndLocName(), (res.get(i.getStartLocName()) + i.getDist()));
+					predecessor.put(i.getEndLocName(), i.getStartLocName());
+					minHeap.offer(new Pair((res.get(i.getStartLocName()) + i.getDist()), w));
 				}
 			}
 		}

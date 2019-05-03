@@ -3,7 +3,7 @@ package main;
 import java.util.List;
 
 /**
- * The InternalNode class models an InternalNode of our QuadTree with 4 children
+ * This class models an InternalNode of our QuadTree with 4 children
  * @author calchen
  *
  */
@@ -40,18 +40,6 @@ public class InternalNode extends BaseNode {
 	}
 	
 	/**
-	 * Constructor of the InternalNode class, set the range of this node
-	 * @param range
-	 */
-	public InternalNode(Range range) {
-		super(range);
-		northE = QuadTree.emptyNode;
-		northW = QuadTree.emptyNode;
-		southE = QuadTree.emptyNode;
-		southW = QuadTree.emptyNode;
-	}
-	
-	/**
 	 * Copy constructor of the InternalNode class, which initializes all 4 children to given BaseNodes
 	 */
 	public InternalNode(BaseNode northE, BaseNode northW, BaseNode southE, BaseNode southW) {
@@ -62,10 +50,22 @@ public class InternalNode extends BaseNode {
 	}
 	
 	/**
-	 * search() searches locations of given type within given range in children node representing four directions NE, NW, SE, SW
-	 * @param type the type of Location we want to search
-	 * @param range the search Range
-	 * @param locs a list of Locations containing the search results (mofify in-place)
+	 * Constructor of the InternalNode class, set the range of this node
+	 * @param range
+	 */
+	public InternalNode(Range range) {
+		super(range);
+		northE = QuadTree.emptyNode;
+		northW = QuadTree.emptyNode;
+		southE = QuadTree.emptyNode;
+		southW = QuadTree.emptyNode;
+	}
+
+	/**
+	 * Search locations of given type within given range in children node representing four directions NE, NW, SE, SW
+	 * @param type   the type of Location we want to search
+	 * @param range  the search Range
+	 * @param locs   a list of Locations containing the search results (mofify in-place)
 	 */
 	@Override
 	public void search(String type, Range range, List<Location> locs) {
@@ -80,7 +80,7 @@ public class InternalNode extends BaseNode {
 	}
 
 	/**
-	 * isEmpty() checks if all 4 children of this InternalNode are EmptyNodes
+	 * Check if all 4 children of this InternalNode are EmptyNodes
 	 * @return true if all 4 children of this InternalNode are EmptyNodes and false otherwise
 	 */
 	@Override
@@ -92,7 +92,7 @@ public class InternalNode extends BaseNode {
 	}
 	
 	/**
-	 * isNull() is a helper function that checks if a given BaseNode is an EmptyNode
+	 * Helper function for checking if a given BaseNode is an EmptyNode
 	 * @param node the BaseNode we want to examine
 	 * @return true if the given BaseNode is an EmptyNode
 	 */

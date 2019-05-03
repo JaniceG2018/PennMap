@@ -8,8 +8,14 @@ import org.junit.Test;
 import main.Coordinate;
 import main.Range;
 
+/**
+ * This class tests methods of the Range class
+ */
 public class RangeTest {
-
+	
+	/**
+	 * This method tests the contains() method of the Range class
+	 */
 	@Test
 	public void testContains() {
 		Range range = new Range(new Coordinate(0, 0), new Coordinate(100, 100));
@@ -22,6 +28,9 @@ public class RangeTest {
 		assertFalse(range.contains(outOfRange));
 	}
 	
+	/**
+	 * This method tests the intersects() method of the Range class
+	 */
 	@Test
 	public void testIntersects() {
 		Range thisRange = new Range(new Coordinate(0, 0), new Coordinate(100, 100));

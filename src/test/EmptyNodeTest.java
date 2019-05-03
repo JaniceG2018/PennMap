@@ -12,8 +12,16 @@ import main.EmptyNode;
 import main.Location;
 import main.Range;
 
+/**
+ * This class tests the methods of the EmptyNode class
+ * @author calchen
+ *
+ */
 public class EmptyNodeTest {
 
+	/**
+	 * Test the search() method of the EmptyNode class
+	 */
 	@Test
 	public void testSearch() {
 		EmptyNode node = new EmptyNode();
@@ -25,9 +33,12 @@ public class EmptyNodeTest {
 		node.search("Street", new Range(new Coordinate(1.0, 1.0), new Coordinate(1.0, 1.0)), locs);
 	}
 	
+	/**
+	 * Test the isEmpty() method of the EmptyNode class
+	 */
 	@Test
 	public void testIsEmpty() {
 		EmptyNode node = new EmptyNode();
 		assertTrue(node.isEmpty());
 	}
-}
+} // ac

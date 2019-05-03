@@ -1,8 +1,7 @@
 package main;
 
 /**
- * The Range class models a Range on the map defined by a upper-left and a bottom-right Coordinates
- * 
+ * This class models a Range on the map defined by upper-left and bottom-right Coordinates
  * @author calchen
  *
  */
@@ -19,7 +18,7 @@ public class Range {
 	private Coordinate bottomR;
 
 	/**
-	 * Empty constructor of the Range class, which initializes the upper-left and bottom-right
+	 * Empty constructor of this class, which initializes the upper-left and bottom-right
 	 * Coordinates of the Range to default values
 	 */
 	public Range() {
@@ -28,10 +27,10 @@ public class Range {
 	}
 
 	/**
-	 * Copy constructor of the Range class, which initializes the upper-left and bottom-right
+	 * Copy constructor of this class, which initializes the upper-left and bottom-right
 	 * Coordinates of the Range to given values
-	 * @param upperL the upper-left Coordinate of the Range
-	 * @param bottomR the bottom-right Coordinate of the Range
+	 * @param upperL   the upper-left Coordinate of the Range
+	 * @param bottomR  the bottom-right Coordinate of the Range
 	 */
 	public Range(Coordinate upperL, Coordinate bottomR) {
 		this.upperL = upperL;
@@ -71,9 +70,9 @@ public class Range {
 	}
 
 	/**
-	 * contains() checks if a given Coordinate is contained within this Range
+	 * Checks if a given Coordinate is contained within this Range
 	 * @param coord the Coordinate we want to examine
-	 * @return true if the given Coordinate is contained within this Range, and false otherwise
+	 * @return true if coord is contained within this Range, and false otherwise
 	 */
 	public boolean contains(Coordinate coord) {
 		if (coord == null)
@@ -104,9 +103,9 @@ public class Range {
 	}
 
 	/**
-	 * intersects() checks if a given Range intersects with this Range
+	 * Checks if a given Range intersects with this Range
 	 * @param otherRange the Range we want to examine
-	 * @return true if the given Range intersects with this Range, and false otherwise
+	 * @return true if otherRange intersects with this Range, and false otherwise
 	 */
 	public boolean intersects(Range otherRange) {
 		if (otherRange == null)
@@ -119,7 +118,10 @@ public class Range {
 	}
 	
 	/**
-	 * helper method for checking if two range intersect
+	 * Helper method for checking if two Ranges intersect
+	 * @param otherRange the Range we want to examine
+	 * @param flag
+	 * @return true if otherRange intersects with this Range, and false otherwise
 	 */
 	private boolean intersects(Range otherRange, int flag) {
 		if (otherRange == null)
@@ -131,13 +133,21 @@ public class Range {
 		return contains(UL) || contains(BR) || contains(UR) || contains(BL);
 	}
 	
+	/**
+	 * 
+	 * @return 
+	 */
 	@Override
 	public int hashCode() {
 		return super.hashCode();
 	}
 	
-	@Override
-	public boolean equals(Object obj) {
-		return upperL.equals(((Range)obj).upperL) && bottomR.equals(((Range)obj).bottomR);
+	/**
+	 * Checks if a given Range is the same as this Range
+	 * @param otherRange the Range we want to examine
+	 * @return true if otherRange is the same as this Range, and false otherwise
+	 */
+	public boolean equals(Range otherRange) {
+		return upperL.equals(otherRange.upperL) && bottomR.equals(otherRange.bottomR);
 	}
-}
+} // ac
