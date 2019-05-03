@@ -15,12 +15,11 @@ public class PennMap implements IMapMaker, IMapModel {
 	private IGraph graph; //the Graph representing the map
 	private Location currentLoc;
 	private Coordinate currentPoint;  // current Location of user
-	private List<Road> roadList = new ArrayList<Road>();  // list of all roads in the map
-	private List<Location> locationList = new ArrayList<Location>(); // list of all locations in the map
+	private List<Road> roadList;  // list of all roads in the map
+	private List<Location> locationList; // list of all locations in the map
 	
 	public PennMap() {
-		roadList = new ArrayList<Road>();
-		locationList = new ArrayList<Location>();
+		
 	}
 	
 	/**
@@ -30,6 +29,8 @@ public class PennMap implements IMapMaker, IMapModel {
 	 * @param current location of the user
 	 */
 	public PennMap(List<String> init, Coordinate current) {
+		roadList = new ArrayList<Road>(); 
+		locationList = new ArrayList<Location>();
 		// Changed the data input stream to do the parsing first 
 		this.currentPoint = current;
 		parser(init);

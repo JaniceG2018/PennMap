@@ -23,8 +23,7 @@ public class Range {
 	 * Coordinates of the Range to default values
 	 */
 	public Range() {
-		this.upperL = new Coordinate();
-		this.bottomR = new Coordinate();
+		
 	}
 
 	/**
