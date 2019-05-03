@@ -1,7 +1,6 @@
 package test;
 
 import static org.junit.Assert.assertEquals;
-
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
@@ -27,12 +26,12 @@ import main.Range;
 public class QuadTreeTest {
 
 	/**
-	 * 
+	 * A list of Locations
 	 */
 	private List<Location> locs;
 	
 	/**
-	 * 
+	 * The QuadTree
 	 */
 	private QuadTree tree;
 	
@@ -59,7 +58,7 @@ public class QuadTreeTest {
 	Location loc20 = new Location("Happy Ending Bar", "Restaurant", new Coordinate(100, 100));
 
 	/**
-	 * 
+	 * Initialize the QuadTree
 	 */
 	@Before
 	public void setUp() {
@@ -78,14 +77,14 @@ public class QuadTreeTest {
 		tree.enclosingQuad(locs);
 		assertEquals(0, tree.getSize());
 		
-		// test insert null
+		// test inserting null
 		assertFalse(tree.insert(null));
 		for (int i = 0; i < locs.size(); i++) {
 			assertTrue(tree.insert(locs.get(i)));
 			assertEquals(i + 1, tree.getSize());
 		}
 
-		// test insert duplicate location
+		// test inserting duplicate Locations
 		 assertFalse(tree.insert(loc0));
 		 assertFalse(tree.insert(loc10));
 	}
@@ -95,18 +94,17 @@ public class QuadTreeTest {
 	 */
 	@Test
 	public void testSearch() {
-		Location l[] = new Location[] { loc0, loc1, loc2, loc3, loc4, loc5, loc6, loc7, loc8, loc9, loc10, loc11, loc12,
-				loc13, loc14, loc15, loc16, loc17, loc18, loc19, loc20 };
+		Location l[] = new Location[]{loc0, loc1, loc2, loc3, loc4, loc5, loc6, loc7, loc8, loc9, loc10, loc11, loc12,
+				loc13, loc14, loc15, loc16, loc17, loc18, loc19, loc20};
 		locs = Arrays.asList(l);
 		tree.enclosingQuad(locs);
 		assertEquals(0, tree.getSize());
 		
-		// insert locations into the quadtree
+		// insert Locations into the QuadTree
 		for (int i = 0; i < locs.size(); i++) {
 			assertTrue(tree.insert(locs.get(i)));
 			assertEquals(i + 1, tree.getSize());
 		}
-
 		Range range;
 		List<Location> res;
 		Set<Location> result;
@@ -180,4 +178,4 @@ public class QuadTreeTest {
 		Range exp = new Range(new Coordinate(0, 0), new Coordinate(20, 0));
 		assertEquals(exp, tree.enclosingQuad(locs));
 	}
-}
+} // ac

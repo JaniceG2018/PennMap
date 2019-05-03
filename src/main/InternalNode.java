@@ -3,7 +3,7 @@ package main;
 import java.util.List;
 
 /**
- * This class models an InternalNode of our QuadTree with 4 children
+ * This class models an InternalNode of the QuadTree with 4 children
  * @author calchen
  *
  */
@@ -50,8 +50,8 @@ public class InternalNode extends BaseNode {
 	}
 	
 	/**
-	 * Constructor of the InternalNode class, which sets the Range of this InternalNode
-	 * to a given Range and all 4 children to EmptyNodes
+	 * Constructor of this class, which initializes the Range of this InternalNode
+	 * to a given Range and all 4 children of this InternalNode to EmptyNodes
 	 * @param range
 	 */
 	public InternalNode(Range range) {
@@ -72,7 +72,7 @@ public class InternalNode extends BaseNode {
 
 	/**
 	 * Setter for the north-east child of this node
-	 * @param northE the new north-east child of this class
+	 * @param northE the new north-east child of this node
 	 */
 	public void setNorthE(BaseNode northE) {
 		this.northE = northE;
@@ -127,8 +127,8 @@ public class InternalNode extends BaseNode {
 	}
 	
 	/**
-	 * Find all locations of given type within a given Range among the children nodes of this InternalNode
-	 * @param type   the type of Location we want to search
+	 * Find all Locations of a given type within a given Range among the children of this InternalNode
+	 * @param type   the type of Locations (e.g. "Restaurant")
 	 * @param range  the search Range
 	 * @param locs   a list of Locations containing the search results
 	 */
@@ -159,7 +159,7 @@ public class InternalNode extends BaseNode {
 	/**
 	 * Helper function for checking if a given BaseNode is an EmptyNode
 	 * @param node the BaseNode that we want to examine
-	 * @return true if the given BaseNode is an EmptyNode
+	 * @return true if node is an EmptyNode, and false otherwise
 	 */
 	private boolean isNull(BaseNode node) {
 		if (node instanceof EmptyNode)
@@ -167,4 +167,4 @@ public class InternalNode extends BaseNode {
 		else
 			return false;
 	}
-}
+} // ac

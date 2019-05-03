@@ -16,19 +16,19 @@ import main.QuadTree;
 import main.Road;
 
 /**
- * This class tests the methods within the PennMap class
+ * This class tests the methods of the PennMap class
  * @author calchen, Jingwen Qiang, Jiaying Guo
  *
  */
 public class PennMapTest {
 
 	/**
-	 * 
+	 * The PennMap
 	 */
 	private PennMap pennMap;
 	
 	/**
-	 * 
+	 * Initialize the PennMap with the map data supplied
 	 */
 	@Before
 	public void setUp() {
@@ -61,7 +61,7 @@ public class PennMapTest {
 	}
 	
 	/**
-	 * This method tests the constructor of the PennMap class
+	 * Test the constructor of the PennMap class
 	 */
 	@Test
 	public void testConstructor() {
@@ -69,7 +69,7 @@ public class PennMapTest {
 	}
 	
 	/**
-	 * This method tests the makeQuadTree() method of the PennMap class
+	 * Test the makeQuadTree() method of the PennMap class
 	 */
 	@Test
 	public void testMakeQuadTree() {
@@ -81,13 +81,12 @@ public class PennMapTest {
 		locations.add(new Location("Ochatto", "Restaurant", new Coordinate(25, 0)));
 		locations.add(new Location("John Huntsman Hall", "School", new Coordinate(10, 50)));
 		locations.add(new Location("Graduate Center", "School", new Coordinate(20, 50)));
-		
 		QuadTree tree = (QuadTree)pennMap.makeQuadTree();
 		assertEquals(21,tree.getSize());
 	}
 	
 	/**
-	 * This method tests the makeGraph() method of the PennMap class
+	 * Test the makeGraph() method of the PennMap class
 	 */
 	@Test
 	public void testMakeGraph() {
@@ -103,7 +102,7 @@ public class PennMapTest {
 	}
 	
 	/**
-	 * This method tests the findAll() method of the PennMap class
+	 * Test the findAll() method of the PennMap class
 	 */
 	@Test
 	public void testFindAll() {
@@ -112,11 +111,11 @@ public class PennMapTest {
 	}
 	
 	/**
-	 * This method tests the findNearest() method of the PennMap class
+	 * Test the findNearest() method of the PennMap class
 	 */
 	@Test
 	public void testFindNearest() {
 		Location res = pennMap.findNearest("Restaurant");
 		assertEquals("WaWa@Chestnut",res.getName());
 	}
-}
+} // ac

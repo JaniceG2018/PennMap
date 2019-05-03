@@ -9,22 +9,21 @@ import java.util.Map;
 import java.util.PriorityQueue;
 
 /**
- * The Graph class models a Road network to support findShortestPath() and findNearest() functionalities of our app
+ * The Graph class models a Road network on the map to support the findShortestPath() and findNearest() functionalities of our app
  * @author Jiaying Guo, calchen
  *
  */
 public class Graph implements IGraph {
 
 	/**
-	 * HashMap to store our Road network
+	 * HashMap to store the Road network on the map
 	 */
 	private HashMap<String, List<Road>> graph;
 
 	/**
-	 * Constructor of this class, which uses a list of Locations and a list of Roads to initialize our
-	 * HashMap representing the Road network
-	 * @param locs   a list of Locations on the map
-	 * @param roads  a list of Roads on the map
+	 * Constructor of this class, which initializes graph using a list of Locations and a list of Roads
+	 * @param locs   a list of all Locations on the map
+	 * @param roads  a list of all Roads on the map
 	 */
 	public Graph(List<Location> locs, List<Road> roads) {
 		graph = new HashMap<String, List<Road>>();
@@ -142,9 +141,9 @@ public class Graph implements IGraph {
 	}
 
 	/**
-	 * Find the nearest Location of a given type from the current user Location, or null if not found
-	 * @param currLoc  current user Location
-	 * @param type     type of Locations (e.g. "Restaurant")
+	 * Find the nearest Location of a given type from the current user Location. Return null if not found
+	 * @param currLoc  the current user Location
+	 * @param type     type of Location (e.g. "Restaurant")
 	 * @param locs     
 	 * @return the nearest Location of the given type from currLoc
 	 */
@@ -169,11 +168,11 @@ public class Graph implements IGraph {
 		Map<String, Double> res = new HashMap<String, Double>();
 
 		// predecessor to keep track of parent when updated
-		Map<String, String> predecessor = new HashMap<String, String>();
+		Map<String, String> pred = new HashMap<String, String>();
 
 		for (String s : graph.keySet()) {
 			res.put(s, Double.MAX_VALUE);
-			predecessor.put(s, null);
+			pred.put(s, null);
 		}
 		if (!res.containsKey(currLoc))
 			throw new IllegalArgumentException("Invalid starting location!");
@@ -199,27 +198,24 @@ public class Graph implements IGraph {
 			// unreachable
 			if (res.get(curr).equals(Double.MAX_VALUE))
 				return null;
-
 			for (Road i : graph.get(curr)) {
 				String w = i.getEndLocName();
 				// update the distance
 				if (res.get(i.getEndLocName()) > (res.get(i.getStartLocName()) + i.getDist())) {
 					res.put(i.getEndLocName(), (res.get(i.getStartLocName()) + i.getDist()));
-					predecessor.put(i.getEndLocName(), i.getStartLocName());
+					pred.put(i.getEndLocName(), i.getStartLocName());
 					minHeap.offer(new Pair((res.get(i.getStartLocName()) + i.getDist()), w));
 				}
 			}
 		}
 		return null;
 	}
-
-	// checked above
 	
 	/**
-	 * Find the Location by name among a list of given Locations or returns null if not found
-	 * @param locs  a list of Locations we want to search
-	 * @param target     the target Location's name 
-	 * @return           a reference to the Location with target as its name among locs
+	 * Helper method for finding a Location by its name among a list of given Locations. Return null if not found
+	 * @param locs    a list of Locations that we want to search
+	 * @param target  the name of the target Location
+	 * @return a reference to the Location with target as its name among locs
 	 */
 	private Location findLoc(List<Location> locs, String target) {
 		for (Location l : locs) {
@@ -230,11 +226,11 @@ public class Graph implements IGraph {
 	}
 	
 	/**
-	 * Getter for a list of Roads from a location
-	 * @param locName  the name of the Location
-	 * @return a list of Roads from that Location
+	 * Getter for a list of Roads from a given Location
+	 * @param locName the name of the Location
+	 * @return a list of Roads starting from that Location
 	 */
 	public List<Road> getRoad(String locName) {
 		return this.graph.get(locName);
 	}
-}
+} // ac
