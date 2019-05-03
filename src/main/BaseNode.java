@@ -3,8 +3,8 @@ package main;
 import java.util.List;
 
 /**
- * The BaseNode class models a generic node in our QuadTree
- * @author calchen Jiaying Guo
+ * This class models a generic node in our QuadTree
+ * @author calchen, Jiaying Guo
  *
  */
 public abstract class BaseNode {
@@ -15,15 +15,15 @@ public abstract class BaseNode {
 	protected Range range;
 	
 	/**
-	 * Empty constructor of the BaseNode class, which initializes the Range of this node to default value
+	 * Empty constructor of this class, which initializes the Range of this node to default value
 	 */
 	public BaseNode() {
 		this.range = new Range();
 	}
 	
 	/**
-	 * Copy constructor of the BaseNode class, which initializes the Range of this node to a given Range
-	 * @param range
+	 * Copy constructor of this class, which initializes the Range of this node to a given Range
+	 * @param range the Range of this node
 	 */
 	public BaseNode(Range range) {
 		this.range = range;
@@ -38,35 +38,27 @@ public abstract class BaseNode {
 	}
 
 	/**
-	 * Setter for the Range
-	 * @param range the new Range of this node
-	 */
-	public void setRange(Range range) {
-		this.range = range;
-	}
-	
-	/**
-	 * search() searches Locations of a given type with in a given Range and modifies a parameter locs to include
-	 * all search results. 
-	 * @param type  type of the target locations(e.g. "Restaurant")
-	 * @param range range of the target locations
-	 * @param locs  result of target locations
+	 * Find all Locations of a given type within a given Range and modifies the parameter locs to include
+	 * all search results
+	 * @param type   type of Locations (e.g. "Restaurant")
+	 * @param range  search Range
+	 * @param locs   search results
 	 */
 	public abstract void search(String type, Range range, List<Location> locs);
 	
 	/**
-	 * isEmpty() returns true if this node is empty
-	 * @return true if this node is empty
+	 * Check if this node is empty
+	 * @return true if this node is empty, and false otherwise
 	 */
 	public abstract boolean isEmpty();
 	
 	/**
-	 * mathSplit() static method help to calculate which direction of the range is the given coordinate in
-	 * @param range  range to split 
-	 * @param c      coordinate of target
-	 * @return a sub-Range in which c is in (NE, NW, SE, SW)
+	 * Calculate the sub-Range within a given Range where a given Coordinate belongs
+	 * @param range  a Range
+	 * @param coord  a Coordinate within range
+	 * @return       the sub-Range within range where coord belongs
 	 */
-	public static Range mathSplit(Range range, Coordinate c) {
+	public static Range mathSplit(Range range, Coordinate coord) {
 		
 		Coordinate UL = range.getUpperL();
 		Coordinate BR = range.getBottomR();
@@ -110,13 +102,13 @@ public abstract class BaseNode {
 		Coordinate R4 = new Coordinate(Rx4, Ry4);
 		Range r4 = new Range(L4, R4);
 			
-		if (r1.contains(c))
+		if (r1.contains(coord))
 			return r1;
-		else if (r2.contains(c))
+		else if (r2.contains(coord))
 			return r2;
-		else if (r3.contains(c))
+		else if (r3.contains(coord))
 			return r3;
 		else
 			return r4;
 	}
-}
+} // ac

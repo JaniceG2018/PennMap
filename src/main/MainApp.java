@@ -7,21 +7,21 @@ import java.util.List;
 import java.util.Scanner;
 
 /**
- * 
- * This main app will take in initial map data, and using {@PennMap.java} to make the function work
- * it will first call makegraph and make quadtree method to generate the initial map
- * 
- * then based on user input, it will solve three problems
- * 
+ * This class takes in the map data in the form of a String[], and uses the PennMap class to construct the QuadTree and the Graoh.
+ * Then based on user selections, the corresponding methods will be called which allows the following queries:
  * 1. find the shortest path from one location to another 
- * 2. find the nearest location of a type
- * 3. find all locations in a given distance
- * 
- * @author calchen, jingwen qiang
+ * 2. find the nearest location of a given type from current user location
+ * 3. find all locations of a given type within a given distance from current user location
+ * @author calchen, Jingwen Qiang
  *
  */
 public class MainApp {
 
+	/**
+	 * The main() method of our app, which creates a specific instance of the PennMap class, based on the map data supplied,
+	 * and contains code that supports user interactions
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		
 		String[] arr = {"(0,0), Fine Wine and Good Spirit, Store, (10,20), Pottruck Fitness Center, School, Spring St, 25",
@@ -47,21 +47,18 @@ public class MainApp {
 	               		"(60,90), Irvine Auditorium, School, (60,100), Williams Hall, School, 34th St-D, 45",
 	               		"(60,100), Williams Hall, School, (100,100), Happy Ending Bar, Restaurant, Spruce St, 40",
 	               		"(80,10), Parking Lot, School, (100,100), Happy Ending Bar, Restaurant, 33th St, 100", 
-	               		"(30,0), Spicy Now, Restaurant, (20,50), Graduate Center, School, Arvind St, 50", 
+	               		"(30,0), Spicy Now, Restaurant, (20,50), Graduate Center, School, Arvind St, 30", 
 	               		"(30,0), Spicy Now, Restaurant, (40,20), Institute of Contemporary Art, Museum, Eric St, 30", 
 	               		"(40,20), Institute of Contemporary Art, Museum, (35,50), Annenberg School for Communication Library, School, Swap St, 30"};
 		
-		// Construct QuadTree and Graph
 		List<String> list = new ArrayList<>();
 		Collections.addAll(list, arr);
-
-		PennMap pMap = new PennMap(list, new Coordinate(30, 50));
+		PennMap pMap = new PennMap(list, new Coordinate(55, 50));
 		
-		// For error handling
+		// for handling invalid inputs from the user later
 		HashSet<String> locNames = new HashSet<String>();
 		for (Location loc : pMap.getLocationList()) {
 			locNames.add(loc.getName());
-
 		}
 		
 		Scanner in = new Scanner(System.in);
@@ -168,7 +165,6 @@ public class MainApp {
 					userInput = in.next();
 					switch (userInput) {
 						case "1":
-//							System.out.println("store");
 							Location loc0 = pMap.findNearest("Store");
 							if(loc0 == null) {
 								System.out.println("No such type of location is near you!");
@@ -178,7 +174,6 @@ public class MainApp {
 							newSearch = true;
 							break;
 						case "2":
-//							System.out.println("school");
 							Location loc1 = pMap.findNearest("School");
 							if(loc1 == null) {
 								System.out.println("No such type of location is near you!");
@@ -188,7 +183,6 @@ public class MainApp {
 							newSearch = true;
 							break;
 						case "3":
-//							System.out.println("restaurant");
 							Location loc2 = pMap.findNearest("Restaurant");
 							if(loc2 == null) {
 								System.out.println("No such type of location is near you!");
@@ -198,7 +192,6 @@ public class MainApp {
 							newSearch = true;
 							break;
 						case "4":
-//							System.out.println("museum");
 							Location loc3 = pMap.findNearest("Museum");
 							if(loc3 == null) {
 								System.out.println("No such type of location is near you!");
@@ -222,4 +215,4 @@ public class MainApp {
 		System.out.println();
 		System.out.println("You have chosen to quit. Program terminates.");
 	}
-}
+} // ac

@@ -1,29 +1,46 @@
 package main;
 
+/**
+ * This class groups the distance from the source Location to the current Location and
+ * the name of the current Location together as a Pair
+ * @author calchen
+ *
+ */
 public class Pair {
-	private String value;
+	
+	/**
+	 * The distance from the source Location to the current Location
+	 */
 	private double key;
 	
-	public Pair(double key,String val) {
-		this.value = val;
+	/**
+	 * The name of the current Location
+	 */
+	private String value;
+	
+	/**
+	 * Copy constructor of this class, which initializes key and value to default values
+	 * @param key
+	 * @param value
+	 */
+	public Pair(double key, String value) {
 		this.key = key;
-	}
-
-	public String getValue() {
-		return value;
-	}
-
-	public void setValue(String value) {
 		this.value = value;
 	}
 
+	/**
+	 * Getter for the key
+	 * @return the key
+	 */
 	public double getKey() {
 		return key;
 	}
 
-	public void setKey(double key) {
-		this.key = key;
+	/**
+	 * Getter for the value
+	 * @return the value
+	 */
+	public String getValue() {
+		return value;
 	}
-	
-	
-}
+} // ac

@@ -11,25 +11,29 @@ import org.junit.Before;
 import org.junit.Test;
 
 import main.Coordinate;
-import main.Graph;
 import main.Location;
 import main.PennMap;
 import main.QuadTree;
 import main.Road;
 
 /**
- * 
- * @author calchen, jingwen qiang, Jiaying Guo
+ * This class tests the methods of the PennMap class
+ * @author calchen, Jingwen Qiang, Jiaying Guo
  *
  */
 public class PennMapTest {
 
+	/**
+	 * The PennMap
+	 */
 	private PennMap pennMap;
-	private List<String> initData;
 	
+	/**
+	 * Initialize the PennMap with the map data supplied
+	 */
 	@Before
 	public void setUp() {
-		initData = new ArrayList<String>();
+		List<String> initData = new ArrayList<String>();
 		String[] arr = {"(0,0), Fine Wine and Good Spirit, Store, (10,20), Pottruck Fitness Center, School, Spring St, 25",
 	               "(0,0), Fine Wine and Good Spirit, Store, (0,50), AT&T, Store, 41th St, 50",
 	               "(0,0), Fine Wine and Good Spirit, Store, (20,0), WaWa@Chestnut, Restaurant, Chestnut St-D, 20",
@@ -58,16 +62,15 @@ public class PennMapTest {
 	}
 	
 	/**
-	 * test constructor and parser
+	 * Test the constructor of the PennMap class
 	 */
 	@Test
 	public void testConstructor() {
 		assertEquals("Fine Wine and Good Spirit", pennMap.getLocationList().get(0).getName());
-		
 	}
 	
 	/**
-	 * test make quadtree method
+	 * Test the makeQuadTree() method of the PennMap class
 	 */
 	@Test
 	public void testMakeQuadTree() {
@@ -79,13 +82,12 @@ public class PennMapTest {
 		locations.add(new Location("Ochatto", "Restaurant", new Coordinate(25, 0)));
 		locations.add(new Location("John Huntsman Hall", "School", new Coordinate(10, 50)));
 		locations.add(new Location("Graduate Center", "School", new Coordinate(20, 50)));
-		
 		QuadTree tree = (QuadTree)pennMap.makeQuadTree();
 		assertEquals(21,tree.getSize());
 	}
 	
 	/**
-	 * 
+	 * Test the makeGraph() method of the PennMap class
 	 */
 	@Test
 	public void testMakeGraph() {
@@ -98,6 +100,7 @@ public class PennMapTest {
 		roads.add(new Road("Fine Wine and Good Spirit", "John Huntsman Hall", "40th St", 70));
 		roads.add(new Road("Fine Wine and Good Spirit", "Graduate Center, School", "Winter St", 85));
 		roads.add(new Road("Pottruck Fitness Center", "Graduate Center, School", "Summer St", 70));
+<<<<<<< HEAD
 
 
 		Graph g=(Graph) pennMap.makeGraph();
@@ -117,17 +120,29 @@ public class PennMapTest {
 		assertEquals("Fine Wine and Good Spirit -> road 41th St -> AT&T"+
 				"\nTotal distance is 50", pennMap.findShortestPath("Fine Wine and Good Spirit", "AT&T"));
 		
+=======
+>>>>>>> 467e46922a69e5fc53831af13f3febdd24a9d2ca
 	}
 	
+	/**
+	 * Test the findAll() method of the PennMap class
+	 */
 	@Test
 	public void testFindAll() {
+<<<<<<< HEAD
 		
+=======
+>>>>>>> 467e46922a69e5fc53831af13f3febdd24a9d2ca
 		List<Location> exp = new ArrayList<Location>();
 		assertEquals(exp, pennMap.findAll("Restaurant", 10));
 	}
 	
+	/**
+	 * Test the findNearest() method of the PennMap class
+	 */
 	@Test
 	public void testFindNearest() {
+<<<<<<< HEAD
 		
 		Location res = pennMap.findNearest("Restaurant");		
 		assertEquals("WaWa@Chestnut",res.getName());
@@ -148,5 +163,9 @@ public class PennMapTest {
 		assertNull(pennMap.getTree());
 		PennMap p = new PennMap(new ArrayList<String>(), new Coordinate(0,0));
 		
+=======
+		Location res = pennMap.findNearest("Restaurant");
+		assertEquals("WaWa@Chestnut",res.getName());
+>>>>>>> 467e46922a69e5fc53831af13f3febdd24a9d2ca
 	}
-}
+} // ac

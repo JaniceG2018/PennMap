@@ -8,55 +8,46 @@ import java.util.List;
 import java.util.Map;
 import java.util.PriorityQueue;
 
-import com.sun.org.apache.xalan.internal.xsltc.compiler.Template;
-
 /**
- * 
- * @author calchen, Jiaying Guo
+ * The Graph class models a Road network on the map to support the findShortestPath() and findNearest() functionalities of our app
+ * @author Jiaying Guo, calchen
  *
  */
 public class Graph implements IGraph {
 
 	/**
-	 * HashMap to store our road network
+	 * HashMap to store the Road network on the map
 	 */
 	private HashMap<String, List<Road>> graph;
 
 	/**
-	 * Constructor of the Graph class, which converts a list of Locations and a list
-	 * of Roads into a HashMap representing the road network
-	 * 
-	 * @param locations a list of Locations on the map
-	 * @param roads a list of Roads on the map
+	 * Constructor of this class, which initializes graph using a list of Locations and a list of Roads
+	 * @param locs   a list of all Locations on the map
+	 * @param roads  a list of all Roads on the map
 	 */
-	public Graph(List<Location> locations, List<Road> roads) {
-
+	public Graph(List<Location> locs, List<Road> roads) {
 		graph = new HashMap<String, List<Road>>();
-		for (Location l : locations) {
+		for (Location l : locs) {
 			String startLoc = l.getName();
 			graph.put(startLoc, new LinkedList<Road>());
-
 		}
 		for (Road r : roads) {
-			String start = r.getStart();
-			String end = r.getEnd();
+			String start = r.getStartLocName();
+			String end = r.getEndLocName();
 			graph.get(start).add(r);
-			Road reverseRoad = new Road(r.getEnd(), r.getStart(), r.getRdName(), r.getDist());
+			Road reverseRoad = new Road(r.getEndLocName(), r.getStartLocName(), r.getRdName(), r.getDist());
 			graph.get(end).add(reverseRoad);
 		}
 	}
 
 	/**
-	 * findShortestPath() returns the directions in text for the shortest path from
-	 * one Location to another
-	 * 
-	 * @param the name of the starting Location
-	 * @param the name of the destination
-	 * @return the directions in text for the shortest path from the starting
-	 *         Location to the destination
+	 * Return the directions in text for the shortest path from a given Location to another
+	 * @param startLoc  the name of the starting Location
+	 * @param endLoc    the name of the destination
+	 * @return the directions in text for the shortest path from startLoc to endLoc
 	 */
 	@Override
-	public String findShortestPath(String loc1, String loc2) {
+	public String findShortestPath(String startLoc, String endLoc) {
 		// store the road names and locations in the path
 		List<String> path = new ArrayList<>();
 
@@ -80,70 +71,60 @@ public class Graph implements IGraph {
 		Map<String, Double> res = new HashMap<String, Double>();
 
 		// predecessor to keep track of parent when updated
-		Map<String, String> predecessor = new HashMap<String, String>();
+		Map<String, String> pred = new HashMap<String, String>();
 
 		for (String s : graph.keySet()) {
 			res.put(s, Double.MAX_VALUE);
-			predecessor.put(s, null);
+			pred.put(s, null);
 		}
-
-		if (!res.containsKey(loc1) || !res.containsKey(loc2))
-			throw new IllegalArgumentException("The starting or ending location doesn't exist!");
-
-		Pair source = new Pair(0, loc1);
-		predecessor.put(loc1, loc1);
-		res.put(loc1, 0.0);
-
+		if (!res.containsKey(startLoc) || !res.containsKey(endLoc))
+			throw new IllegalArgumentException("Invalid starting location or destination!");
+		Pair source = new Pair(0, startLoc);
+		pred.put(startLoc, startLoc);
+		res.put(startLoc, 0.0);
 		minHeap.offer(source);
 		String curr = "";
 		for (int k = 0; k < graph.size(); k++) {
-
 			do {
 				Pair temp = minHeap.poll();
 				curr = temp.getValue();
-			} // Get position
+			} // get position
 			while (visited.contains(curr));
 
 			// set current position visited
 			visited.add(curr);
-			if (curr.equals(loc2)) {
+			if (curr.equals(endLoc))
 				break;
-			}
-			// Unreachable
-			if (res.get(curr).equals(Double.MAX_VALUE)) {
+			
+			// unreachable
+			if (res.get(curr).equals(Double.MAX_VALUE))
 				return "";
-			}
 			for (Road i : graph.get(curr)) {
-				String w = i.getEnd();
+				String w = i.getEndLocName();
 
 				// update the distance of w
-				if (res.get(i.getEnd()) > (res.get(i.getStart()) + i.getDist())) {
-
-					res.put(i.getEnd(), (res.get(i.getStart()) + i.getDist()));
-					predecessor.put(i.getEnd(), i.getStart());
-					minHeap.offer(new Pair((res.get(i.getStart()) + i.getDist()), w));
+				if (res.get(i.getEndLocName()) > (res.get(i.getStartLocName()) + i.getDist())) {
+					res.put(i.getEndLocName(), (res.get(i.getStartLocName()) + i.getDist()));
+					pred.put(i.getEndLocName(), i.getStartLocName());
+					minHeap.offer(new Pair((res.get(i.getStartLocName()) + i.getDist()), w));
 				}
-
 			}
-
 		}
-
-		String start = loc2;
-		String temp_start, temp_end;
+		String start = endLoc;
+		String tempStart, tempEnd;
 		List<Road> routes = new ArrayList<>();
 
 		// construct the path from predecessor list
-		while (!predecessor.get(start).equals(start)) {
+		while (!pred.get(start).equals(start)) {
 			path.add(start);
-			temp_end = start;
-			temp_start = predecessor.get(start);
-			for (Road k : graph.get(temp_start)) {
-				if (k.getEnd().equals(temp_end))
+			tempEnd = start;
+			tempStart = pred.get(start);
+			for (Road k : graph.get(tempStart)) {
+				if (k.getEndLocName().equals(tempEnd))
 					routes.add(k);
 			}
-			start = temp_start;
+			start = tempStart;
 		}
-
 		path.add(start);
 		String route = "";
 		int distance = 0;
@@ -156,23 +137,17 @@ public class Graph implements IGraph {
 		}
 		route += path.get(0);
 		route += "\nTotal distance is " + distance;
-
 		return route;
 	}
 
 	/**
-	 * get road// added this method for test purposes
-	 * 
-	 * @param locName
-	 * @return the list of road names
+	 * Find the nearest Location of a given type from the current user Location. Return null if not found
+	 * @param currLoc  the current user Location
+	 * @param type     type of Location (e.g. "Restaurant")
+	 * @param locs     
+	 * @return the nearest Location of the given type from currLoc
 	 */
-
-	public List<Road> getRoad(String locName) {
-		return this.graph.get(locName);
-	}
-
-	public Location findNearest(String loc1, String type, List<Location> locations) {
-
+	public Location findNearest(String currLoc, String type, List<Location> locs) {
 		// tracking the visited nodes in graph
 		List<String> visited = new ArrayList<>();
 
@@ -193,68 +168,60 @@ public class Graph implements IGraph {
 		Map<String, Double> res = new HashMap<String, Double>();
 
 		// predecessor to keep track of parent when updated
-		Map<String, String> predecessor = new HashMap<String, String>();
+		Map<String, String> pred = new HashMap<String, String>();
 
 		for (String s : graph.keySet()) {
 			res.put(s, Double.MAX_VALUE);
-			predecessor.put(s, null);
+			pred.put(s, null);
 		}
-
-		if (!res.containsKey(loc1)) {
-			throw new IllegalArgumentException("The starting location doesn't exist!");
-		}
-
-		Pair source = new Pair(0, loc1);
-		res.put(loc1, 0.0);
-
+		if (!res.containsKey(currLoc))
+			throw new IllegalArgumentException("Invalid starting location!");
+		Pair source = new Pair(0, currLoc);
+		res.put(currLoc, 0.0);
 		minHeap.offer(source);
 		String curr = "";
-
 		for (int k = 0; k < graph.size(); k++) {
 			do {
 				Pair temp = minHeap.poll();
 				curr = temp.getValue();
-			} // Get position
+			} // get position
 			while (visited.contains(curr));
 
 			// if the current vertex's type matches our search type and it's not our source
 			// vertex, then output the nearest location
-			if (findLocation(locations, curr).getType().equals(type) && !curr.equals(loc1)) {
+			if (findLoc(locs, curr).getType().equals(type) && !curr.equals(currLoc)) {
 				System.out.println("Total distance is " + res.get(curr));
-				return findLocation(locations, curr);
+				return findLoc(locs, curr);
 			}
-
 			visited.add(curr); 
 
-			// Unreachable
-			if (res.get(curr).equals(Double.MAX_VALUE)) {
+			// unreachable
+			if (res.get(curr).equals(Double.MAX_VALUE))
 				return null;
-			}
-
 			for (Road i : graph.get(curr)) {
-				String w = i.getEnd();
+				String w = i.getEndLocName();
 				// update the distance
-				if (res.get(i.getEnd()) > (res.get(i.getStart()) + i.getDist())) {
-
-					res.put(i.getEnd(), (res.get(i.getStart()) + i.getDist()));
-					predecessor.put(i.getEnd(), i.getStart());
-					minHeap.offer(new Pair((res.get(i.getStart()) + i.getDist()), w));
+				if (res.get(i.getEndLocName()) > (res.get(i.getStartLocName()) + i.getDist())) {
+					res.put(i.getEndLocName(), (res.get(i.getStartLocName()) + i.getDist()));
+					pred.put(i.getEndLocName(), i.getStartLocName());
+					minHeap.offer(new Pair((res.get(i.getStartLocName()) + i.getDist()), w));
 				}
-
 			}
-
 		}
-
 		return null;
-
 	}
-
-	private Location findLocation(List<Location> locations, String curr) {
-		for (Location l : locations) {
-			if (l.getName().equals(curr)) {
+	
+	/**
+	 * Helper method for finding a Location by its name among a list of given Locations. Return null if not found
+	 * @param locs    a list of Locations that we want to search
+	 * @param target  the name of the target Location
+	 * @return a reference to the Location with target as its name among locs
+	 */
+	private Location findLoc(List<Location> locs, String target) {
+		for (Location l : locs) {
+			if (l.getName().equals(target))
 				return l;
-			}
 		}
 		return null;
 	}
-}
+} // ac
