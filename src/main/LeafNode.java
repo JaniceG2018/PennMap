@@ -3,7 +3,7 @@ package main;
 import java.util.List;
 
 /**
- * This class models a LeafNode in the QuadTree, which stores Location info
+ * This class models a LeafNode in our QuadTree, which stores Location info
  * @author calchen xuanwang
  *
  */
@@ -15,7 +15,7 @@ public class LeafNode extends BaseNode {
 	private String name;
 	
 	/**
-	 * The type of Location (e.g. "Restaurant")
+	 * The type of the Location (e.g. "Restaurant")
 	 */
 	private String type;
 	
@@ -25,14 +25,9 @@ public class LeafNode extends BaseNode {
 	private Coordinate coord;
 	
 	/**
-	 * The Range of this LeafNode
-	 */
-	private Range range;
-	
-	/**
 	 * Copy constructor of this class, which initializes the name, type, Coordinate and Range of this LeafNode to given values
 	 * @param name   the name of the Location
-	 * @param type   the type of Location (e.g. "Restaurant")
+	 * @param type   the type of the Location (e.g. "Restaurant")
 	 * @param coord  the Coordinate of the Location
 	 * @param range  the Range of this LeafNode
 	 */
@@ -41,6 +36,14 @@ public class LeafNode extends BaseNode {
 		this.type = type;
 		this.coord = coord;
 		this.range = range;
+	}
+	
+	/**
+	 * Getter for the name
+	 * @return the name of the Location
+	 */
+	public String getName() {
+		return name;
 	}
 
 	/**
@@ -52,8 +55,8 @@ public class LeafNode extends BaseNode {
 	}
 
 	/**
-	 * Find all Locations of a given type within a given Range and modify the parameter locs to include
-	 * all search results
+	 * Find all Locations of a given type within a given Range and modifies the parameter locs to include
+	 * all search results.
 	 * @param type   the type of Locations (e.g. "Restaurant")
 	 * @param range  the search Range
 	 * @param locs   a list of Locations containing the search results
@@ -92,7 +95,7 @@ public class LeafNode extends BaseNode {
 
 	/**
 	 * Check if this LeafNode is empty
-	 * @return true if this LeafNode is empty, or false otherwise
+	 * @return true if this LeafNode is empty, and false otherwise
 	 */
 	@Override
 	public boolean isEmpty() {
@@ -101,4 +104,4 @@ public class LeafNode extends BaseNode {
 		else
 			return false;
 	}
-} // c
+} // ac

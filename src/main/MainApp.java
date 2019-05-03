@@ -9,20 +9,21 @@ import java.util.Scanner;
 /**
  * This class takes in the map data in the form of a String[], and uses the PennMap class to construct the QuadTree and the Graoh.
  * Then based on user selections, the corresponding methods will be called which allows the following queries:
- * 1. find the shortest path from one Location to another 
- * 2. find the nearest Location of a given type from the current user Location
- * 3. find all Locations of a given type within a given distance from the current user location
+ * 1. find the shortest path from one location to another 
+ * 2. find the nearest location of a given type from current user location
+ * 3. find all locations of a given type within a given distance from current user location
  * @author calchen, Jingwen Qiang
  *
  */
 public class MainApp {
 
 	/**
-	 * The main() method of our app, which creates a specific instance of the PennMap class based on the map data supplied,
+	 * The main() method of our app, which creates a specific instance of the PennMap class, based on the map data supplied,
 	 * and contains code that supports user interactions
 	 * @param args
 	 */
 	public static void main(String[] args) {
+		
 		String[] arr = {"(0,0), Fine Wine and Good Spirit, Store, (10,20), Pottruck Fitness Center, School, Spring St, 25",
 	               		"(0,0), Fine Wine and Good Spirit, Store, (0,50), AT&T, Store, 41th St, 50",
 	               		"(0,0), Fine Wine and Good Spirit, Store, (20,0), WaWa@Chestnut, Restaurant, Chestnut St-D, 20",
@@ -49,11 +50,12 @@ public class MainApp {
 	               		"(30,0), Spicy Now, Restaurant, (20,50), Graduate Center, School, Arvind St, 30", 
 	               		"(30,0), Spicy Now, Restaurant, (40,20), Institute of Contemporary Art, Museum, Eric St, 30", 
 	               		"(40,20), Institute of Contemporary Art, Museum, (35,50), Annenberg School for Communication Library, School, Swap St, 30"};
+		
 		List<String> list = new ArrayList<>();
 		Collections.addAll(list, arr);
 		PennMap pMap = new PennMap(list, new Coordinate(55, 50));
 		
-		// for handling invalid user inputs later
+		// for handling invalid inputs from the user later
 		HashSet<String> locNames = new HashSet<String>();
 		for (Location loc : pMap.getLocationList()) {
 			locNames.add(loc.getName());
@@ -213,4 +215,4 @@ public class MainApp {
 		System.out.println();
 		System.out.println("You have chosen to quit. Program terminates.");
 	}
-} // c
+} // ac

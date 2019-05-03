@@ -22,7 +22,8 @@ public class Range {
 	 * Coordinates of the Range to default values
 	 */
 	public Range() {
-		
+		this.upperL = new Coordinate();
+		this.bottomR = new Coordinate();
 	}
 
 	/**
@@ -113,7 +114,7 @@ public class Range {
 		Coordinate BR = otherRange.bottomR;
 		Coordinate BL = new Coordinate(UL.getLon(), BR.getLat());
 		Coordinate UR = new Coordinate(BR.getLon(), UL.getLat());
-		return contains(UL) || contains(BR) || contains(UR) || contains(BL) || otherRange.intersectsHelper(this, 0);
+		return contains(UL) || contains(BR) || contains(UR) || contains(BL) || otherRange.intersects(this, 0);
 	}
 	
 	/**
@@ -122,7 +123,7 @@ public class Range {
 	 * @param flag
 	 * @return true if otherRange intersects with this Range, and false otherwise
 	 */
-	private boolean intersectsHelper(Range otherRange, int flag) {
+	private boolean intersects(Range otherRange, int flag) {
 		if (otherRange == null)
 			return false;
 		Coordinate UL = otherRange.upperL;
@@ -140,4 +141,4 @@ public class Range {
 	public boolean equals(Range otherRange) {
 		return upperL.equals(otherRange.upperL) && bottomR.equals(otherRange.bottomR);
 	}
-}
+} // ac
