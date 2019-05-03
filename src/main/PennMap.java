@@ -81,12 +81,90 @@ public class PennMap implements IMapMaker, IMapModel {
 		return graph;
 	}
 	
+	
+
 	/**
-	 * Getter for the list of all Locations on the map
-	 * @return the list of all Locations on the map
+	 * @return the tree
 	 */
-	public List<Location> getLocationList() {
+	public IQuadTree getTree() {
+		return tree;
+	}
+
+	/**
+	 * @param tree the tree to set
+	 */
+	public void setTree(IQuadTree tree) {
+		this.tree = tree;
+	}
+
+	/**
+	 * @return the graph
+	 */
+	public IGraph getGraph() {
+		return graph;
+	}
+
+	/**
+	 * @param graph the graph to set
+	 */
+	public void setGraph(IGraph graph) {
+		this.graph = graph;
+	}
+
+	/**
+	 * @return the currLoc
+	 */
+	public Location getCurrLoc() {
+		return currLoc;
+	}
+
+	/**
+	 * @param currLoc the currLoc to set
+	 */
+	public void setCurrLoc(Location currLoc) {
+		this.currLoc = currLoc;
+	}
+
+	/**
+	 * @return the currCoord
+	 */
+	public Coordinate getCurrCoord() {
+		return currCoord;
+	}
+
+	/**
+	 * @param currCoord the currCoord to set
+	 */
+	public void setCurrCoord(Coordinate currCoord) {
+		this.currCoord = currCoord;
+	}
+
+	/**
+	 * @return the rdList
+	 */
+	public List<Road> getRdList() {
+		return rdList;
+	}
+
+	/**
+	 * @param rdList the rdList to set
+	 */
+	public void setRdList(List<Road> rdList) {
+		this.rdList = rdList;
+	}
+
+	/**
+	 * @return the locList
+	 */
+	public List<Location> getLocList() {
 		return locList;
+	}
+
+	/**
+	 * @param locList the locList to set
+	 */
+	public void setLocList(List<Location> locList) {
+		this.locList = locList;
 	}
 
 	/**

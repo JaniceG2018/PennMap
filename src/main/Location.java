@@ -57,6 +57,29 @@ public class Location {
 	public Coordinate getCoord() {
 		return coord;
 	}
+	
+	
+
+	/**
+	 * @param name the name to set
+	 */
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	/**
+	 * @param type the type to set
+	 */
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	/**
+	 * @param coord the coord to set
+	 */
+	public void setCoord(Coordinate coord) {
+		this.coord = coord;
+	}
 
 	/**
 	 * Check if a given Location is the same as this Location

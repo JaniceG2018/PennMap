@@ -57,7 +57,7 @@ public class MainApp {
 		
 		// for handling invalid inputs from the user later
 		HashSet<String> locNames = new HashSet<String>();
-		for (Location loc : pMap.getLocationList()) {
+		for (Location loc : pMap.getLocList()) {
 			locNames.add(loc.getName());
 		}
 		

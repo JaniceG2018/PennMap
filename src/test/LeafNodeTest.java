@@ -43,15 +43,11 @@ public class LeafNodeTest {
 	@Test
 	public void testSplit() {
 		LeafNode node = new LeafNode("name", "type", new Coordinate(1, 1), new Range(new Coordinate(0, 0), new Coordinate(10, 10)));
-<<<<<<< HEAD
-		InternalNode exp = new InternalNode(new EmptyNode(), new LeafNode("name", "type", new Coordinate(1, 1), new Range(new Coordinate(0, 0), new Coordinate(5, 5))), new EmptyNode(), new EmptyNode());
-		//assertEquals(exp, node.split());
-		node.split();
-=======
 		InternalNode exp = new InternalNode(new EmptyNode(), new LeafNode("name", "type", new Coordinate(1, 1),
 				new Range(new Coordinate(0, 0), new Coordinate(5, 5))), new EmptyNode(), new EmptyNode());
+		//assertEquals(exp, node.split());
+		node.split();
 		assertEquals(exp, node.split());
->>>>>>> 467e46922a69e5fc53831af13f3febdd24a9d2ca
 	}
 	
 	/**
