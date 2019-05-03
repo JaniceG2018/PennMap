@@ -17,6 +17,11 @@ import java.util.Scanner;
  */
 public class MainApp {
 
+	/**
+	 * The main() method of our app, which creates a specific instance of the PennMap class, based on the map data supplied,
+	 * and contains code that supports user interactions
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		
 		String[] arr = {"(0,0), Fine Wine and Good Spirit, Store, (10,20), Pottruck Fitness Center, School, Spring St, 25",
@@ -46,7 +51,6 @@ public class MainApp {
 	               		"(30,0), Spicy Now, Restaurant, (40,20), Institute of Contemporary Art, Museum, Eric St, 30", 
 	               		"(40,20), Institute of Contemporary Art, Museum, (35,50), Annenberg School for Communication Library, School, Swap St, 30"};
 		
-		// construct QuadTree and Graph
 		List<String> list = new ArrayList<>();
 		Collections.addAll(list, arr);
 		PennMap pMap = new PennMap(list, new Coordinate(55, 50));

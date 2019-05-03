@@ -1,7 +1,7 @@
 package main;
 
 /**
- * This class models
+ * 
  * @author calchen
  *
  */

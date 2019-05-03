@@ -43,4 +43,4 @@ public class LocationTest {
 		assertFalse(loc1.equals(loc4));
 		assertFalse(loc4.equals(loc1));
 	}
-}
+} // ac

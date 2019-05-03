@@ -13,7 +13,7 @@ public class Location {
 	private String name;
 	
 	/**
-	 * The type of the Location
+	 * The type of the Location (e.g. "Restaurant")
 	 */
 	private String type;
 	
@@ -23,9 +23,9 @@ public class Location {
 	private Coordinate coord;
 	
 	/**
-	 * Copy constructor of this class, which initializes the name, type and Coordinate of the Location to given values
+	 * Copy constructor of this class, which initializes the name, type and Coordinate of this Location to given values
 	 * @param name   the name of the Location
-	 * @param type   the type of the Location
+	 * @param type   the type of the Location (e.g. "Restaurant")
 	 * @param coord  the Coordinate of the Location
 	 */
 	public Location(String name, String type, Coordinate coord) {
@@ -93,7 +93,7 @@ public class Location {
 	
 	/**
 	 * Check if a given Location is the same as this Location
-	 * @param loc a given Location we want to examine
+	 * @param loc a given Location that we want to compare to
 	 * @return true if loc is the same as this Location, and false otherwise
 	 */
 	public boolean equals(Location loc) {

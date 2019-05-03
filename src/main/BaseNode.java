@@ -47,7 +47,7 @@ public abstract class BaseNode {
 	
 	/**
 	 * Find all Locations of a given type within a given Range and modifies the parameter locs to include
-	 * all search results.
+	 * all search results
 	 * @param type   type of Locations (e.g. "Restaurant")
 	 * @param range  search Range
 	 * @param locs   search results
@@ -56,7 +56,7 @@ public abstract class BaseNode {
 	
 	/**
 	 * Check if this node is empty
-	 * @return true if this node is empty
+	 * @return true if this node is empty, and false otherwise
 	 */
 	public abstract boolean isEmpty();
 	

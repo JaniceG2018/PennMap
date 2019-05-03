@@ -3,7 +3,7 @@ package main;
 import java.util.List;
 
 /**
- * This interface is used to model a Road network to support findShortestPath() and findNearest() functionalities of our app
+ * This interface is used to support the findShortestPath() and findNearest() functionalities of our app
  * @author calchen
  *
  */
@@ -18,10 +18,9 @@ public interface IGraph {
 	public String findShortestPath(String startLoc, String endLoc);
 	
 	/**
-	 * Return the nearest Location of a given type from the current user Location,
-	 * or null if not found
+	 * Find the nearest Location of a given type from the current user Location. Return null if not found
 	 * @param currLoc  the current user Location
-	 * @param type     type of Locations (e.g. "Restaurant")
+	 * @param type     the type of Location (e.g. "Restaurant")
 	 * @param locs     
 	 * @return the nearest Location of the given type from currLoc
 	 */

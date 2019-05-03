@@ -64,15 +64,16 @@ public class QuadTreeTest {
 	@Before
 	public void setUp() {
 		tree = new QuadTree();
+		
 	}
 
 	/**
-	 * This method tests the insert() method of the QuadTree class
+	 * Test the insert() method of the QuadTree class
 	 */
 	@Test
 	public void testInsert() {
-		Location l[] = new Location[] { loc0, loc1, loc2, loc3, loc4, loc5, loc6, loc7, loc8, loc9, loc10, loc11, loc12,
-				loc13, loc14, loc15, loc16, loc17, loc18, loc19, loc20 };
+		Location l[] = new Location[]{loc0, loc1, loc2, loc3, loc4, loc5, loc6, loc7, loc8, loc9, loc10, loc11, loc12,
+				loc13, loc14, loc15, loc16, loc17, loc18, loc19, loc20};
 		locs = Arrays.asList(l);
 		tree.enclosingQuad(locs);
 		assertEquals(0, tree.getSize());
@@ -90,7 +91,7 @@ public class QuadTreeTest {
 	}
 
 	/**
-	 * This method tests the search() method of the QuadTree class
+	 * Test the search() method of the QuadTree class
 	 */
 	@Test
 	public void testSearch() {
@@ -152,7 +153,7 @@ public class QuadTreeTest {
 		System.out.println(res.size());
 		assertTrue(exp3.equals(result));
 		
-		// search Restaurant
+		// search restaurant
 		Set<Location> exp4 = new HashSet<Location>();
 		range = new Range(new Coordinate(50,19),new Coordinate(75,75));
 		int restaurant4[] = {0,10};
@@ -169,7 +170,7 @@ public class QuadTreeTest {
 	}
 
 	/**
-	 * This method tests the enclosingQuad() method of the QuadTree class
+	 * Test the enclosingQuad() method of the QuadTree class
 	 */
 	@Test
 	public void testEnclosingQuad() {

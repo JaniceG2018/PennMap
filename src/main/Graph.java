@@ -142,9 +142,8 @@ public class Graph implements IGraph {
 	}
 
 	/**
-	 * Return the nearest Location of a given type from the current user Location,
-	 * or null if not found
-	 * @param currLoc  the current user Location
+	 * Find the nearest Location of a given type from the current user Location, or null if not found
+	 * @param currLoc  current user Location
 	 * @param type     type of Locations (e.g. "Restaurant")
 	 * @param locs     
 	 * @return the nearest Location of the given type from currLoc
@@ -217,7 +216,7 @@ public class Graph implements IGraph {
 	// checked above
 	
 	/**
-	 * findLoc() finds the Location by name among a list of given Locations or returns null if not found
+	 * Find the Location by name among a list of given Locations or returns null if not found
 	 * @param locs  a list of Locations we want to search
 	 * @param target     the target Location's name 
 	 * @return           a reference to the Location with target as its name among locs

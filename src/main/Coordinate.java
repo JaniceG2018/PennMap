@@ -68,11 +68,14 @@ public class Coordinate {
 	}
 	
 	/**
-	 * Check if this Coordinate is the same as a given Coordinate
-	 * @param coord a Coordinate we want to compare to
-	 * @return true if this Coordinate is the same as coord
+	 * Check if a given Coordinate is the same as this Coordinate
+	 * @param coord a Coordinate that we want to compare to
+	 * @return true if coord is the same as this Coordinate, and false otherwise
 	 */
 	public boolean equals(Coordinate coord) {
-		return lat == coord.getLat() && lon == coord.getLon();
+		if (coord == null)
+			return false;
+		else
+			return lon == coord.getLon() && lat == coord.getLat();
 	}
 } // ac
