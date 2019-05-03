@@ -178,4 +178,4 @@ public class QuadTreeTest {
 		Range exp = new Range(new Coordinate(0, 0), new Coordinate(20, 0));
 		assertEquals(exp, tree.enclosingQuad(locs));
 	}
-} // ac
+}

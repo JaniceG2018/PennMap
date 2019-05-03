@@ -64,4 +64,4 @@ public class LeafNodeTest {
 		LeafNode node2 = new LeafNode(null, "type", new Coordinate(1, 1), new Range(new Coordinate(0, 0), new Coordinate(10, 10)));
 		assertTrue(node2.isEmpty());
 	}
-} // ac
+} // c

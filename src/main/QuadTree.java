@@ -110,8 +110,8 @@ public class QuadTree implements IQuadTree {
 		// into an internal node and add both old and new locations to it 
 		if (node instanceof LeafNode) {
 			// Check Duplicate Name
-			if (((LeafNode) node).getName().equals(loc.getName()))
-	            throw new IllegalStateException("Location existed!");
+//			if (((LeafNode) node).getName().equals(loc.getName()))
+//	            throw new IllegalStateException("Location existed!");
 			BaseNode newNode = ((LeafNode) node).split();
 			newNode = insert(newNode, coord, loc, newNode.getRange());
 			return newNode;
@@ -179,4 +179,4 @@ public class QuadTree implements IQuadTree {
 		range.setUpperL(upperL);
 		range.setBottomR(bottomR);
 	}
-} // ac
+}

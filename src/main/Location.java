@@ -8,25 +8,25 @@ package main;
 public class Location {
 	
 	/**
-	 * The name of the Location
+	 * The name of this Location
 	 */
 	private String name;
 	
 	/**
-	 * The type of the Location (e.g. "Restaurant")
+	 * The type of this Location (e.g. "Restaurant")
 	 */
 	private String type;
 	
 	/**
-	 * The Coordinate of the Location
+	 * The Coordinate of this Location
 	 */
 	private Coordinate coord;
 	
 	/**
 	 * Copy constructor of this class, which initializes the name, type and Coordinate of this Location to given values
-	 * @param name   the name of the Location
-	 * @param type   the type of the Location (e.g. "Restaurant")
-	 * @param coord  the Coordinate of the Location
+	 * @param name   the name of this Location
+	 * @param type   the type of this Location (e.g. "Restaurant")
+	 * @param coord  the Coordinate of this Location
 	 */
 	public Location(String name, String type, Coordinate coord) {
 		this.name = name;
@@ -35,24 +35,24 @@ public class Location {
 	}
 	
 	/**
-	 * Getter for the name of the Location
-	 * @return the name of the Location
+	 * Getter for the name of this Location
+	 * @return the name of this Location
 	 */
 	public String getName() {
 		return name;
 	}
 
 	/**
-	 * Getter for the type of the Location
-	 * @return the type of the Location
+	 * Getter for the type of this Location
+	 * @return the type of this Location
 	 */
 	public String getType() {
 		return type;
 	}
 
 	/**
-	 * Getter for the Coordinate of the Location
-	 * @return the new Coordinate of the Location
+	 * Getter for the Coordinate of this Location
+	 * @return the Coordinate of this Location
 	 */
 	public Coordinate getCoord() {
 		return coord;
@@ -61,7 +61,7 @@ public class Location {
 	/**
 	 * Check if a given Location is the same as this Location
 	 * @param loc a given Location that we want to compare to
-	 * @return true if loc is the same as this Location, and false otherwise
+	 * @return true if loc is the same as this Location, or false otherwise
 	 */
 	public boolean equals(Location loc) {
 		if (loc == null)
@@ -69,4 +69,4 @@ public class Location {
 		else
 			return name.equals(loc.getName());
 	}
-} // ac
+} // c

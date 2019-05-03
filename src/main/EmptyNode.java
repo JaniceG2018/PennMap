@@ -3,7 +3,7 @@ package main;
 import java.util.List;
 
 /**
- * This class models an empty node in our QuadTree containing no Location
+ * This class models an empty node in the QuadTree containing no Location
  * @author calchen
  *
  */
@@ -36,4 +36,4 @@ public class EmptyNode extends BaseNode {
 	public boolean isEmpty() {
 		return true;
 	}
-} // ac
+} // c

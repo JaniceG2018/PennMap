@@ -27,8 +27,8 @@ public interface IMapModel {
 	/**
 	 * Find all Locations of a given type within a given distance from the current user Location
 	 * @param type  the type of Locations (e.g. "Restaurant")
-	 * @param dist  the search distance from the current user Location (defined by (x +/- dist, y +/- dist))
-	 * @return a list of Locations of the given type within dist from the current user Location
+	 * @param dist  the search distance from the current user Location (defined as (x +/- dist, y +/- dist))
+	 * @return a list of all Locations of the given type within dist from the current user Location
 	 */
 	public List<Location> findAll(String type, double dist);
-} // ac
+} // c

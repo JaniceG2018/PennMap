@@ -19,9 +19,9 @@ public class Pair {
 	private String value;
 	
 	/**
-	 * Copy constructor of this class, which initializes key and value to default values
-	 * @param key
-	 * @param value
+	 * Copy constructor of this class, which initializes key and value to given values
+	 * @param key    the distance from the source Location to the current Location
+	 * @param value  the name of the current Location
 	 */
 	public Pair(double key, String value) {
 		this.key = key;
@@ -43,4 +43,4 @@ public class Pair {
 	public String getValue() {
 		return value;
 	}
-} // ac
+} // c

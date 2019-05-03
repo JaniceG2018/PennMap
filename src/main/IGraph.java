@@ -21,8 +21,8 @@ public interface IGraph {
 	 * Find the nearest Location of a given type from the current user Location. Return null if not found
 	 * @param currLoc  the current user Location
 	 * @param type     the type of Location (e.g. "Restaurant")
-	 * @param locs     
+	 * @param allLocs  a list of all Locations on the map
 	 * @return the nearest Location of the given type from currLoc
 	 */
-	public Location findNearest(String currLoc, String type, List<Location> locs);
-} // ac
+	public Location findNearest(String currLoc, String type, List<Location> allLocs);
+} // c

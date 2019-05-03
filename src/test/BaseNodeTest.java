@@ -25,4 +25,4 @@ public class BaseNodeTest {
 		Range exp = new Range(new Coordinate(0, 0), new Coordinate(50, 50));
 		assertEquals(exp, BaseNode.mathSplit(node.getRange(), ((LeafNode) node).getCoord()));
 	}
-} // ac
+} // c
