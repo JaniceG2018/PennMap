@@ -1,7 +1,6 @@
 package main;
 
 import java.util.ArrayList;
-
 import java.util.List;
 
 /**
@@ -12,12 +11,12 @@ import java.util.List;
 public class PennMap implements IMapMaker, IMapModel {
 
 	/**
-	 * The QuadTree storing Locations on the map
+	 * The QuadTree storing all Locations on the map
 	 */
 	private IQuadTree tree;
 	
 	/**
-	 * The Graph representing the Road network
+	 * The Graph representing the Road network on the map
 	 */
 	private IGraph graph;
 	
@@ -42,8 +41,8 @@ public class PennMap implements IMapMaker, IMapModel {
 	private List<Location> locList = new ArrayList<Location>();
 	
 	/**
-	 * Constructor of this class, which makes a field of all locations and roads based on the input data
-	 * @param init       data input
+	 * Constructor of this class, which initializes the instance variables from the map data and the current user Coordinate supplied
+	 * @param init       the map data in the form of a list of Strings
 	 * @param currCoord  the current user Coordinate
 	 */
 	public PennMap(List<String> init, Coordinate currCoord) {
@@ -56,8 +55,52 @@ public class PennMap implements IMapMaker, IMapModel {
 	}
 	
 	/**
-	 * Construct a QuadTree
-	 * @return an IQuadTree
+	 * Helper method for parsing the initial data and put it into location and road data fields
+	 * @param initData the map data in the form of a list of Strings
+	 */
+	private void parser(List<String> initData) {
+		for (int i = 0; i < initData.size(); i++) {
+			String s = initData.get(i);
+			String[] sa = s.split(", ");
+			
+			String[] sStartCoord = sa[0].substring(1, sa[0].length() - 1).split(",");
+			double sLat = Double.valueOf(sStartCoord[1]); // y
+			double sLon = Double.valueOf(sStartCoord[0]); // x
+			Coordinate startCoord = new Coordinate(sLon, sLat);
+			Location startLoc = new Location(sa[1], sa[2], startCoord);
+			if (!locList.contains(startLoc))
+				locList.add(startLoc);
+
+			String[] sEndCoord = sa[3].substring(1, sa[3].length() - 1).split(",");
+			double eLon = Double.valueOf(sEndCoord[0]); // x
+			double eLat = Double.valueOf(sEndCoord[1]); // y
+			Coordinate endCoord = new Coordinate(eLon, eLat);
+			Location endLoc = new Location(sa[4], sa[5], endCoord);
+			if (!locList.contains(endLoc))
+				locList.add(endLoc);
+
+			double distance = Double.valueOf(sa[7]);
+			Road rd = new Road(sa[1], sa[4], sa[6], distance);
+			if (!rdList.contains(rd))
+				rdList.add(rd);
+		}
+	}
+	
+	/**
+	 * Helper method
+	 * @return
+	 */
+	private Location matchLoc() {
+		for(Location location : locList) {
+			if(location.getCoord().equals(currCoord))
+				return location;
+		}
+		return null;
+	}
+	
+	/**
+	 * Construct the QuadTree
+	 * @return the IQuadTree storing all Locations on the map
 	 */
 	@Override
 	public IQuadTree makeQuadTree() {
@@ -71,8 +114,8 @@ public class PennMap implements IMapMaker, IMapModel {
 	}
 
 	/**
-	 * Construct a Graph
-	 * @return an IGraph
+	 * Construct the Graph
+	 * @return the IGraph representing the Road network on the map
 	 */
 	@Override
 	public IGraph makeGraph() {		
@@ -126,48 +169,4 @@ public class PennMap implements IMapMaker, IMapModel {
 		Range range = new Range(upperLeft,lowerRight);
 		return tree.search(type, range);		
 	}
-
-	/**
-	 * Helper method for parsing the initial data and put it into location and road data fields
-	 * @param initData
-	 */
-	private void parser(List<String> initData) {
-		for (int i = 0; i < initData.size(); i++) {
-			String s = initData.get(i);
-			String[] sa = s.split(", ");
-			
-			String[] sStartCoord = sa[0].substring(1, sa[0].length() - 1).split(",");
-			double sLat = Double.valueOf(sStartCoord[1]); // y
-			double sLon = Double.valueOf(sStartCoord[0]); // x
-			Coordinate startCoord = new Coordinate(sLon, sLat);
-			Location startLoc = new Location(sa[1], sa[2], startCoord);
-			if (!locList.contains(startLoc))
-				locList.add(startLoc);
-
-			String[] sEndCoord = sa[3].substring(1, sa[3].length() - 1).split(",");
-			double eLon = Double.valueOf(sEndCoord[0]); // x
-			double eLat = Double.valueOf(sEndCoord[1]); // y
-			Coordinate endCoord = new Coordinate(eLon, eLat);
-			Location endLoc = new Location(sa[4], sa[5], endCoord);
-			if (!locList.contains(endLoc))
-				locList.add(endLoc);
-
-			double distance = Double.valueOf(sa[7]);
-			Road rd = new Road(sa[1], sa[4], sa[6], distance);
-			if (!rdList.contains(rd))
-				rdList.add(rd);
-		}
-	}
-	
-	/**
-	 * Helper method
-	 * @return
-	 */
-	private Location matchLoc() {
-		for(Location location : locList) {
-			if(location.getCoord().equals(currCoord))
-				return location;
-		}
-		return null;
-	}
-} // ac
+}

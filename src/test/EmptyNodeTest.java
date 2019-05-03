@@ -41,4 +41,4 @@ public class EmptyNodeTest {
 		EmptyNode node = new EmptyNode();
 		assertTrue(node.isEmpty());
 	}
-} // ac
+} // c

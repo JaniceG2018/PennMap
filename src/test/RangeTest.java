@@ -42,4 +42,4 @@ public class RangeTest {
 		assertFalse(thisRange.intersects(separateRange));
 		assertFalse(separateRange.intersects(thisRange));
 	}
-} // ac
+}

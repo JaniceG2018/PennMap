@@ -8,7 +8,7 @@ import java.util.List;
  *
  */
 public class InternalNode extends BaseNode {
-
+	
 	/**
 	 * The north-east child of this InternalNode
 	 */
@@ -30,7 +30,7 @@ public class InternalNode extends BaseNode {
 	private BaseNode southW;
 	
 	/**
-	 * Empty constructor of this class, which initializes all 4 children to EmptyNodes
+	 * Empty constructor of this class, which initializes all 4 children of this InternalNode to EmptyNodes
 	 */
 	public InternalNode() {
 		northE = QuadTree.emptyNode;
@@ -40,7 +40,7 @@ public class InternalNode extends BaseNode {
 	}
 	
 	/**
-	 * Copy constructor of this class, which initializes all 4 children to given BaseNodes
+	 * Copy constructor of this class, which initializes all 4 children of this InternalNode to given BaseNodes
 	 */
 	public InternalNode(BaseNode northE, BaseNode northW, BaseNode southE, BaseNode southW) {
 		this.northE = northE;
@@ -50,7 +50,7 @@ public class InternalNode extends BaseNode {
 	}
 	
 	/**
-	 * Constructor of this class, which initializes the Range of this InternalNode
+	 * Constructor of this class, which initializes the Range of this node
 	 * to a given Range and all 4 children of this InternalNode to EmptyNodes
 	 * @param range
 	 */
@@ -63,64 +63,64 @@ public class InternalNode extends BaseNode {
 	}
 
 	/**
-	 * Getter for the north-east child of this node
-	 * @return the north-east child of this node
+	 * Getter for the north-east child of this InternalNode
+	 * @return the north-east child of this InternalNode
 	 */
 	public BaseNode getNorthE() {
 		return northE;
 	}
 
 	/**
-	 * Setter for the north-east child of this node
-	 * @param northE the new north-east child of this node
+	 * Setter for the north-east child of this InternalNode
+	 * @param northE the new north-east child of this InternalNode
 	 */
 	public void setNorthE(BaseNode northE) {
 		this.northE = northE;
 	}
 
 	/**
-	 * Getter for the north-west child of this node
-	 * @return the north-west child of this node
+	 * Getter for the north-west child of this InternalNode
+	 * @return the north-west child of this InternalNode
 	 */
 	public BaseNode getNorthW() {
 		return northW;
 	}
 
 	/**
-	 * Setter for the north-west child of this node
-	 * @param northW the new north-west node of this node
+	 * Setter for the north-west child of this InternalNode
+	 * @param northW the new north-west child of this InternalNode
 	 */
 	public void setNorthW(BaseNode northW) {
 		this.northW = northW;
 	}
 
 	/**
-	 * Getter for the south-east child of this node
-	 * @return the south-east child of this node
+	 * Getter for the south-east child of this InternalNode
+	 * @return the south-east child of this InternalNode
 	 */
 	public BaseNode getSouthE() {
 		return southE;
 	}
 
 	/**
-	 * Setter for the south-east child of this node
-	 * @param southE the new south-east child of this node
+	 * Setter for the south-east child of this InternalNode
+	 * @param southE the new south-east child of this InternalNode
 	 */
 	public void setSouthE(BaseNode southE) {
 		this.southE = southE;
 	}
 
 	/**
-	 * Getter for the south-west child of this node
-	 * @return the south-west node of this node
+	 * Getter for the south-west child of this InternalNode
+	 * @return the south-west child of this InternalNode
 	 */
 	public BaseNode getSouthW() {
 		return southW;
 	}
 
 	/**
-	 * Setter for the south-west child of this node
-	 * @param southW the new south-west child of this node
+	 * Setter for the south-west child of this InternalNode
+	 * @param southW the new south-west child of this InternalNode
 	 */
 	public void setSouthW(BaseNode southW) {
 		this.southW = southW;
@@ -146,7 +146,7 @@ public class InternalNode extends BaseNode {
 
 	/**
 	 * Check if this InternalNode is empty
-	 * @return true if all 4 children of this InternalNode are EmptyNodes, and false otherwise
+	 * @return true if all 4 children of this InternalNode are EmptyNodes, or false otherwise
 	 */
 	@Override
 	public boolean isEmpty() {
@@ -157,9 +157,9 @@ public class InternalNode extends BaseNode {
 	}
 	
 	/**
-	 * Helper function for checking if a given BaseNode is an EmptyNode
+	 * Helper method for checking if a given BaseNode is an EmptyNode
 	 * @param node the BaseNode that we want to examine
-	 * @return true if node is an EmptyNode, and false otherwise
+	 * @return true if node is an EmptyNode, or false otherwise
 	 */
 	private boolean isEmptyHelper(BaseNode node) {
 		if (node instanceof EmptyNode)
@@ -167,4 +167,4 @@ public class InternalNode extends BaseNode {
 		else
 			return false;
 	}
-} // ac
+} // c

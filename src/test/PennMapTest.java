@@ -118,4 +118,4 @@ public class PennMapTest {
 		Location res = pennMap.findNearest("Restaurant");
 		assertEquals("WaWa@Chestnut",res.getName());
 	}
-} // ac
+}

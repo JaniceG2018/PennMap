@@ -8,12 +8,12 @@ package main;
 public class Coordinate {
 	
 	/**
-	 * The longitude of the Coordinate
+	 * The longitude of this Coordinate
 	 */
 	private double lon;
 	
 	/**
-	 * The latitude of the Coordinate
+	 * The latitude of this Coordinate
 	 */
 	private double lat;
 	
@@ -36,32 +36,32 @@ public class Coordinate {
 	}
 	
 	/**
-	 * Getter for the longitude of the Coordinate
-	 * @return the longitude of the Coordinate
+	 * Getter for the longitude of this Coordinate
+	 * @return the longitude of this Coordinate
 	 */
 	public double getLon() {
 		return lon;
 	}
 
 	/**
-	 * Setter for the longitude of the Coordinate
-	 * @param lon the new longitude of the Coordinate
+	 * Setter for the longitude of this Coordinate
+	 * @param lon the new longitude of this Coordinate
 	 */
 	public void setLon(double lon) {
 		this.lon = lon;
 	}
 	
 	/**
-	 * Getter for the latitude of the Coordinate
-	 * @return the latitude of the Coordinate
+	 * Getter for the latitude of this Coordinate
+	 * @return the latitude of this Coordinate
 	 */
 	public double getLat() {
 		return lat;
 	}
 
 	/**
-	 * Setter for the latitude of the Coordinate
-	 * @param lat the new latitude of the Coordinate
+	 * Setter for the latitude of this Coordinate
+	 * @param lat the new latitude of this Coordinate
 	 */
 	public void setLat(double lat) {
 		this.lat = lat;
@@ -70,7 +70,7 @@ public class Coordinate {
 	/**
 	 * Check if a given Coordinate is the same as this Coordinate
 	 * @param coord a Coordinate that we want to compare to
-	 * @return true if coord is the same as this Coordinate, and false otherwise
+	 * @return true if coord is the same as this Coordinate, or false otherwise
 	 */
 	public boolean equals(Coordinate coord) {
 		if (coord == null)
@@ -78,4 +78,4 @@ public class Coordinate {
 		else
 			return lon == coord.getLon() && lat == coord.getLat();
 	}
-} // ac
+} // c
