@@ -43,27 +43,11 @@ public class Location {
 	}
 
 	/**
-	 * Setter for the name of the Location
-	 * @param name the new name of the Location
-	 */
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	/**
 	 * Getter for the type of the Location
 	 * @return the type of the Location
 	 */
 	public String getType() {
 		return type;
-	}
-
-	/**
-	 * Setter for the type of the Location
-	 * @param type the new type of the Location
-	 */
-	public void setType(String type) {
-		this.type = type;
 	}
 
 	/**
@@ -74,23 +58,6 @@ public class Location {
 		return coord;
 	}
 
-	/**
-	 * Setter for the Coordinate of the Location
-	 * @param coord the new Coordinate of the Location
-	 */
-	public void setCoord(Coordinate coord) {
-		this.coord = coord;
-	}
-	
-	/**
-	 * Set the hash code of the Location to the hash code of its name
-	 * @return the hash code of the Location's name
-	 */
-	@Override
-	public int hashCode() {
-		return name.hashCode();
-	}
-	
 	/**
 	 * Check if a given Location is the same as this Location
 	 * @param loc a given Location that we want to compare to

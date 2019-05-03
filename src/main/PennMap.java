@@ -42,14 +42,6 @@ public class PennMap implements IMapMaker, IMapModel {
 	private List<Location> locList = new ArrayList<Location>();
 	
 	/**
-	 * Empty constructor of this class, which initializes rdList and locList to empty lists
-	 */
-	public PennMap() {
-		rdList = new ArrayList<Road>();
-		locList = new ArrayList<Location>();
-	}
-	
-	/**
 	 * Constructor of this class, which makes a field of all locations and roads based on the input data
 	 * @param init       data input
 	 * @param currCoord  the current user Coordinate
@@ -90,70 +82,6 @@ public class PennMap implements IMapMaker, IMapModel {
 	}
 	
 	/**
-	 * Getter for the QuadTree
-	 * @return the QuadTree
-	 */
-	public IQuadTree getTree() {
-		return tree;
-	}
-
-	/**
-	 * Setter for the QuadTree
-	 * @param tree the new QuadTree
-	 */
-	public void setTree(QuadTree tree) {
-		this.tree = tree;
-	}
-
-	/**
-	 * Getter for the Graph
-	 * @return the Graph
-	 */
-	public IGraph getGraph() {
-		return graph;
-	}
-
-	/**
-	 * Setter for the Graph
-	 * @param graph the new Graph
-	 */
-	public void setGraph(Graph graph) {
-		this.graph = graph;
-	}
-	
-	/**
-	 * Getter for the current user Coordinate
-	 * @return the current user Coordinate
-	 */
-	public Coordinate getCurrCoord() {
-		return currCoord;
-	}
-
-	/**
-	 * Setter for the current user Coordinate
-	 * @param currCoord the new current user Coordinate
-	 */
-	public void setCurrCoord(Coordinate currCoord) {
-		this.currCoord = currCoord;
-	}
-
-	/**
-	 * Getter for the list of all Roads on the map
-	 * @return the list of all Roads on the map
-	 */
-	public List<Road> getRoadList() {
-		return rdList;
-	}
-
-	/**
-	 * Setter for the list of all Roads on the map
-	 * @param rdList the new list of all Roads on the map
-	 */
-	public void setRoadList(List<Road> rdList) {
-		this.rdList = rdList;
-	}
-
-	/**
 	 * Getter for the list of all Locations on the map
 	 * @return the list of all Locations on the map
 	 */
@@ -161,14 +89,6 @@ public class PennMap implements IMapMaker, IMapModel {
 		return locList;
 	}
 
-	/**
-	 * Setter for the list of all Locations on the map
-	 * @param locList the new List of all Locations on the map
-	 */
-	public void setLocationList(List<Location> locList) {
-		this.locList = locList;
-	}
-	
 	/**
 	 * Return the directions in text for the shortest path from a given Location to another
 	 * @param startLoc  the name of the starting Location

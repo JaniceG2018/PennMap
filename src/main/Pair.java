@@ -1,19 +1,20 @@
 package main;
 
 /**
- * 
+ * This class groups the distance from the source Location to the current Location and
+ * the name of the current Location together as a Pair
  * @author calchen
  *
  */
 public class Pair {
 	
 	/**
-	 * 
+	 * The distance from the source Location to the current Location
 	 */
 	private double key;
 	
 	/**
-	 * 
+	 * The name of the current Location
 	 */
 	private String value;
 	
@@ -36,26 +37,10 @@ public class Pair {
 	}
 
 	/**
-	 * Setter for the key
-	 * @param key the new key
-	 */
-	public void setKey(double key) {
-		this.key = key;
-	}	
-	
-	/**
 	 * Getter for the value
 	 * @return the value
 	 */
 	public String getValue() {
 		return value;
-	}
-
-	/**
-	 * Setter for the value
-	 * @param value the new value
-	 */
-	public void setValue(String value) {
-		this.value = value;
 	}
 } // ac

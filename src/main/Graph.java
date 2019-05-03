@@ -224,13 +224,4 @@ public class Graph implements IGraph {
 		}
 		return null;
 	}
-	
-	/**
-	 * Getter for a list of Roads from a given Location
-	 * @param locName the name of the Location
-	 * @return a list of Roads starting from that Location
-	 */
-	public List<Road> getRoad(String locName) {
-		return this.graph.get(locName);
-	}
 } // ac

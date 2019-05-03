@@ -150,7 +150,7 @@ public class InternalNode extends BaseNode {
 	 */
 	@Override
 	public boolean isEmpty() {
-		if (isNull(northW) && isNull(northE) && isNull(southE) && isNull(southW))
+		if (isEmptyHelper(northW) && isEmptyHelper(northE) && isEmptyHelper(southE) && isEmptyHelper(southW))
 			return true;
 		else
 			return false;
@@ -161,7 +161,7 @@ public class InternalNode extends BaseNode {
 	 * @param node the BaseNode that we want to examine
 	 * @return true if node is an EmptyNode, and false otherwise
 	 */
-	private boolean isNull(BaseNode node) {
+	private boolean isEmptyHelper(BaseNode node) {
 		if (node instanceof EmptyNode)
 			return true;
 		else

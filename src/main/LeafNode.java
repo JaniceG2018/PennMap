@@ -47,30 +47,6 @@ public class LeafNode extends BaseNode {
 	}
 
 	/**
-	 * Setter for the name
-	 * @param name the new name of the Location
-	 */
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	/**
-	 * Getter for the type
-	 * @return the type of the Location
-	 */
-	public String getType() {
-		return type;
-	}
-
-	/**
-	 * Setter for the type
-	 * @param type the new type of the Location
-	 */
-	public void setType(String type) {
-		this.type = type;
-	}
-
-	/**
 	 * Getter for the Coordinate
 	 * @return the Coordinate of the Location
 	 */
@@ -78,14 +54,6 @@ public class LeafNode extends BaseNode {
 		return coord;
 	}
 
-	/**
-	 * Setter for the Coordinate
-	 * @param coord the new Coordinate of the Location
-	 */
-	public void setCoord(Coordinate coord) {
-		this.coord = coord;
-	}
-	
 	/**
 	 * Find all Locations of a given type within a given Range and modifies the parameter locs to include
 	 * all search results.

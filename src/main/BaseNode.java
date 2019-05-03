@@ -38,14 +38,6 @@ public abstract class BaseNode {
 	}
 
 	/**
-	 * Setter for the Range
-	 * @param range the new Range of this node
-	 */
-	public void setRange(Range range) {
-		this.range = range;
-	}
-	
-	/**
 	 * Find all Locations of a given type within a given Range and modifies the parameter locs to include
 	 * all search results
 	 * @param type   type of Locations (e.g. "Restaurant")

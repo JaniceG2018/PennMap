@@ -134,15 +134,6 @@ public class Range {
 	}
 	
 	/**
-	 * 
-	 * @return 
-	 */
-	@Override
-	public int hashCode() {
-		return super.hashCode();
-	}
-	
-	/**
 	 * Checks if a given Range is the same as this Range
 	 * @param otherRange the Range we want to examine
 	 * @return true if otherRange is the same as this Range, and false otherwise

@@ -51,27 +51,11 @@ public class Road {
 	}
 
 	/**
-	 * Setter for the name of the starting Location of the Road
-	 * @param startLocName the name of the new starting Location of the Road
-	 */
-	public void setStartName(String startLocName) {
-		this.startLocName = startLocName;
-	}
-
-	/**
 	 * Getter for the name of the end Location of the Road
 	 * @return the name of the end Location of the Road
 	 */
 	public String getEndLocName() {
 		return endLocName;
-	}
-
-	/**
-	 * Setter for the name of the end Location of the Road
-	 * @param endLocName the name of the new end Location of the Road
-	 */
-	public void setEndLocName(String endLocName) {
-		this.endLocName = endLocName;
 	}
 
 	/**
@@ -83,26 +67,10 @@ public class Road {
 	}
 
 	/**
-	 * Setter for the name of the Road
-	 * @param rdName the new name of the Road
-	 */
-	public void setRdName(String rdName) {
-		this.rdName = rdName;
-	}
-
-	/**
 	 * Getter for the distance of the Road
 	 * @return the distance of the Road
 	 */
 	public double getDist() {
 		return dist;
-	}
-
-	/**
-	 * Setter for the distance of the Road
-	 * @param dist the new distance of the Road
-	 */
-	public void setDist(double dist) {
-		this.dist = dist;
 	}
 } // ac
