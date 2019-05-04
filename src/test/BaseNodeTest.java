@@ -24,5 +24,6 @@ public class BaseNodeTest {
 		BaseNode node = new LeafNode("name", "type", new Coordinate(10, 10), new Range(new Coordinate(0, 0), new Coordinate(100, 100)));
 		Range exp = new Range(new Coordinate(0, 0), new Coordinate(50, 50));
 		assertEquals(exp, BaseNode.mathSplit(node.getRange(), ((LeafNode) node).getCoord()));
+		node.setRange(new Range(new Coordinate(0,0), new Coordinate(1,1)));
 	}
 }

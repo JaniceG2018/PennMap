@@ -43,5 +43,12 @@ public class LocationTest {
 		assertFalse(loc3.equals(loc1));
 		assertFalse(loc1.equals(loc4));
 		assertFalse(loc4.equals(loc1));
+		
+		loc1.setCoord(new Coordinate(0,0));
+		assertEquals(new Coordinate(0,0), loc1.getCoord());
+		loc1.setName("Wawa");
+		assertEquals("Wawa", loc1.getName());
+		loc1.setType("Store");
+		assertEquals("Store", loc1.getType());
 	}
 }

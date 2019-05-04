@@ -183,5 +183,7 @@ public class QuadTreeTest {
 		locs.add(new Location("WaWa@Chestnut", "Restaurant", new Coordinate(20, 0)));
 		Range exp = new Range(new Coordinate(0, 0), new Coordinate(20, 0));
 		assertEquals(exp, tree.enclosingQuad(locs));
+		
+		
 	}
 }

@@ -121,8 +121,8 @@ public class Range {
 	 * Helper method for checking if two range intersect
 	 */
 	private boolean intersectsHelper(Range otherRange, int flag) {
-		if (otherRange == null)
-			return false;
+//		if (otherRange == null)
+//			return false;
 		Coordinate UL = otherRange.upperL;
 		Coordinate BR = otherRange.bottomR;
 		Coordinate BL = new Coordinate(UL.getLon(), BR.getLat());
