@@ -25,7 +25,7 @@ public class LeafNode extends BaseNode {
 	private Coordinate coord;
 	
 	/**
-	 * copy constructor of this class, which initializes name, type and coord with given values
+	 * Copy constructor of this class, which initializes name, type and coord with given values
 	 * @param name name of the location
 	 * @param type type of location
 	 * @param coord coordinate of the location
@@ -39,49 +39,55 @@ public class LeafNode extends BaseNode {
 	}
 	
 	/**
-	 * @return name of the location
+	 * Getter for the name of the Location
+	 * @return the name of the Location
 	 */
 	public String getName() {
 		return name;
 	}
 
 	/**
-	 * @param set new name of the location
+	 * Setter for the name of the Location
+	 * @param set new name of the Location
 	 */
 	public void setName(String name) {
 		this.name = name;
 	}
 
 	/**
-	 * @return type of location
+	 * Getter for the type of the Location
+	 * @return the type of the Location
 	 */
 	public String getType() {
 		return type;
 	}
 
 	/**
-	 * @param type new type of the location
+	 * Setter for the type of the Location
+	 * @param type the new type of the Location
 	 */
 	public void setType(String type) {
 		this.type = type;
 	}
 
 	/**
-	 * @return get Coordinate of the location
+	 * Getter for the Coordinate of the Location
+	 * @return the Coordinate of the location
 	 */
 	public Coordinate getCoord() {
 		return coord;
 	}
 
 	/**
-	 * @param set new Coordinate of the location
+	 * Setter for the Coordinate of the Location
+	 * @param set the new Coordinate of the Location
 	 */
 	public void setCoord(Coordinate coord) {
 		this.coord = coord;
 	}
 	
 	/**
-	 * search() searches Locations of a given type with in a given Range and modifies a parameter locs to include
+	 * Search Locations of a given type with in a given Range and modifies a parameter locs to include
 	 * all search results. If this leafnode contains a location with given type and the coordinate of this location is in 
 	 * the given range, we add the location to the List of Locations locs
 	 * @param type the type of Location we want to search
@@ -97,7 +103,7 @@ public class LeafNode extends BaseNode {
 	}
 	
 	/**
-	 * split() splits a LeafNode into 4 and returns the InternalNode that is the root of these 4 LeafNodes;
+	 * Split a LeafNode into 4 and returns the InternalNode that is the root of these 4 LeafNodes;
 	 * it also transit the current contents stored in this leaf node to its children
 	 * @return the InternalNode that is the root of the 4 LeafNodes after splitting
 	 */
@@ -123,7 +129,7 @@ public class LeafNode extends BaseNode {
 	}
 
 	/**
-	 * isEmpty() checks if this LeafNode is empty
+	 * Check if this LeafNode is empty
 	 * @return true if this LeafNode contains no location in it
 	 */
 	@Override
@@ -134,12 +140,14 @@ public class LeafNode extends BaseNode {
 			return false;
 	}
 	
+	/**
+	 * 
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		String name = ((LeafNode)obj).getName();
 		String type = ((LeafNode)obj).getType();
 		Coordinate coord = ((LeafNode)obj).getCoord();
-
 		return this.name.equals(name) && this.type.equals(type) && this.coord.equals(coord);
 	}
 }

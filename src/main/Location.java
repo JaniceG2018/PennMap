@@ -84,7 +84,7 @@ public class Location {
 	}
 	
 	/**
-	 * hashCode() sets the hasCode of the Location to the hasCode of its name
+	 * Set the hasCode of the Location to the hasCode of its name
 	 * @return the hash code of the Location's name
 	 */
 	@Override
@@ -93,7 +93,7 @@ public class Location {
 	}
 	
 	/**
-	 * equals() compares this Location with an Object, and returns true if the Object is a Location and
+	 * Compare this Location with an Object, and returns true if the Object is a Location and
 	 * has the same name as this Location, and false otherwise
 	 * @param obj an Object that we want to compare this Location to
 	 * @return true if the Object is a Location and has the same name as this Location
@@ -105,4 +105,4 @@ public class Location {
 		else
 			return name.equals(((Location) obj).getName());
 	}
-} //all checked
+}

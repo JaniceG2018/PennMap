@@ -244,16 +244,19 @@ public class Graph implements IGraph {
 
 			}
 		}
-
 		return null;
-
 	}
 
+	/**
+	 * 
+	 * @param locations
+	 * @param curr
+	 * @return
+	 */
 	private Location findLocation(List<Location> locations, String curr) {
 		for (Location l : locations) {
-			if (l.getName().equals(curr)) {
+			if (l.getName().equals(curr))
 				return l;
-			}
 		}
 		return null;
 	}
