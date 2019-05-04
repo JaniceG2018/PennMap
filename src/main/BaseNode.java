@@ -62,15 +62,14 @@ public abstract class BaseNode {
 	
 	/**
 	 * Calculate which direction of the range is the given coordinate in
-	 * @param range  range to split 
-	 * @param c      coordinate of target
+	 * @param range  the Range to split 
+	 * @param coord  the Coordinate of target
 	 * @return a sub-Range in which c is in (NE, NW, SE, SW)
 	 */
-	public static Range mathSplit(Range range, Coordinate c) {
+	public static Range mathSplit(Range range, Coordinate coord) {
 		
 		Coordinate UL = range.getUpperL();
 		Coordinate BR = range.getBottomR();
-		
 		double halfWidth = (BR.getLon() - UL.getLon()) / 2;
 		double halfHeight = (BR.getLat() - UL.getLat()) / 2;
 		
@@ -110,11 +109,11 @@ public abstract class BaseNode {
 		Coordinate R4 = new Coordinate(Rx4, Ry4);
 		Range r4 = new Range(L4, R4);
 			
-		if (r1.contains(c))
+		if (r1.contains(coord))
 			return r1;
-		else if (r2.contains(c))
+		else if (r2.contains(coord))
 			return r2;
-		else if (r3.contains(c))
+		else if (r3.contains(coord))
 			return r3;
 		else
 			return r4;

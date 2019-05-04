@@ -9,7 +9,7 @@ import main.Coordinate;
 import main.Range;
 
 /**
- * Test the methods in the Range class
+ * Test methods in the Range class
  */
 public class RangeTest {
 

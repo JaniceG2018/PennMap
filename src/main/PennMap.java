@@ -13,12 +13,12 @@ import java.util.List;
 public class PennMap implements IMapMaker, IMapModel {
 
 	/**
-	 * the QuadTree representing the map
+	 * The QuadTree representing the map
 	 */
 	private IQuadTree tree;
 	
 	/**
-	 * the Graph representing the map
+	 * The Graph representing the map
 	 */
 	private IGraph graph;
 	
@@ -33,12 +33,12 @@ public class PennMap implements IMapMaker, IMapModel {
 	private Coordinate currentPoint;
 	
 	/**
-	 * list of all roads in the map
+	 * A list of all Roads on the map
 	 */
 	private List<Road> roadList = new ArrayList<Road>();
 	
 	/**
-	 * list of all locations in the map
+	 * A list of all Locations on the map
 	 */
 	private List<Location> locationList = new ArrayList<Location>();
 	
@@ -70,9 +70,8 @@ public class PennMap implements IMapMaker, IMapModel {
 	 */
 	private Location matchLocation() {
 		for(Location location : locationList) {
-			if(location.getCoord().equals(currentPoint)) {
+			if(location.getCoord().equals(currentPoint))
 				return location;
-			}
 		}
 		return null;
 	}
@@ -112,7 +111,7 @@ public class PennMap implements IMapMaker, IMapModel {
 	}
 
 	/**
-	 * findShortestPath() returns the directions in text for the shortest path from
+	 * Return the directions in text for the shortest path from
 	 * a starting Location to a destination
 	 * @param startLoc the name of the starting Location
 	 * @param endLoc the name of the destination
@@ -126,9 +125,9 @@ public class PennMap implements IMapMaker, IMapModel {
 
 	/**
 	 * Find all locations for the specific distance given
-	 * @param type --- type of the location
-	 * @param dist----the distance from user input
-	 * @return  a list of locations in the given distance
+	 * @param type  type of the location
+	 * @param dist  the distance from user input
+	 * @return a list of locations in the given distance
 	 */
 	@Override
 	public List<Location> findAll(String type, double dist) {
@@ -141,7 +140,7 @@ public class PennMap implements IMapMaker, IMapModel {
 	}
 
 	/**
-	 * findNearest() returns the nearest Location of a given type from the current user Location,
+	 * Find the nearest Location of a given type from the current user Location,
 	 * or null if not found
 	 * @param type the type of Location we want to find
 	 * @return the nearest Location of the given type from the current user Location
