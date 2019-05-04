@@ -140,4 +140,4 @@ public class Range {
 	public boolean equals(Object obj) {
 		return upperL.equals(((Range)obj).upperL) && bottomR.equals(((Range)obj).bottomR);
 	}
-} //all checked
+}

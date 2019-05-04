@@ -19,10 +19,23 @@ import main.Location;
 import main.QuadTree;
 import main.Range;
 
+/**
+ * Test the methods in the QuadTree class
+ * @author calchen
+ *
+ */
 public class QuadTreeTest {
 
+	/**
+	 * The QuadTree object
+	 */
 	private QuadTree tree;
+	
+	/**
+	 * A list of Locations
+	 */
 	private List<Location> locs;
+	
 	Location loc0 = new Location("White Dog Cafe", "Restaurant", new Coordinate(60, 20));
 	Location loc1 = new Location("Pottruck Fitness Center", "School", new Coordinate(10, 20));
 	Location loc2 = new Location("Fine Wine and Good Spirit", "Store", new Coordinate(0, 0));
@@ -59,14 +72,15 @@ public class QuadTreeTest {
 		tree = new QuadTree();
 //		Location l2[] = new Location[] { a,b,c,d,e,f,g };
 //		locs2 = Arrays.asList(l2);
-
 	}
 
+	/**
+	 * Test the insert() method in the QuadTree class
+	 */
 	@Test
 	public void testInsert() {
 		Location l[] = new Location[] { loc0, loc1, loc2, loc3, loc4, loc5, loc6, loc7, loc8, loc9, loc10, loc11, loc12,
 				loc13, loc14, loc15, loc16, loc17, loc18, loc19, loc20 };
-
 		locs = Arrays.asList(l);
 		tree.enclosingQuad(locs);
 		assertEquals(0, tree.getSize());
@@ -76,13 +90,14 @@ public class QuadTreeTest {
 			assertTrue(tree.insert(locs.get(i)));
 			assertEquals(i + 1, tree.getSize());
 		}
-
 		// Test insert duplicate location
 		 assertFalse(tree.insert(loc0));
 		 assertFalse(tree.insert(loc10));
-
 	}
 
+	/**
+	 * Test the search() method in the QuadTree class
+	 */
 	@Test
 	public void testSearch() {
 		Location l[] = new Location[] { loc0, loc1, loc2, loc3, loc4, loc5, loc6, loc7, loc8, loc9, loc10, loc11, loc12,
@@ -95,7 +110,6 @@ public class QuadTreeTest {
 			assertTrue(tree.insert(locs.get(i)));
 			assertEquals(i + 1, tree.getSize());
 		}
-
 		Range range;
 		List<Location> res;
 		Set<Location> result;
@@ -133,8 +147,6 @@ public class QuadTreeTest {
 
 		assertTrue(exp2.equals(result));
 
-		
-		
 		Set<Location> exp3 = new HashSet<Location>();
 		range = new Range(new Coordinate(0,51),new Coordinate(60,101));
 		int school3[] = {5,16, 17, 18};
@@ -160,10 +172,11 @@ public class QuadTreeTest {
 			System.out.println(location.getName());
 		}
 		assertTrue(exp4.equals(result));
-
-
 	}
 
+	/**
+	 * Test the enclosingQuad() method in the QuadTree class
+	 */
 	@Test
 	public void testEnclosingQuad() {
 		List<Location> locs = new ArrayList<Location>();

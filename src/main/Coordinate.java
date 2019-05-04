@@ -78,4 +78,4 @@ public class Coordinate {
 	public boolean equals(Object obj) {
 		return lat == ((Coordinate)obj).getLat() && lon == ((Coordinate)obj).getLon();
 	}
-} //all checked
+}

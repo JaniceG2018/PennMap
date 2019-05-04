@@ -15,6 +15,11 @@ import main.Graph;
 import main.Location;
 import main.Road;
 
+/**
+ * Test the methods in the Graph class
+ * @author calchen
+ *
+ */
 public class GraphTest {
 	
 	private Graph graph;
@@ -40,6 +45,9 @@ public class GraphTest {
 		graph = new Graph(locations, roads);
 	}
 
+	/**
+	 * Test the findShortestPath() method in the Graph class
+	 */
 	@Test
 	public void testFindShortestPath() {
 		System.out.println(graph.findShortestPath("A", "C"));
@@ -59,6 +67,9 @@ public class GraphTest {
 		}
 	}
 	
+	/**
+	 * Test the findShortest() method in the Graph class
+	 */
 	@Test
 	public void testFindNearest() {
 		List<Road> roads = new ArrayList<>();

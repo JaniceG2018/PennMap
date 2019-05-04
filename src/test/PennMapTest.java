@@ -17,13 +17,20 @@ import main.QuadTree;
 import main.Road;
 
 /**
- * 
+ * Test the methods in the PennMap class
  * @author calchen, jingwen qiang, Jiaying Guo
  *
  */
 public class PennMapTest {
 
+	/**
+	 * The PennMap object
+	 */
 	private PennMap pennMap;
+	
+	/**
+	 * 
+	 */
 	private List<String> initData;
 	
 	@Before
@@ -57,16 +64,15 @@ public class PennMapTest {
 	}
 	
 	/**
-	 * test constructor and parser
+	 * Test the constructor and parser
 	 */
 	@Test
 	public void testConstructor() {
 		assertEquals("Fine Wine and Good Spirit", pennMap.getLocationList().get(0).getName());
-		
 	}
 	
 	/**
-	 * test make quadtree method
+	 * Test make quadtree method
 	 */
 	@Test
 	public void testMakeQuadTree() {
@@ -78,13 +84,12 @@ public class PennMapTest {
 		locations.add(new Location("Ochatto", "Restaurant", new Coordinate(25, 0)));
 		locations.add(new Location("John Huntsman Hall", "School", new Coordinate(10, 50)));
 		locations.add(new Location("Graduate Center", "School", new Coordinate(20, 50)));
-		
 		QuadTree tree = (QuadTree)pennMap.makeQuadTree();
 		assertEquals(21,tree.getSize());
 	}
 	
 	/**
-	 * 
+	 * Test the makeGraph() method in the PennMap class
 	 */
 	@Test
 	public void testMakeGraph() {
@@ -98,7 +103,6 @@ public class PennMapTest {
 		roads.add(new Road("Fine Wine and Good Spirit", "Graduate Center, School", "Winter St", 85));
 		roads.add(new Road("Pottruck Fitness Center", "Graduate Center, School", "Summer St", 70));
 
-
 		Graph g=(Graph) pennMap.makeGraph();
 //		assertEquals(roads.get(4).getRdName(),g.getRoad("Ochatto").get(0).getRdName());
 //		assertEquals(roads.get(0).getRdName(),g.getRoad("Fine Wine and Good Spirit").get(0).getRdName());
@@ -106,39 +110,40 @@ public class PennMapTest {
 //		assertEquals(roads.get(2).getRdName(),g.getRoad("Fine Wine and Good Spirit").get(2).getRdName());
 //		assertEquals(roads.get(5).getRdName(),g.getRoad("Fine Wine and Good Spirit").get(3).getRdName());
 //		assertEquals(roads.get(6).getRdName(),g.getRoad("Fine Wine and Good Spirit").get(4).getRdName());
-		
 	}
 	
+	/**
+	 * Test the findShortestPath() method in the PennMap class
+	 */
 	@Test
 	public void testFindShortestPath() {
-		
 		//System.out.println("----------------------------------------------!!!!!!!!"+pennMap.findShortestPath("Fine Wine and Good Spirit", "AT&T"));
 		//assertEquals("Fine Wine and Good Spirit -> road 41th st -> AT&T", pennMap.findShortestPath("Fine Wine and Good Spirit", "AT&T"));
 		//System.out.println("--------------------------------------------------"+pennMap.findShortestPath("Fine Wine and Good Spirit", "AT&T"));
 		//assertEquals("Fine Wine and Good Spirit -> road 41th St -> AT&T Total distance is 50", pennMap.findShortestPath("Fine Wine and Good Spirit", "AT&T"));
 	}
 	
+	/**
+	 * Test findAll() method in the PennMap class
+	 */
 	@Test
 	public void testFindAll() {
-		
 //		List<Location> expNull = new ArrayList<Location>();
-
 		List<Location> exp = new ArrayList<Location>();
-		
 //		assertEquals(expNull, pennMap.findAll("Restaurant", 1.0));
 		//System.out.println("!!!"+pennMap.findAll("Restaurant", 10));
 		assertEquals(exp, pennMap.findAll("Restaurant", 10));
 	}
 	
+	/**
+	 * Test findNearest() method in the PennMap class
+	 */
 	@Test
 	public void testFindNearest() {
-		
 //		Location exp = new Location("Starbucks", "Restaurant", new Coordinate(60, 50));
 		Location res = pennMap.findNearest("Restaurant");
-		
 		assertEquals("WaWa@Chestnut",res.getName());
 		//System.out.println("NEAREST!!"+res.getName());
-		
 		//assertEquals(exp.getName(), pennMap.findNearest("Restaurant").getName());
 	}
 }

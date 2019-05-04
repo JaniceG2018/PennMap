@@ -9,14 +9,25 @@ import org.junit.Test;
 import main.Coordinate;
 import main.Location;
 
+/**
+ * Test the methods in the Location class
+ * @author calchen
+ *
+ */
 public class LocationTest {
 
+	/**
+	 * Test the hashCode() method in the LeafNode class
+	 */
 	@Test
 	public void testHashCode() {
 		Location loc = new Location("name", "type", new Coordinate(1, 1));
 		assertEquals(loc.getName().hashCode(), loc.hashCode());
 	}
 	
+	/**
+	 * Test the Equals() method in the LeafNode class
+	 */
 	@Test
 	public void testEquals() {
 		Location loc1 = new Location("name", "type", new Coordinate(1, 1));
@@ -33,4 +44,4 @@ public class LocationTest {
 		assertFalse(loc1.equals(loc4));
 		assertFalse(loc4.equals(loc1));
 	}
-} //all checked
+}
