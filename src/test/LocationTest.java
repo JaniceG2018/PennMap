@@ -10,14 +10,14 @@ import main.Coordinate;
 import main.Location;
 
 /**
- * Test the methods in the Location class
+ * Test methods in the Location class
  * @author calchen
  *
  */
 public class LocationTest {
 
 	/**
-	 * Test the hashCode() method in the LeafNode class
+	 * Test hashCode() method in the Location class
 	 */
 	@Test
 	public void testHashCode() {
@@ -26,14 +26,14 @@ public class LocationTest {
 	}
 	
 	/**
-	 * Test the Equals() method in the LeafNode class
+	 * Test Equals() method in the Location class
 	 */
 	@Test
 	public void testEquals() {
 		Location loc1 = new Location("name", "type", new Coordinate(1, 1));
 		Location loc2 = new Location("name", "type", new Coordinate(1, 1));
-		Location loc3 = new Location("name", "type1", new Coordinate(1, 1));
-		Location loc4 = new Location("name", "type", new Coordinate(2, 2));
+		Location loc3 = new Location("name1", "type1", new Coordinate(1, 1));
+		Location loc4 = new Location("name2", "type", new Coordinate(2, 2));
 		assertFalse(loc1.equals(null));
 		assertFalse(loc1.equals(new Object()));
 		

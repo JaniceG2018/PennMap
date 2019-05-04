@@ -17,14 +17,14 @@ import main.Location;
 import main.Range;
 
 /**
- * Test the methods in the LeafNode class
+ * Test methods in the LeafNode class
  * @author calchen
  *
  */
 public class LeafNodeTest {
 
 	/**
-	 * Test the search() method in the LeafNode class
+	 * Test search() method in the LeafNode class
 	 */
 	@Test
 	public void testSearch() {
@@ -34,7 +34,6 @@ public class LeafNodeTest {
 		leaf.search("type", range, locs);
 		Location location = new Location("name", "type", new Coordinate(1,1));
 		assertEquals(locs.get(0), location);
-
 	}
 	
 	/**
@@ -44,11 +43,23 @@ public class LeafNodeTest {
 	public void testSplit() {
 		LeafNode node = new LeafNode("name", "type", new Coordinate(1, 1), new Range(new Coordinate(0, 0), new Coordinate(10, 10)));
 		InternalNode exp = new InternalNode(new EmptyNode(), new LeafNode("name", "type", new Coordinate(1, 1), new Range(new Coordinate(0, 0), new Coordinate(5, 5))), new EmptyNode(), new EmptyNode());
-		assertEquals(exp, node.split());
+		assertEquals(exp.getNorthW(), node.split().getNorthW());
+		
+		node = new LeafNode("name", "type", new Coordinate(9, 9), new Range(new Coordinate(0, 0), new Coordinate(10, 10)));
+		LeafNode exp1 = new LeafNode("name", "type", new Coordinate(9, 9), new Range(new Coordinate(5, 5), new Coordinate(10, 10)));
+		assertEquals(exp1, node.split().getSouthE());
+		
+		node = new LeafNode("name", "type", new Coordinate(9, 1), new Range(new Coordinate(0, 0), new Coordinate(10, 10)));
+		LeafNode exp2 = new LeafNode("name", "type", new Coordinate(9, 1), new Range(new Coordinate(5, 0), new Coordinate(10, 5)));
+		assertEquals(exp2, node.split().getNorthE());
+		
+		node = new LeafNode("name", "type", new Coordinate(1, 9), new Range(new Coordinate(0, 0), new Coordinate(10, 10)));
+		LeafNode exp3 = new LeafNode("name", "type", new Coordinate(1, 9), new Range(new Coordinate(0, 5), new Coordinate(5, 10)));
+		assertEquals(exp3, node.split().getSouthW());
 	}
 	
 	/**
-	 * Test the isEmpty() method in the LeafNode class
+	 * Test the isEmpty() method in the Location class
 	 */
 	@Test
 	public void testIsEmpty() {

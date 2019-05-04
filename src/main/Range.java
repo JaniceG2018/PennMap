@@ -2,7 +2,6 @@ package main;
 
 /**
  * The Range class models a Range on the map defined by a upper-left and a bottom-right Coordinates
- * 
  * @author calchen
  *
  */
@@ -71,7 +70,7 @@ public class Range {
 	}
 
 	/**
-	 * contains() checks if a given Coordinate is contained within this Range
+	 * Check if a given Coordinate is contained within this Range
 	 * @param coord the Coordinate we want to examine
 	 * @return true if the given Coordinate is contained within this Range, and false otherwise
 	 */
@@ -104,7 +103,7 @@ public class Range {
 	}
 
 	/**
-	 * intersects() checks if a given Range intersects with this Range
+	 * Check if a given Range intersects with this Range
 	 * @param otherRange the Range we want to examine
 	 * @return true if the given Range intersects with this Range, and false otherwise
 	 */
@@ -115,13 +114,13 @@ public class Range {
 		Coordinate BR = otherRange.bottomR;
 		Coordinate BL = new Coordinate(UL.getLon(), BR.getLat());
 		Coordinate UR = new Coordinate(BR.getLon(), UL.getLat());
-		return contains(UL) || contains(BR) || contains(UR) || contains(BL) || otherRange.intersects(this, 0);
+		return contains(UL) || contains(BR) || contains(UR) || contains(BL) || otherRange.intersectsHelper(this, 0);
 	}
 	
 	/**
-	 * helper method for checking if two range intersect
+	 * Helper method for checking if two range intersect
 	 */
-	private boolean intersects(Range otherRange, int flag) {
+	private boolean intersectsHelper(Range otherRange, int flag) {
 		if (otherRange == null)
 			return false;
 		Coordinate UL = otherRange.upperL;
@@ -131,11 +130,19 @@ public class Range {
 		return contains(UL) || contains(BR) || contains(UR) || contains(BL);
 	}
 	
+	/**
+	 * 
+	 */
 	@Override
 	public int hashCode() {
 		return super.hashCode();
 	}
 	
+	/**
+	 * Check is an Object is the same as this Range
+	 * @param obj a given Object that we want to compare to
+	 * @return true is obj is a Range and is the same as this Range
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		return upperL.equals(((Range)obj).upperL) && bottomR.equals(((Range)obj).bottomR);

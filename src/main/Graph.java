@@ -9,7 +9,7 @@ import java.util.Map;
 import java.util.PriorityQueue;
 
 /**
- * 
+ * Graph models a Road network on the map
  * @author calchen, Jiaying Guo
  *
  */
@@ -23,7 +23,6 @@ public class Graph implements IGraph {
 	/**
 	 * Constructor of the Graph class, which converts a list of Locations and a list
 	 * of Roads into a HashMap representing the road network
-	 * 
 	 * @param locations a list of Locations on the map
 	 * @param roads a list of Roads on the map
 	 */
@@ -45,9 +44,8 @@ public class Graph implements IGraph {
 	}
 
 	/**
-	 * findShortestPath() returns the directions in text for the shortest path from
+	 * Return the directions in text for the shortest path from
 	 * one Location to another
-	 * 
 	 * @param the name of the starting Location
 	 * @param the name of the destination
 	 * @return the directions in text for the shortest path from the starting
@@ -125,7 +123,6 @@ public class Graph implements IGraph {
 			}
 
 		}
-
 		String start = loc2;
 		String temp_start, temp_end;
 		List<Road> routes = new ArrayList<>();
@@ -141,7 +138,6 @@ public class Graph implements IGraph {
 			}
 			start = temp_start;
 		}
-
 		path.add(start);
 		String route = "";
 		int distance = 0;
@@ -154,31 +150,29 @@ public class Graph implements IGraph {
 		}
 		route += path.get(0);
 		route += "\nTotal distance is " + distance;
-
 		return route;
 	}
 
 
 	/**
-	 * get road
-	 * added this method for test purposes
-	 * @param locName
-	 * @return the list of road names
+	 * Getter for a list of Roads starting from a given Location
+	 * Added this method for test purposes
+	 * @param locName the name of the Locations
+	 * @return the list of Roads starting from the given Location
 	 */
 	public List<Road> getRoad(String locName) {
 		return this.graph.get(locName);
 	}
 
-
 	/**
-	 * findNearest() returns the nearest Location of a given type from the current user Location,
+	 * Find the nearest Location of a given type from the current user Location,
 	 * or null if not found
 	 * @param type the type of Location we want to find
-	 * @param loc1 the start location
+	 * @param currLoc the start location
 	 * @param locations the list of locations
 	 * @return the nearest Location of the given type from the current user Location
 	 */
-	public Location findNearest(String loc1, String type, List<Location> locations) {
+	public Location findNearest(String currLoc, String type, List<Location> locations) {
 
 		// tracking the visited nodes in graph
 		List<String> visited = new ArrayList<>();
@@ -207,12 +201,12 @@ public class Graph implements IGraph {
 			predecessor.put(s, null);
 		}
 
-		if (!res.containsKey(loc1)) {
+		if (!res.containsKey(currLoc)) {
 			throw new IllegalArgumentException("The starting location doesn't exist!");
 		}
 
-		Pair source = new Pair(0, loc1);
-		res.put(loc1, 0.0);
+		Pair source = new Pair(0, currLoc);
+		res.put(currLoc, 0.0);
 
 		minHeap.offer(source);
 		String curr = "";
@@ -226,7 +220,7 @@ public class Graph implements IGraph {
 
 			// if the current vertex's type matches our search type and it's not our source
 			// vertex, then output the nearest location
-			if (findLocation(locations, curr).getType().equals(type) && !curr.equals(loc1)) {
+			if (findLocation(locations, curr).getType().equals(type) && !curr.equals(currLoc)) {
 				System.out.println("Total distance is " + res.get(curr));
 				return findLocation(locations, curr);
 			}

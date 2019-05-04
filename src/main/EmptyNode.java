@@ -3,7 +3,7 @@ package main;
 import java.util.List;
 
 /**
- * 
+ * EmptyNode models an empty node in the QuadTree
  * @author calchen
  *
  */
@@ -18,7 +18,7 @@ public class EmptyNode extends BaseNode {
 	}
 
 	/**
-	 * search(String type, Range range, List<Location> locs) do nothing and return in EmptyNode
+	 * Do nothing for an EmptyNode
 	 * @param type
 	 * @param range
 	 * @param locs

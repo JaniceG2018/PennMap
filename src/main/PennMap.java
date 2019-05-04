@@ -5,27 +5,53 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 
+ * The PennMap class contains methods for constructing the QuadTree and the Graph and methods
+ * supporting the functionalities of our app
  * @author calchen, jingwen qiang
  *
  */
 public class PennMap implements IMapMaker, IMapModel {
 
-	private IQuadTree tree; //the QuadTree representing the map
-	private IGraph graph; //the Graph representing the map
-	private Location currentLoc;
-	private Coordinate currentPoint;  // current Location of user
-	private List<Road> roadList = new ArrayList<Road>();  // list of all roads in the map
-	private List<Location> locationList = new ArrayList<Location>(); // list of all locations in the map
+	/**
+	 * the QuadTree representing the map
+	 */
+	private IQuadTree tree;
 	
+	/**
+	 * the Graph representing the map
+	 */
+	private IGraph graph;
+	
+	/**
+	 * The current user Location
+	 */
+	private Location currentLoc;
+	
+	/**
+	 * The current user Coordinate
+	 */
+	private Coordinate currentPoint;
+	
+	/**
+	 * list of all roads in the map
+	 */
+	private List<Road> roadList = new ArrayList<Road>();
+	
+	/**
+	 * list of all locations in the map
+	 */
+	private List<Location> locationList = new ArrayList<Location>();
+	
+	/**
+	 * Empty constructor of this class, which initializes roadList and locationList to empty lists
+	 */
 	public PennMap() {
 		roadList = new ArrayList<Road>();
 		locationList = new ArrayList<Location>();
 	}
 	
 	/**
-	 * This constructor is to make a field of all locations and roads based on the input data
-	 * 
+	 * Constructor of this class, which makes a field of all locations and roads based on the input data
 	 * @param initial data input
 	 * @param current location of the user
 	 */
@@ -38,8 +64,10 @@ public class PennMap implements IMapMaker, IMapModel {
 		graph = makeGraph();
 	}
 	
-	
-	
+	/**
+	 * Helper method
+	 * @return
+	 */
 	private Location matchLocation() {
 		for(Location location : locationList) {
 			if(location.getCoord().equals(currentPoint)) {
@@ -50,7 +78,7 @@ public class PennMap implements IMapMaker, IMapModel {
 	}
 
 	/**
-	 * this parser method will parse the initial data and put data in to location and road data fields in pennmap
+	 * Parse the initial data and put data in to location and road data fields in pennmap
 	 * @param initData
 	 */
 	private void parser(List<String> initData) {
@@ -59,31 +87,24 @@ public class PennMap implements IMapMaker, IMapModel {
 			String[] sa = s.split(", ");
 
 			String[] sStartCoord = sa[0].substring(1, sa[0].length() - 1).split(",");
-
 			double sLat = Double.valueOf(sStartCoord[1]); // y
 			double sLon = Double.valueOf(sStartCoord[0]); // x
 			Coordinate startCoord = new Coordinate(sLon, sLat);
-
 			Location startLoc = new Location(sa[1], sa[2], startCoord);
 			if (!locationList.contains(startLoc))
 				locationList.add(startLoc);
 
 			String[] sEndCoord = sa[3].substring(1, sa[3].length() - 1).split(",");
-
-
 			double eLon = Double.valueOf(sEndCoord[0]); // x
 			double eLat = Double.valueOf(sEndCoord[1]); // y
-
 			Coordinate endCoord = new Coordinate(eLon, eLat);
-
 			Location endLoc = new Location(sa[4], sa[5], endCoord);
 			if (!locationList.contains(endLoc))
 				locationList.add(endLoc);
-
+			
 //			double distance = Math.sqrt(
 //					(Math.abs(sLat - eLat) * Math.abs(sLat - eLat)) + (Math.abs(sLon - eLon) * Math.abs(sLon - eLon)));
 			double distance = Double.valueOf(sa[7]);
-
 			Road rd = new Road(sa[1], sa[4], sa[6], distance);
 			if (!roadList.contains(rd))
 				roadList.add(rd);
@@ -91,20 +112,20 @@ public class PennMap implements IMapMaker, IMapModel {
 	}
 
 	/**
-	 * 
-	 * @param loc1---- the starting location
-	 * @param loc2---- the ending location
-	 * @return the directions for the shortest path from one location to another
+	 * findShortestPath() returns the directions in text for the shortest path from
+	 * a starting Location to a destination
+	 * @param startLoc the name of the starting Location
+	 * @param endLoc the name of the destination
+	 * @return the directions in text from the starting Location to the destination
 	 */
 	@Override
-	public String findShortestPath(String loc1, String loc2) {
-		return graph.findShortestPath(loc1, loc2);
+	public String findShortestPath(String startLoc, String endLoc) {
+		return graph.findShortestPath(startLoc, endLoc);
 		
 	}
 
 	/**
-	 * this method will find all locations for the specific distance given
-	 * 
+	 * Find all locations for the specific distance given
 	 * @param type --- type of the location
 	 * @param dist----the distance from user input
 	 * @return  a list of locations in the given distance
@@ -113,19 +134,17 @@ public class PennMap implements IMapMaker, IMapModel {
 	public List<Location> findAll(String type, double dist) {
 		double currY = currentPoint.getLat();
 		double currX = currentPoint.getLon();
-		
 		Coordinate upperLeft= new Coordinate(currX-dist,currY-dist);
 		Coordinate lowerRight= new Coordinate(currX+dist,currY+dist);
-		
 		Range range = new Range(upperLeft,lowerRight);
-		
 		return tree.search(type, range);		
 	}
 
 	/**
-	 * @param type---the type of location
-	 * @return the nearest location for the specific type
-	 * 
+	 * findNearest() returns the nearest Location of a given type from the current user Location,
+	 * or null if not found
+	 * @param type the type of Location we want to find
+	 * @return the nearest Location of the given type from the current user Location
 	 */
 	@Override
 	public Location findNearest(String type) {
@@ -134,7 +153,7 @@ public class PennMap implements IMapMaker, IMapModel {
 	}
 
 	/**
-	 * 
+	 * Construct a QuadTree
 	 * @param locationList---- list of locations of this pennmap
 	 * @return a quadtree that  is associated with this pennmap
 	 */
@@ -150,9 +169,7 @@ public class PennMap implements IMapMaker, IMapModel {
 	}
 
 	/**
-	 * 
 	 * make a graph for the pennmap
-	 * 
 	 * @return a graph that associated with this specific pennmap
 	 */
 	@Override
@@ -163,16 +180,16 @@ public class PennMap implements IMapMaker, IMapModel {
 	}
 	
 	/**
-	 * get quadtree that associated with this map
-	 * @return this quadtree
+	 * Getter for the QuadTree
+	 * @return the QuadTree
 	 */
 	public IQuadTree getTree() {
 		return tree;
 	}
 
 	/**
-	 * set tree
-	 * @param tree
+	 * Setter for the QuadTree
+	 * @param the new QuadTree
 	 */
 	public void setTree(QuadTree tree) {
 		this.tree = tree;

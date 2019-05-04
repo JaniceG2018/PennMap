@@ -133,4 +133,13 @@ public class LeafNode extends BaseNode {
 		else
 			return false;
 	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		String name = ((LeafNode)obj).getName();
+		String type = ((LeafNode)obj).getType();
+		Coordinate coord = ((LeafNode)obj).getCoord();
+
+		return this.name.equals(name) && this.type.equals(type) && this.coord.equals(coord);
+	}
 }
