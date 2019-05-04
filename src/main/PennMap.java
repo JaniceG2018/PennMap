@@ -5,20 +5,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * The PennMap class contains methods for constructing the QuadTree and the Graph and methods
- * supporting the functionalities of our app
+ * This class contains methods for constructing the QuadTree and the Graph and methods supporting the functionalities of our app
  * @author calchen, jingwen qiang
  *
  */
 public class PennMap implements IMapMaker, IMapModel {
 
 	/**
-	 * The QuadTree representing the map
+	 * The QuadTree storing all Locations on the map
 	 */
 	private IQuadTree tree;
 	
 	/**
-	 * The Graph representing the map
+	 * The Graph representing the Road network on the map
 	 */
 	private IGraph graph;
 	
@@ -52,8 +51,8 @@ public class PennMap implements IMapMaker, IMapModel {
 	
 	/**
 	 * Constructor of this class, which makes a field of all locations and roads based on the input data
-	 * @param initial data input
-	 * @param current location of the user
+	 * @param initial  the raw map data
+	 * @param current  the current user Location
 	 */
 	public PennMap(List<String> init, Coordinate current) {
 		// Changed the data input stream to do the parsing first 
@@ -77,7 +76,7 @@ public class PennMap implements IMapMaker, IMapModel {
 	}
 
 	/**
-	 * Parse the initial data and put data in to location and road data fields in pennmap
+	 * Parse the raw map data and put data in to location and road data fields
 	 * @param initData
 	 */
 	private void parser(List<String> initData) {
@@ -111,23 +110,21 @@ public class PennMap implements IMapMaker, IMapModel {
 	}
 
 	/**
-	 * Return the directions in text for the shortest path from
-	 * a starting Location to a destination
-	 * @param startLoc the name of the starting Location
-	 * @param endLoc the name of the destination
-	 * @return the directions in text from the starting Location to the destination
+	 * Return the directions in text for the shortest path from a starting Location to a destination
+	 * @param startLoc  the name of the starting Location
+	 * @param endLoc    the name of the destination
+	 * @return the directions in text from startLoc to endLoc
 	 */
 	@Override
 	public String findShortestPath(String startLoc, String endLoc) {
 		return graph.findShortestPath(startLoc, endLoc);
-		
 	}
 
 	/**
-	 * Find all locations for the specific distance given
-	 * @param type  type of the location
-	 * @param dist  the distance from user input
-	 * @return a list of locations in the given distance
+	 * Find all Locations of a given type within a given distance from the current user Location
+	 * @param type  type of Locations
+	 * @param dist  the distance from the current user Location
+	 * @return a list of all Locations of a given type within dist from the current user Location
 	 */
 	@Override
 	public List<Location> findAll(String type, double dist) {
@@ -140,9 +137,8 @@ public class PennMap implements IMapMaker, IMapModel {
 	}
 
 	/**
-	 * Find the nearest Location of a given type from the current user Location,
-	 * or null if not found
-	 * @param type the type of Location we want to find
+	 * Find the nearest Location of a given type from the current user Location. Return null if not found
+	 * @param type the type of Location
 	 * @return the nearest Location of the given type from the current user Location
 	 */
 	@Override
@@ -153,8 +149,7 @@ public class PennMap implements IMapMaker, IMapModel {
 
 	/**
 	 * Construct a QuadTree
-	 * @param locationList---- list of locations of this pennmap
-	 * @return a quadtree that  is associated with this pennmap
+	 * @return an IQuadTree that is associated with this pennmap
 	 */
 	@Override
 	public IQuadTree makeQuadTree() {
@@ -168,8 +163,8 @@ public class PennMap implements IMapMaker, IMapModel {
 	}
 
 	/**
-	 * make a graph for the pennmap
-	 * @return a graph that associated with this specific pennmap
+	 * Construct a graph
+	 * @return an IGraph that associated with this specific pennmap
 	 */
 	@Override
 	public IGraph makeGraph() {		
@@ -195,64 +190,64 @@ public class PennMap implements IMapMaker, IMapModel {
 	}
 
 	/**
-	 * get graph
-	 * @return the graph associated with the map
+	 * Getter for the Graph
+	 * @return the Graph
 	 */
 	public IGraph getGraph() {
 		return graph;
 	}
 
 	/**
-	 * set the graph
-	 * @param graph
+	 * Setter for the Graph
+	 * @param graph the new Graph
 	 */
 	public void setGraph(Graph graph) {
 		this.graph = graph;
 	}
 
 	/**
-	 * get the current location of user
-	 * @return the current location of user
+	 * Getter for the current user Location
+	 * @return the current user Location
 	 */
 	public Coordinate getCurrentPoint() {
 		return currentPoint;
 	}
 
 	/**
-	 * set users current location
-	 * @param currentPoint
+	 * Setter for the current user Location
+	 * @param currentPoint the new current user Location
 	 */
 	public void setCurrentPoint(Coordinate currentPoint) {
 		this.currentPoint = currentPoint;
 	}
 
 	/**
-	 * get road list or all roads
-	 * @return the roadlist
+	 * Getter for the list of Roads
+	 * @return the list of Roads
 	 */
 	public List<Road> getRoadList() {
 		return roadList;
 	}
 
 	/**
-	 * set the roadlist to de destinated list
-	 * @param roadList
+	 * Setter for the list of Roads
+	 * @param roadList the new list of Roads
 	 */
 	public void setRoadList(List<Road> roadList) {
 		this.roadList = roadList;
 	}
 
 	/**
-	 * get all locations
-	 * @return location list
+	 * Getter for the list of Locations
+	 * @return the list of Locations
 	 */
 	public List<Location> getLocationList() {
 		return locationList;
 	}
 
 	/**
-	 * set location list
-	 * @param locationList
+	 * Setter for the list of Locations
+	 * @param roadList the new list of Locations
 	 */
 	public void setLocationList(List<Location> locationList) {
 		this.locationList = locationList;

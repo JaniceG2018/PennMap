@@ -16,18 +16,16 @@ import java.util.PriorityQueue;
 public class Graph implements IGraph {
 
 	/**
-	 * HashMap to store our road network
+	 * HashMap to implement the Graph
 	 */
 	private HashMap<String, List<Road>> graph;
 
 	/**
-	 * Constructor of the Graph class, which converts a list of Locations and a list
-	 * of Roads into a HashMap representing the road network
-	 * @param locations a list of Locations on the map
-	 * @param roads a list of Roads on the map
+	 * Constructor of this class, which converts a list of Locations and a list of Roads into a HashMap representing the Road network
+	 * @param locations  a list of all Locations on the map
+	 * @param roads      a list of all Roads on the map
 	 */
 	public Graph(List<Location> locations, List<Road> roads) {
-
 		graph = new HashMap<String, List<Road>>();
 		for (Location l : locations) {
 			String startLoc = l.getName();
@@ -44,12 +42,10 @@ public class Graph implements IGraph {
 	}
 
 	/**
-	 * Return the directions in text for the shortest path from
-	 * one Location to another
-	 * @param the name of the starting Location
-	 * @param the name of the destination
-	 * @return the directions in text for the shortest path from the starting
-	 *         Location to the destination
+	 * Return the directions in text for the shortest path from one Location to another
+	 * @param loc1  the name of the starting Location
+	 * @param loc2  the name of the destination
+	 * @return the directions in text for the shortest path from loc1 to loc2
 	 */
 	@Override
 	public String findShortestPath(String loc1, String loc2) {
@@ -82,33 +78,26 @@ public class Graph implements IGraph {
 			res.put(s, Double.MAX_VALUE);
 			predecessor.put(s, null);
 		}
-
 		if (!res.containsKey(loc1) || !res.containsKey(loc2))
 			throw new IllegalArgumentException("The starting or ending location doesn't exist!");
-
 		Pair source = new Pair(0, loc1);
 		predecessor.put(loc1, loc1);
 		res.put(loc1, 0.0);
-
 		minHeap.offer(source);
 		String curr = "";
 		for (int k = 0; k < graph.size(); k++) {
-
 			do {
 				Pair temp = minHeap.poll();
 				curr = temp.getValue();
 			} // Get position
 			while (visited.contains(curr));
-
 			// set current position visited
 			visited.add(curr);
-			if (curr.equals(loc2)) {
+			if (curr.equals(loc2))
 				break;
-			}
-			// Unreachable
-			if (res.get(curr).equals(Double.MAX_VALUE)) {
+			// unreachable
+			if (res.get(curr).equals(Double.MAX_VALUE))
 				return "";
-			}
 			for (Road i : graph.get(curr)) {
 				String w = i.getEnd();
 
@@ -119,9 +108,7 @@ public class Graph implements IGraph {
 					predecessor.put(i.getEnd(), i.getStart());
 					minHeap.offer(new Pair((res.get(i.getStart()) + i.getDist()), w));
 				}
-
 			}
-
 		}
 		String start = loc2;
 		String temp_start, temp_end;
@@ -155,22 +142,20 @@ public class Graph implements IGraph {
 
 
 	/**
-	 * Getter for a list of Roads starting from a given Location
-	 * Added this method for test purposes
-	 * @param locName the name of the Locations
-	 * @return the list of Roads starting from the given Location
+	 * Getter for a list of Roads starting from a given Location. (Added this method for testing purposes)
+	 * @param locName the name of the starting Location
+	 * @return a list of all Roads starting from the given Location
 	 */
 	public List<Road> getRoad(String locName) {
 		return this.graph.get(locName);
 	}
 
 	/**
-	 * Find the nearest Location of a given type from the current user Location,
-	 * or null if not found
-	 * @param type the type of Location we want to find
-	 * @param currLoc the start location
-	 * @param locations the list of locations
-	 * @return the nearest Location of the given type from the current user Location
+	 * Find the nearest Location of a given type from the current user Location. Return null if not found
+	 * @param type       the type of Location
+	 * @param currLoc    the current user Location
+	 * @param locations  a list of Locations containing the search results
+	 * @return the nearest Location of the given type from currLoc
 	 */
 	public Location findNearest(String currLoc, String type, List<Location> locations) {
 
@@ -200,22 +185,17 @@ public class Graph implements IGraph {
 			res.put(s, Double.MAX_VALUE);
 			predecessor.put(s, null);
 		}
-
-		if (!res.containsKey(currLoc)) {
+		if (!res.containsKey(currLoc))
 			throw new IllegalArgumentException("The starting location doesn't exist!");
-		}
-
 		Pair source = new Pair(0, currLoc);
 		res.put(currLoc, 0.0);
-
 		minHeap.offer(source);
 		String curr = "";
-
 		for (int k = 0; k < graph.size(); k++) {
 			do {
 				Pair temp = minHeap.poll();
 				curr = temp.getValue();
-			} // Get position
+			} // get position
 			while (visited.contains(curr));
 
 			// if the current vertex's type matches our search type and it's not our source
@@ -224,31 +204,27 @@ public class Graph implements IGraph {
 				System.out.println("Total distance is " + res.get(curr));
 				return findLocation(locations, curr);
 			}
-
 			visited.add(curr); 
 
-			// Unreachable
-			if (res.get(curr).equals(Double.MAX_VALUE)) {
+			// unreachable
+			if (res.get(curr).equals(Double.MAX_VALUE))
 				return null;
-			}
 
 			for (Road i : graph.get(curr)) {
 				String w = i.getEnd();
 				// update the distance
 				if (res.get(i.getEnd()) > (res.get(i.getStart()) + i.getDist())) {
-
 					res.put(i.getEnd(), (res.get(i.getStart()) + i.getDist()));
 					predecessor.put(i.getEnd(), i.getStart());
 					minHeap.offer(new Pair((res.get(i.getStart()) + i.getDist()), w));
 				}
-
 			}
 		}
 		return null;
 	}
 
 	/**
-	 * 
+	 * Helper method
 	 * @param locations
 	 * @param curr
 	 * @return

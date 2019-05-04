@@ -18,8 +18,7 @@ public class Coordinate {
 	private double lat;
 	
 	/**
-	 * Empty constructor of the Coordinate class, which initializes the longitude and latitude of
-	 * the Coordinate to 0
+	 * Empty constructor of this class, which initializes the longitude and latitude of the Coordinate to 0
 	 */
 	public Coordinate() {
 		this.lon = 0;
@@ -27,8 +26,7 @@ public class Coordinate {
 	}
 	
 	/**
-	 * Copy constructor of the Coordinate class, which initializes the longitude and latitude of
-	 * the Coordinate to given values
+	 * Copy constructor of this class, which initializes the longitude and latitude of the Coordinate to given values
 	 * @param lon the longitude of the Coordinate
 	 * @param lat the latitude of the Coordinate
 	 */
@@ -74,6 +72,11 @@ public class Coordinate {
 //		return super.hashCode();
 //	}
 	
+	/**
+	 * Check if a given Object is a Coordinate and is the same as this Coordinate
+	 * @param obj the Object that we want to compare this Coordinate to
+	 * @return true if obj is a Coordinate and is the same as this Coordinate
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		return lat == ((Coordinate)obj).getLat() && lon == ((Coordinate)obj).getLon();

@@ -3,32 +3,31 @@ package main;
 import java.util.List;
 
 /**
- * The IQuadTree interface contains methods that support the functionalities of the QuadTree
+ * This interface contains methods that support the functionalities of the QuadTree
  * @author calchen
  *
  */
 public interface IQuadTree {
 
 	/**
-	 * insert() inserts a new Location into the QuadTree
-	 * @param loc the new Location that we want to insert into our QuadTree
-	 * @return true if the new Location has been successfully inserted and false otherwise
+	 * Insert a new Location into the QuadTree
+	 * @param loc the new Location that we want to insert into the QuadTree
+	 * @return true if loc is successfully inserted, or false otherwise
 	 */
 	public boolean insert(Location loc);
 	
 	/**
-	 * search() returns a list of Locations of a given type within a given Range by traversing the QuadTree
-	 * @param type the type of Locations we want to search(e.g. "School")
-	 * @param range the search range
-	 * @return a list of Locations of the given type within the given Range   
+	 * Find all Locations of a given type within a given Range by traversing the QuadTree
+	 * @param type   the type of Locations that we want to search (e.g. "School")
+	 * @param range  the search Range
+	 * @return a list of all Locations of the given type within range
 	 */
 	public List<Location> search(String type, Range range);
 	
 	/**
-	 * enclosingQuad() returns the smallest possible Range that includes all given Locations;
-	 * it also re-initialize the root of the QuadTree
+	 * Calculate the smallest possible Range that contains all given Locations. Also reset the root of the QuadTree
 	 * @param locs a list of Locations
-	 * @return the smallest possible Range that includes all given Locations
+	 * @return the smallest possible Range that contains all given Locations
 	 */
 	public Range enclosingQuad(List<Location> locs);
 }

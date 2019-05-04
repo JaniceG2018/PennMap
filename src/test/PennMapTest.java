@@ -18,22 +18,25 @@ import main.QuadTree;
 import main.Road;
 
 /**
- * Test the methods in the PennMap class
+ * Test methods in the PennMap class
  * @author calchen, jingwen qiang, Jiaying Guo
  *
  */
 public class PennMapTest {
 
 	/**
-	 * The PennMap object
+	 * The PennMap
 	 */
 	private PennMap pennMap;
 	
 	/**
-	 * 
+	 * The raw map data
 	 */
 	private List<String> initData;
 	
+	/**
+	 * Setting up the instance variables for the tests
+	 */
 	@Before
 	public void setUp() {
 		initData = new ArrayList<String>();
@@ -73,7 +76,7 @@ public class PennMapTest {
 	}
 	
 	/**
-	 * Test make quadtree method
+	 * Test the makeQuadTree() method in the PennMap class
 	 */
 	@Test
 	public void testMakeQuadTree() {
@@ -118,13 +121,12 @@ public class PennMapTest {
 	 */
 	@Test
 	public void testFindShortestPath() {
-		assertEquals("Fine Wine and Good Spirit -> road 41th St -> AT&T"+
+		assertEquals("Fine Wine and Good Spirit -> road 41th St -> AT&T" +
 				"\nTotal distance is 50", pennMap.findShortestPath("Fine Wine and Good Spirit", "AT&T"));
-		
 	}
 	
 	/**
-	 * Test findAll() method in the PennMap class
+	 * Test the findAll() method in the PennMap class
 	 */
 	@Test
 	public void testFindAll() {
@@ -136,7 +138,7 @@ public class PennMapTest {
 	}
 	
 	/**
-	 * Test findNearest() method in the PennMap class
+	 * Test the findNearest() method in the PennMap class
 	 */
 	@Test
 	public void testFindNearest() {
@@ -147,6 +149,9 @@ public class PennMapTest {
 		//assertEquals(exp.getName(), pennMap.findNearest("Restaurant").getName());
 	}
 	
+	/**
+	 * Test the getters and setters in the PennMap class
+	 */
 	@Test
 	public void testGetterAndSetters() {
 		pennMap.setLocationList(null);
@@ -160,7 +165,5 @@ public class PennMapTest {
 		pennMap.setTree(null);
 		assertNull(pennMap.getTree());
 		PennMap p = new PennMap(new ArrayList<String>(), new Coordinate(0,0));
-		
-
 	}
 }

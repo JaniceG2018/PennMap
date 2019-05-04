@@ -1,19 +1,19 @@
 package main;
 
 /**
- * The Road class models a Road with a starting point, end point, name and distance
+ * The Road class models a Road with starting and end Locations, a name and a distance
  * @author calchen
  *
  */
 public class Road {
 	
 	/**
-	 * The name of the starting point of the Road
+	 * The name of the starting Location of the Road
 	 */
 	private String start;
 	
 	/**
-	 * The name of the end point of the Road
+	 * The name of the end Location of the Road
 	 */
 	private String end;
 	
@@ -28,12 +28,11 @@ public class Road {
 	private double dist;
 	
 	/**
-	 * Copy constructor of the Road class, which initializes the starting point, end point, name and distance
-	 * of the Road to given values
-	 * @param startPt the name of the starting point of the Road
-	 * @param endPt the name of the end point of the Road
-	 * @param rdName the name of the Road
-	 * @param dist the distance of the Road
+	 * Copy constructor of this class, which initializes the starting and end Locations, name and distance of the Road to given values
+	 * @param startPt  the name of the starting Location of the Road
+	 * @param endPt    the name of the end Location of the Road
+	 * @param rdName   the name of the Road
+	 * @param dist     the distance of the Road
 	 */
 	public Road(String startPt, String endPt, String rdName, double dist) {
 		this.start = startPt;
@@ -43,32 +42,32 @@ public class Road {
 	}
 
 	/**
-	 * Getter for the starting point of the Road
-	 * @return the name of the starting point of the Road
+	 * Getter for the name of the starting Location of the Road
+	 * @return the name of the starting Location of the Road
 	 */
 	public String getStart() {
 		return start;
 	}
 
 	/**
-	 * Setter for the starting point of the Road
-	 * @param start the name of the new starting point of the Road
+	 * Setter for the name of the starting Location of the Road
+	 * @param start the name of the new starting Location of the Road
 	 */
 	public void setStart(String start) {
 		this.start = start;
 	}
 
 	/**
-	 * Getter for the end point of the Road
-	 * @return the name of the end point of the Road
+	 * Getter for the name of the end Location of the Road
+	 * @return the name of the end Location of the Road
 	 */
 	public String getEnd() {
 		return end;
 	}
 
 	/**
-	 * Setter for the end point of the Road
-	 * @param end the name of the new end point of the Road
+	 * Setter for the name of the end Location of the Road
+	 * @param end the name of the new end Location of the Road
 	 */
 	public void setEnd(String end) {
 		this.end = end;

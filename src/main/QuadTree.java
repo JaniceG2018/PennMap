@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * This class mdoels a QuadTree with a root
+ * This class models a QuadTree with a root
  * @author xuanwang calchen
  *
  */
@@ -26,7 +26,7 @@ public class QuadTree implements IQuadTree {
 	private int size;
 	
 	/**
-	 * Empty constructor of the QuadTree class, which creates an empty QuadTree
+	 * Empty constructor of this class, which initializes the root of the QuadTree to an EmptyNode
 	 */
 	public QuadTree() {
 		root = emptyNode;
@@ -75,21 +75,21 @@ public class QuadTree implements IQuadTree {
 	 * @param node
 	 * @param coord
 	 * @param loc
-	 * @param curRange
+	 * @param currRange
 	 * @return
 	 */
-	private BaseNode insertHelper(BaseNode node, Coordinate coord, Location loc, Range curRange) {
+	private BaseNode insertHelper(BaseNode node, Coordinate coord, Location loc, Range currRange) {
 		
 		// 1. if node is root and this node is empty
 		if (node == root && node.isEmpty()) {
-			// Calculate range of the new LeafNode
+			// calculate range of the new LeafNode
 			return new LeafNode(loc.getName(), loc.getType(), coord, node.getRange());
 		}
 		
 		// 2. node is empty or empty leaf, create new leafnode and store the info of given location
 		if (node instanceof EmptyNode) {
 			// Calculate range of the new LeafNode
-			Range leafRange = curRange;
+			Range leafRange = currRange;
 			return new LeafNode(loc.getName(), loc.getType(), coord, leafRange);
 		}
 	
@@ -97,22 +97,23 @@ public class QuadTree implements IQuadTree {
 		// into an internal node and add both old and new locations to it 
 		if (node instanceof LeafNode) {
 			// Check Duplicate Name
-			if (((LeafNode) node).getName().equals(loc.getName())) {
+			if (((LeafNode) node).getName().equals(loc.getName()))
 	            throw new IllegalStateException("Location existed!");
-			}
 			BaseNode newNode = ((LeafNode) node).split();
 			newNode = insertHelper(newNode, coord, loc, newNode.getRange());
 			return newNode;
 		}
 
 		// 4. if current node is Internal Node, then we should insert the location in its children
-		Coordinate UL = curRange.getUpperL();
-		Coordinate BR = curRange.getBottomR();
+		Coordinate UL = currRange.getUpperL();
+		Coordinate BR = currRange.getBottomR();
+		
 		// (lon, lat) is the central point of current Quad
 		double lat = (UL.getLat() + BR.getLat()) / 2;
 		double lon = (UL.getLon() + BR.getLon()) / 2;
-		Range childrenRange = BaseNode.mathSplit(curRange, coord);
-		// Decide which children to insert according to this location's coordinate
+		Range childrenRange = BaseNode.mathSplit(currRange, coord);
+		
+		// decide which children to insert according to this location's coordinate
 		if (coord.getLat() <= lat && coord.getLon() <= lon)
 			((InternalNode) node).setNorthW(insertHelper(((InternalNode) node).getNorthW(), coord, loc, childrenRange));
 		else if (coord.getLat() <= lat && coord.getLon() > lon)
@@ -126,9 +127,9 @@ public class QuadTree implements IQuadTree {
 
 	/**
 	 * Find all Locations of a given type within a given Range
-	 * @param type the type of Locations
-	 * @param range the search Range
-	 * @return all Locations of a given type within a given Range
+	 * @param type   the type of Locations
+	 * @param range  the search Range
+	 * @return all Locations of the given type within range
 	 */
 	@Override
 	public List<Location> search(String type, Range range) {
@@ -138,9 +139,9 @@ public class QuadTree implements IQuadTree {
 	}
 
 	/**
-	 * Calculate the smallest possible Range which contains all given Locations
+	 * Calculate the smallest possible Range that contains all given Locations
 	 * @param locs a list of Locations that we want to include
-	 * @return the smallest possible Range which contains all given Locations
+	 * @return the smallest possible Range that contains all given Locations
 	 */
 	@Override
 	public Range enclosingQuad(List<Location> locs) {
@@ -156,9 +157,9 @@ public class QuadTree implements IQuadTree {
 	}
 	
 	/**
-	 * Helper method for updating current QuadTree range
-	 * @param coord
-	 * @param range
+	 * Helper method for updating the current Range of the entire QuadTree 
+	 * @param coord  the Coordinate of the Location to be added
+	 * @param range  the current Range of the entire QuadTree
 	 */
 	private void updateRange(Coordinate coord, Range range) {
 		double lon = coord.getLon();

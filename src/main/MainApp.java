@@ -7,10 +7,10 @@ import java.util.List;
 import java.util.Scanner;
 
 /**
- * The main class of our app which takes in initial map data, and using the PennMap class to make Graph and QuadTree
- * Then based on user selections, it will support the following queries
+ * The main class of our app which constructs the Graph and the QuadTree from raw map data.
+ * Then based on user selections, it will support the following queries:
  * 1. find the shortest path from one Location to another
- * 2. find the nearest location of a given type from the current user Location
+ * 2. find the nearest Location of a given type from the current user Location
  * 3. find all Locations of a given type within a given distance from the current user Location
  * @author calchen, Jingwen Qiang
  *
@@ -18,11 +18,10 @@ import java.util.Scanner;
 public class MainApp {
 
 	/**
-	 * The main() method which creates a specific instance of PennMap and contains code that interacts with the user
+	 * The main() method which creates a specific instance of PennMap from raw map data and contains code that supports interactions with the user
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		
 		String[] arr = {"(0,0), Fine Wine and Good Spirit, Store, (10,20), Pottruck Fitness Center, School, Spring St, 25",
 	               		"(0,0), Fine Wine and Good Spirit, Store, (0,50), AT&T, Store, 41th St, 50",
 	               		"(0,0), Fine Wine and Good Spirit, Store, (20,0), WaWa@Chestnut, Restaurant, Chestnut St-D, 20",
@@ -50,7 +49,7 @@ public class MainApp {
 	               		"(30,0), Spicy Now, Restaurant, (40,20), Institute of Contemporary Art, Museum, Eric St, 30", 
 	               		"(40,20), Institute of Contemporary Art, Museum, (35,50), Annenberg School for Communication Library, School, Swap St, 30"};
 		
-		// construct QuadTree and Graph
+		// construct PennMap
 		List<String> list = new ArrayList<>();
 		Collections.addAll(list, arr);
 		PennMap pMap = new PennMap(list, new Coordinate(55, 50));

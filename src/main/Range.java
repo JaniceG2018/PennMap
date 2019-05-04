@@ -29,8 +29,8 @@ public class Range {
 	/**
 	 * Copy constructor of the Range class, which initializes the upper-left and bottom-right
 	 * Coordinates of the Range to given values
-	 * @param upperL the upper-left Coordinate of the Range
-	 * @param bottomR the bottom-right Coordinate of the Range
+	 * @param upperL   the upper-left Coordinate of the Range
+	 * @param bottomR  the bottom-right Coordinate of the Range
 	 */
 	public Range(Coordinate upperL, Coordinate bottomR) {
 		this.upperL = upperL;
@@ -71,8 +71,8 @@ public class Range {
 
 	/**
 	 * Check if a given Coordinate is contained within this Range
-	 * @param coord the Coordinate we want to examine
-	 * @return true if the given Coordinate is contained within this Range, and false otherwise
+	 * @param coord the Coordinate that we want to examine
+	 * @return true if the given Coordinate is contained within this Range, or false otherwise
 	 */
 	public boolean contains(Coordinate coord) {
 		if (coord == null)
@@ -104,8 +104,8 @@ public class Range {
 
 	/**
 	 * Check if a given Range intersects with this Range
-	 * @param otherRange the Range we want to examine
-	 * @return true if the given Range intersects with this Range, and false otherwise
+	 * @param otherRange the Range that we want to examine
+	 * @return true if the given Range intersects with this Range, or false otherwise
 	 */
 	public boolean intersects(Range otherRange) {
 		if (otherRange == null)
@@ -118,7 +118,7 @@ public class Range {
 	}
 	
 	/**
-	 * Helper method for checking if two range intersect
+	 * Helper method for checking if two Ranges intersect
 	 */
 	private boolean intersectsHelper(Range otherRange, int flag) {
 //		if (otherRange == null)
@@ -131,7 +131,7 @@ public class Range {
 	}
 	
 	/**
-	 * 
+	 * Set the hash code of this Range
 	 */
 	@Override
 	public int hashCode() {
@@ -139,9 +139,9 @@ public class Range {
 	}
 	
 	/**
-	 * Check is an Object is the same as this Range
-	 * @param obj a given Object that we want to compare to
-	 * @return true is obj is a Range and is the same as this Range
+	 * Check if an Object is a Range and is the same as this Range
+	 * @param obj a given Object that we want to compare this Range to
+	 * @return true if obj is a Range and is the same as this Range
 	 */
 	@Override
 	public boolean equals(Object obj) {

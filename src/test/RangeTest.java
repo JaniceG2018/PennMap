@@ -1,7 +1,6 @@
 package test;
 
 import static org.junit.Assert.*;
-import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
@@ -43,12 +42,15 @@ public class RangeTest {
 		assertFalse(separateRange.intersects(thisRange));
 	}
 	
+	/**
+	 * Test the rest of the methods in the Range class
+	 */
 	@Test
-	public void test3() {
+	public void testRest() {
 		Range r1 = new Range(new Coordinate(0,0), new Coordinate(10,10));
 		Range r2 = new Range(new Coordinate(0,0), new Coordinate(10,10));
 		assertTrue(r1.equals(r2));
-		System.out.println(r1.hashCode());
+//		System.out.println(r1.hashCode());
 		r1.setBottomR(new Coordinate(5,5));
 		assertEquals(new Coordinate(5,5), r1.getBottomR());
 		r1.setUpperL(new Coordinate(0,1));
@@ -57,5 +59,4 @@ public class RangeTest {
 		r2.setUpperL(new Coordinate(1,1));
 		assertTrue(r2.contains(new Coordinate(5,5)));
 	}
-	
 }

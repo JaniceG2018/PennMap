@@ -17,7 +17,7 @@ import main.Location;
 public class LocationTest {
 
 	/**
-	 * Test hashCode() method in the Location class
+	 * Test the hashCode() method in the Location class
 	 */
 	@Test
 	public void testHashCode() {
@@ -26,7 +26,7 @@ public class LocationTest {
 	}
 	
 	/**
-	 * Test Equals() method in the Location class
+	 * Test the equals() method in the Location class
 	 */
 	@Test
 	public void testEquals() {
@@ -36,14 +36,12 @@ public class LocationTest {
 		Location loc4 = new Location("name2", "type", new Coordinate(2, 2));
 		assertFalse(loc1.equals(null));
 		assertFalse(loc1.equals(new Object()));
-		
 		assertTrue(loc1.equals(loc2));
 		assertTrue(loc2.equals(loc1));
 		assertFalse(loc1.equals(loc3));
 		assertFalse(loc3.equals(loc1));
 		assertFalse(loc1.equals(loc4));
 		assertFalse(loc4.equals(loc1));
-		
 		loc1.setCoord(new Coordinate(0,0));
 		assertEquals(new Coordinate(0,0), loc1.getCoord());
 		loc1.setName("Wawa");

@@ -15,7 +15,7 @@ import main.Location;
 import main.Range;
 
 /**
- * Test the methods in the InternalNode class
+ * Test methods in the InternalNode class
  * @author calchen
  *
  */

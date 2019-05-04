@@ -10,7 +10,7 @@ import java.util.List;
 public class EmptyNode extends BaseNode {
 
 	/**
-	 * Empty constructor of the EmptyNode class, which initializes the EmptyNode with range outside of the map's range
+	 * Empty constructor of this class, which initializes the Range of this EmptyNode to default values
 	 */
 	public EmptyNode() {
 		range.setUpperL(new Coordinate(Double.NEGATIVE_INFINITY,Double.NEGATIVE_INFINITY));
@@ -19,9 +19,9 @@ public class EmptyNode extends BaseNode {
 
 	/**
 	 * Do nothing for an EmptyNode
-	 * @param type
-	 * @param range
-	 * @param locs
+	 * @param type   the type of Locations
+	 * @param range  the search Range
+	 * @param locs   a list of Locations containing the search results
 	 */
 	@Override
 	public void search(String type, Range range, List<Location> locs) {
@@ -29,8 +29,8 @@ public class EmptyNode extends BaseNode {
 	}
 
 	/**
-	 * isEmpty() returns true if a node is empty
-	 * @return true if this node is empty (always)
+	 * Check if this EmptyNode is empty
+	 * @return true if this EmptyNode is empty (always)
 	 */
 	@Override
 	public boolean isEmpty() {

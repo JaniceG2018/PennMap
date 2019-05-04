@@ -13,7 +13,7 @@ public class Location {
 	private String name;
 	
 	/**
-	 * The type of the Location
+	 * The type of Location
 	 */
 	private String type;
 	
@@ -23,11 +23,10 @@ public class Location {
 	private Coordinate coord;
 	
 	/**
-	 * Copy constructor of the Location class, which initializes the name, the type and the Coordinate
-	 * of the Location to given values
-	 * @param name the name of the Location
-	 * @param type the type of the Location
-	 * @param coord the Coordinate of the Location
+	 * Copy constructor of this class, which initializes the name, type and Coordinate of this Location to given values
+	 * @param name the name of this Location
+	 * @param type the type of Location
+	 * @param coord the Coordinate of this Location
 	 */
 	public Location(String name, String type, Coordinate coord) {
 		this.name = name;
@@ -84,8 +83,8 @@ public class Location {
 	}
 	
 	/**
-	 * Set the hasCode of the Location to the hasCode of its name
-	 * @return the hash code of the Location's name
+	 * Set the hash code of this Location to the hash code of its name
+	 * @return the hash code of the name of this Location
 	 */
 	@Override
 	public int hashCode() {
@@ -93,10 +92,9 @@ public class Location {
 	}
 	
 	/**
-	 * Compare this Location with an Object, and returns true if the Object is a Location and
-	 * has the same name as this Location, and false otherwise
+	 * Check if a given Object is a Location and has the same name as this Location
 	 * @param obj an Object that we want to compare this Location to
-	 * @return true if the Object is a Location and has the same name as this Location
+	 * @return true if obj is a Location and has the same name as this Location
 	 */
 	@Override
 	public boolean equals(Object obj) {

@@ -16,7 +16,7 @@ import main.Location;
 import main.Road;
 
 /**
- * This class tests the methods of the Graph class
+ * Test methods in the Graph class
  * @author calchen
  *
  */
@@ -33,7 +33,7 @@ public class GraphTest {
 	private Graph graph;
 	
 	/**
-	 * Initialize the Graph
+	 * Setting up the instance variables for tests
 	 */
 	@Before
 	public void setup(){
@@ -55,12 +55,12 @@ public class GraphTest {
 	}
 
 	/**
-	 * Test the findShortestPath() method of the Graph class
+	 * Test the findShortestPath() method in the Graph class
 	 */
 	@Test
 	public void testFindShortestPath() {
-		System.out.println(graph.findShortestPath("A", "C"));
-		assertEquals("A -> road AB -> B -> road BC -> C" + "\nTotal distance is 2",graph.findShortestPath("A", "C"));
+//		System.out.println(graph.findShortestPath("A", "C"));
+		assertEquals("A -> road AB -> B -> road BC -> C" + "\nTotal distance is 2", graph.findShortestPath("A", "C"));
 		try {
 			graph.findShortestPath("Z", "X");
 		} catch (Exception e) {
@@ -74,7 +74,7 @@ public class GraphTest {
 	}
 	
 	/**
-	 * Test the findNearest() method of the Graph class
+	 * Test the findNearest() method in the Graph class
 	 */
 	@Test
 	public void testFindNearest() {

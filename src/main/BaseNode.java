@@ -3,7 +3,7 @@ package main;
 import java.util.List;
 
 /**
- * This class models a generic node in our QuadTree
+ * This class models a generic node in the QuadTree
  * @author calchen Jiaying Guo
  *
  */
@@ -15,14 +15,14 @@ public abstract class BaseNode {
 	protected Range range;
 	
 	/**
-	 * Empty constructor of the BaseNode class, which initializes the Range of this node to default value
+	 * Empty constructor of this class, which initializes the Range of this node to default value
 	 */
 	public BaseNode() {
 		this.range = new Range();
 	}
 	
 	/**
-	 * Copy constructor of the BaseNode class, which initializes the Range of this node to a given Range
+	 * Copy constructor of this class, which initializes the Range of this node to a given Range
 	 * @param range
 	 */
 	public BaseNode(Range range) {
@@ -46,28 +46,26 @@ public abstract class BaseNode {
 	}
 	
 	/**
-	 * Search Locations of a given type with in a given Range and modifies a parameter locs to include
-	 * all search results. 
-	 * @param type  type of the target locations(e.g. "Restaurant")
-	 * @param range range of the target locations
-	 * @param locs  result of target locations
+	 * Find all Locations of a given type within a given Range and modify the parameter locs to include all search results
+	 * @param type   the type of the given Locations (e.g. "Restaurant")
+	 * @param range  the Range of the given Locations
+	 * @param locs   the search results
 	 */
 	public abstract void search(String type, Range range, List<Location> locs);
 	
 	/**
 	 * Check if this node is empty
-	 * @return true if this node is empty
+	 * @return true if this node is empty, or false otherwise
 	 */
 	public abstract boolean isEmpty();
 	
 	/**
 	 * Calculate which direction of the range is the given coordinate in
-	 * @param range  the Range to split 
-	 * @param coord  the Coordinate of target
-	 * @return a sub-Range in which c is in (NE, NW, SE, SW)
+	 * @param range  the Range to split
+	 * @param coord  the Coordinate within range
+	 * @return the sub-Range where coord belongs (NE, NW, SE, SW)
 	 */
 	public static Range mathSplit(Range range, Coordinate coord) {
-		
 		Coordinate UL = range.getUpperL();
 		Coordinate BR = range.getBottomR();
 		double halfWidth = (BR.getLon() - UL.getLon()) / 2;

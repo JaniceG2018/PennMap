@@ -24,11 +24,11 @@ import main.Range;
 public class LeafNodeTest {
 
 	/**
-	 * Test search() method in the LeafNode class
+	 * Test the search() method in the LeafNode class
 	 */
 	@Test
 	public void testSearch() {
-		Range range = new Range(new Coordinate(0,0),new Coordinate(100,100));
+		Range range = new Range(new Coordinate(0, 0),new Coordinate(100, 100));
 		LeafNode leaf = new LeafNode("name", "type", new Coordinate(1, 1), range);
 		List<Location> locs = new ArrayList<>();
 		leaf.search("type", range, locs);
@@ -59,7 +59,7 @@ public class LeafNodeTest {
 	}
 	
 	/**
-	 * Test the isEmpty() method in the Location class
+	 * Test the isEmpty() method in the LeafNode class
 	 */
 	@Test
 	public void testIsEmpty() {
