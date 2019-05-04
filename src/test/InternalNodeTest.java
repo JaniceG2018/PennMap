@@ -14,16 +14,8 @@ import main.LeafNode;
 import main.Location;
 import main.Range;
 
-/**
- * This class tests the methods of the InternalNode class
- * @author calchen
- *
- */
 public class InternalNodeTest {
 
-	/**
-	 * Test the search() method of the InternalNode class
-	 */
 	@Test
 	public void testSearch() {
 		InternalNode node = new InternalNode();
@@ -31,9 +23,6 @@ public class InternalNodeTest {
 		node.search("type", new Range(new Coordinate(0, 0), new Coordinate(10, 10)), locs);
 	}
 	
-	/**
-	 * Test the isEmpty() method of the InternalNode class
-	 */
 	@Test
 	public void testIsEmpty() {
 		InternalNode root1 = new InternalNode(new EmptyNode(), new EmptyNode(), new EmptyNode(), new EmptyNode());
@@ -42,4 +31,4 @@ public class InternalNodeTest {
 		assertTrue(root1.isEmpty());
 		assertFalse(root2.isEmpty());
 	}
-} // c
+}

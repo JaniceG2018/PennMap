@@ -9,20 +9,23 @@ import main.Coordinate;
 import main.LeafNode;
 import main.Range;
 
-/**
- * This class tests the method of the BaseNode class
- * @author calchen
- *
- */
 public class BaseNodeTest {
+
+	@Test
+	public void testSearch() {
+		//can we test abstrct methods?
+	}
 	
-	/**
-	 * Test the mathSplit() method of the BaseNode class
-	 */
+	@Test
+	public void testIsEmpty() {
+		//can we test abstrct methods?
+	}
+	
 	@Test
 	public void testMathSplit() {
-		BaseNode node = new LeafNode("name", "type", new Coordinate(10, 10), new Range(new Coordinate(0, 0), new Coordinate(100, 100)));
+		BaseNode node = new LeafNode("name", "type", new Coordinate(10, 10),
+				new Range(new Coordinate(0, 0), new Coordinate(100, 100)));
 		Range exp = new Range(new Coordinate(0, 0), new Coordinate(50, 50));
 		assertEquals(exp, BaseNode.mathSplit(node.getRange(), ((LeafNode) node).getCoord()));
 	}
-} // c
+}

@@ -1,7 +1,7 @@
 package main;
 
 /**
- * This class models a Coordinate on the map with a longitude and a latitude
+ * The Coordinate class models a Coordinate on the map with a longitude and a latitude
  * @author calchen
  *
  */
@@ -18,7 +18,8 @@ public class Coordinate {
 	private double lat;
 	
 	/**
-	 * Empty constructor of this class, which initializes the longitude and latitude of this Coordinate to 0
+	 * Empty constructor of the Coordinate class, which initializes the longitude and latitude of
+	 * the Coordinate to 0
 	 */
 	public Coordinate() {
 		this.lon = 0;
@@ -26,9 +27,10 @@ public class Coordinate {
 	}
 	
 	/**
-	 * Copy constructor of this class, which initializes the longitude and latitude of this Coordinate to given values
-	 * @param lon the longitude of this Coordinate
-	 * @param lat the latitude of this Coordinate
+	 * Copy constructor of the Coordinate class, which initializes the longitude and latitude of
+	 * the Coordinate to given values
+	 * @param lon the longitude of the Coordinate
+	 * @param lat the latitude of the Coordinate
 	 */
 	public Coordinate(double lon, double lat) {
 		this.lon = lon;
@@ -67,15 +69,13 @@ public class Coordinate {
 		this.lat = lat;
 	}
 	
-	/**
-	 * Check if a given Coordinate is the same as this Coordinate
-	 * @param coord a Coordinate that we want to compare to
-	 * @return true if coord is the same as this Coordinate, and false otherwise
-	 */
-	public boolean equals(Coordinate coord) {
-		if (coord == null)
-			return false;
-		else
-			return lon == coord.getLon() && lat == coord.getLat();
+//	@Override
+//	public int hashCode() {
+//		return super.hashCode();
+//	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		return lat == ((Coordinate)obj).getLat() && lon == ((Coordinate)obj).getLon();
 	}
-} // ac
+} //all checked

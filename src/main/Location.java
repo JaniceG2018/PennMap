@@ -1,7 +1,7 @@
 package main;
 
 /**
- * This class models a Location on the map with a name, a type and a Coordinate
+ * The Location class models a Location with a name, a type and a Coordinate
  * @author calchen
  *
  */
@@ -13,7 +13,7 @@ public class Location {
 	private String name;
 	
 	/**
-	 * The type of the Location (e.g. "Restaurant")
+	 * The type of the Location
 	 */
 	private String type;
 	
@@ -23,10 +23,11 @@ public class Location {
 	private Coordinate coord;
 	
 	/**
-	 * Copy constructor of this class, which initializes the name, type and Coordinate of this Location to given values
-	 * @param name   the name of the Location
-	 * @param type   the type of the Location (e.g. "Restaurant")
-	 * @param coord  the Coordinate of the Location
+	 * Copy constructor of the Location class, which initializes the name, the type and the Coordinate
+	 * of the Location to given values
+	 * @param name the name of the Location
+	 * @param type the type of the Location
+	 * @param coord the Coordinate of the Location
 	 */
 	public Location(String name, String type, Coordinate coord) {
 		this.name = name;
@@ -43,11 +44,27 @@ public class Location {
 	}
 
 	/**
+	 * Setter for the name of the Location
+	 * @param name the new name of the Location
+	 */
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	/**
 	 * Getter for the type of the Location
 	 * @return the type of the Location
 	 */
 	public String getType() {
 		return type;
+	}
+
+	/**
+	 * Setter for the type of the Location
+	 * @param type the new type of the Location
+	 */
+	public void setType(String type) {
+		this.type = type;
 	}
 
 	/**
@@ -57,39 +74,35 @@ public class Location {
 	public Coordinate getCoord() {
 		return coord;
 	}
-	
-	
 
 	/**
-	 * @param name the name to set
-	 */
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	/**
-	 * @param type the type to set
-	 */
-	public void setType(String type) {
-		this.type = type;
-	}
-
-	/**
-	 * @param coord the coord to set
+	 * Setter for the Coordinate of the Location
+	 * @param coord the new Coordinate of the Location
 	 */
 	public void setCoord(Coordinate coord) {
 		this.coord = coord;
 	}
-
+	
 	/**
-	 * Check if a given Location is the same as this Location
-	 * @param loc a given Location that we want to compare to
-	 * @return true if loc is the same as this Location, and false otherwise
+	 * hashCode() sets the hasCode of the Location to the hasCode of its name
+	 * @return the hash code of the Location's name
 	 */
-	public boolean equals(Location loc) {
-		if (loc == null)
+	@Override
+	public int hashCode() {
+		return name.hashCode();
+	}
+	
+	/**
+	 * equals() compares this Location with an Object, and returns true if the Object is a Location and
+	 * has the same name as this Location, and false otherwise
+	 * @param obj an Object that we want to compare this Location to
+	 * @return true if the Object is a Location and has the same name as this Location
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (obj == null || !(obj instanceof Location))
 			return false;
 		else
-			return name.equals(loc.getName());
+			return name.equals(((Location) obj).getName());
 	}
-} // ac
+} //all checked
